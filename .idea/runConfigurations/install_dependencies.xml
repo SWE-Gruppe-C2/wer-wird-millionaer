@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="install dependencies" type="CompoundRunConfigurationType">
+    <toRun name="npm install" type="js.build_tools.npm" />
+    <toRun name="composer install" type="PhpLocalRunConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
