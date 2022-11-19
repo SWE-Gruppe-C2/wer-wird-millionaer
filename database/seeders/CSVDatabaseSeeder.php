@@ -6,22 +6,27 @@ class CSVDatabaseSeeder extends DatabaseSeeder
 {
 
     /**
-     * generates an associative array from a csv file, taking the first row of the csv as keys for the array
-     * key1,key2
-     * value1_1,value1_2
-     * value2_1,value2_2
-     * [0] => [[key1]=>[value1_1],[key2]=>[value1_2]],[1] => [[key1]=>[value2_1]...]
-     * @param $path string to csv file
-     * @return array csv contents in associative array
+     * Generiert ein Assoziatives Array aus einer CSV-Datei und nimmt dabei die erste Zeile als Keys für das Array
+     * z.B. so:
+     * vorname,nachname,PLZ
+     * Max,Muster,52062
+     * Klaus,Müller,52070
+     * [0] => [[vorname]=>[Max],[nachname]=>[Muster],[PLZ]=>[52062]],[1] => [[vorname]=>[Klaus]...]
+     * @param $path string dateipfad der CSV
+     * @return array CSV inhalt als assoziatives Array
      */
     public static function csv(string $path): array
     {
-        $rows = array_map('str_getcsv', file($path));   //puts csv file into rows
-        $header = array_shift($rows);                    //takes first row as map keys
+        //teilt csv-datei in einzelne Zeilen
+        $rows = array_map('str_getcsv', file($path));
+        //nimmt erste Zeile als Map keys
+        $header = array_shift($rows);
         $dataArray = array();
         foreach ($rows as $row)
-            if (sizeof($row) == sizeof($header))                //is row size correct?
-                $dataArray[] = array_combine($header, $row);    //generates Map with row data
+            //ist Zeilengröße = keygröße?
+            if (sizeof($row) == sizeof($header))
+                //generiert Map mit Zeilendaten
+                $dataArray[] = array_combine($header, $row);
         return $dataArray;
     }
 }
