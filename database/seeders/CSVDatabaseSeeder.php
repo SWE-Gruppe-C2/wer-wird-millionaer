@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace Database\Seeders;
 
-class CSVDatabaseSeeder extends \Database\Seeders\DatabaseSeeder
+class CSVDatabaseSeeder extends DatabaseSeeder
 {
-    public static function csv($data): array                    //$data: csv file name, returns csv data as associative array
+
+    /**
+     * @param $path string to csv file
+     * @return array csv contents in associative array
+     */
+    public static function csv(string $path): array
     {
-        $rows = array_map('str_getcsv', file($data));   //puts csv file into rows
+        $rows = array_map('str_getcsv', file($path));   //puts csv file into rows
         $header = array_shift($rows);                    //takes first row as map keys
         $dataArray = array();
         foreach ($rows as $row)
