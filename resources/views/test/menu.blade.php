@@ -11,13 +11,13 @@
 <main>
     <div class="horizontal_bar">
         <img src="{{ asset('assets/img/mute.png') }}" id="toggle_sound" alt="Musik einschalten">
-        <a href="{{ route('/test/login') }}">
+        <a href="/test/login">
             <img src="{{ asset('assets/img/logout.png') }}" id="logout" alt="Abmelden">
         </a>
     </div>
     <div id="hub"></div>
     <div class="button_wrapper">
-        <a href="{{ route('/test') }}" class="button">
+        <a href="/test" class="button">
             <span>Spiel starten</span>
         </a>
         <div class="button">

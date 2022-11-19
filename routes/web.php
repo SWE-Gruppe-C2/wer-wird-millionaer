@@ -28,4 +28,5 @@ Route::prefix('test')->group(function () {
     Route::get('/register', fn () => view('test.register'));
     Route::get('/reset-password', fn () => view('test.reset-password'));
 });
+
 require __DIR__.'/auth.php';

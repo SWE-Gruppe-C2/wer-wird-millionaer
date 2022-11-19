@@ -18,12 +18,12 @@
         <input type="password" id="password" name="password" placeholder="Passwort">
         <input type="submit" value="Einloggen">
     </form>
-    <a href="{{ route('test.reset-password') }}">Passwort vergessen?</a>
+    <a href="/test/reset-password">Passwort vergessen?</a>
     <p>
         oder<br>
         Noch nicht registriert?
     </p>
-    <a href="{{ route('test.register') }}">Registrieren</a>
+    <a href="/test/register">Registrieren</a>
 </main>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <body>
 <main>
     <div class="horizontal_bar">
-        <a href="{{ route('/test/login') }}">
+        <a href="/test/login">
             <img src="{{ asset('assets/img/back.png') }}" id="back" alt="Zurück">
         </a>
         <h1>Passwort vergessen</h1>
