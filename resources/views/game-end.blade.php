@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form method="POST" action="{{ route('storeGame') }}"
+    <form method="POST" action="{{ route('storeGame') }}">
         @csrf
         <input type="text" name="gewinnsumme">
         <input type="text" name="zeit">

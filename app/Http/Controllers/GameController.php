@@ -15,6 +15,10 @@ class GameController extends Controller
      */
     public static function index()
     {
+
+
+        #TODO Erst wieder aktivieren wenn User Models fertig
+        /*
         return([
             'games' => DB::table('games')
                 ->join('users', 'users.id', '=', 'games.user_id')
@@ -23,6 +27,16 @@ class GameController extends Controller
                 ->orderBy('zeit', 'asc')
                 ->limit(10)
                 ->get()]);
+
+        */
+
+        return(['games' => DB::table('games')
+                ->select('games.gewinnsumme', 'games.zeit')
+                ->orderBy('gewinnsumme', 'desc')
+                ->orderBy('zeit', 'asc')
+                ->limit(10)
+                ->get()]);
+
     }
 
     /**
@@ -45,15 +59,16 @@ class GameController extends Controller
     {
         $gewinnsumme = $request->input('gewinnsumme');
         $zeit = $request->input('zeit');
-        $user_id = $request->session()->get('user_id');
+        //die user_id muss sowohl hier als auch im insert statement wieder angepasst werden
+        #$user_id = $request->session()->get('user_id');
 
         DB::table('games')->insert([
-            'user_id' => $user_id,
+            'user_id' => 1,
             'gewinnsumme' => $gewinnsumme,
             'zeit' => $zeit,
         ]);
 
-        return redirect(route('game-end'));
+        return redirect('/game-end');
     }
 
     /**

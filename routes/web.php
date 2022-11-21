@@ -22,8 +22,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-//Routes für Leaderboard && Spieleende
-
+//Routes für Leaderboard && Spielende
 Route::get('/leaderboard', function () {
     return view('leaderboard');
 })->middleware(['auth', 'verified']);
@@ -32,8 +31,10 @@ Route::get('/game-end', function () {
     return view('game-end');
 })->middleware(['auth', 'verified']);
 
+#TODO Fix der Post Route
+#Route::post('/game-end', 'GameController@store')->name('storeGame');
+Route::post('/game-end', [GameController::class, 'store'])->name('storeGame');
 
-Route::post('/game-end', 'GameController@store')->name('storeGame');
 
 
 

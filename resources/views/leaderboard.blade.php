@@ -7,11 +7,11 @@
                 <th>User</th>
                 <th>Gewinnsumme</th>
                 <th>Zeit</th>
-                @foreach($games as $game)
+                @foreach($games['games'] as $game)
                     <tr>
-                        <th>{{$game->get('users.name')}}</th>
-                        <th>{{$game->get('games.gewinnsumme')}}</th>
-                        <th>{{$game->get('games.zeit')}}</th>
+                        <th>Platzhalter</th>
+                        <th>{{$game->gewinnsumme}}</th>
+                        <th>{{$game->zeit}}</th>
                     </tr>
                 @endforeach
             </tr>
