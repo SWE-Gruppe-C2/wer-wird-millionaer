@@ -1,4 +1,3 @@
-<x-app-layout>
     <link href="{{ asset('style.css') }}" rel="stylesheet">
     <div class="horizontal_bar">
         <img src="img/mute.png" id="toggle_sound" alt="Musik einschalten">
@@ -24,4 +23,3 @@
         </table>
     </div>
 
-</x-app-layout>
