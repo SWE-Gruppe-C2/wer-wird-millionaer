@@ -15,15 +15,14 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('antwort_a');
             $table->string('antwort_b');
             $table->string('antwort_c');
             $table->string('antwort_d');
             $table->string('richtige_antwort');
             $table->integer('schwierigkeit');
-            $table->integer('category_id');
-
+            $table->foreignId('category_id');
         });
     }
 
