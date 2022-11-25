@@ -82,7 +82,7 @@
                 </select>
 
                 <select name="kategorie" id="kategorie">
-
+                    <option value="test">Test Kategorie</option>
                 </select>
 
                 <input type="submit" value="Frage hinzufügen">
