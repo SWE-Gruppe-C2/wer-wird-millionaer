@@ -21,4 +21,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/game-over', function() {
+    return view('game-over');
+})->name('game-over');
+
+Route::get('/play', function() {
+    return view('play');
+})->name('play');
+
+Route::get('/highscores', function() {
+    return view('highscores');
+})->name('highscores');
+
+Route::get('/menu', function() {
+    return view('menu');
+})->name('menu');
+
 require __DIR__.'/auth.php';
