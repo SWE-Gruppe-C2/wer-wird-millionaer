@@ -10,5 +10,14 @@
 <button onclick="startMusic()">Start Game</button>
 <button onclick="win()">Win</button>
 <button onclick="lose()">Lose</button>
-<button onclick="currentMusic.mute">Mute</button>
+<button onclick="mute()">Mute</button>
+<button onclick="nextStage()">Next Stage</button>
 </body>
+<!--audio
+    onload="play()"
+    controls
+    autoplay
+    id="myAudio"
+    src="{{asset('/music/MainTheme.mp3')}}">
+    Your browser does not support the <code>audio</code> element
+</audio>
