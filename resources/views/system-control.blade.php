@@ -8,7 +8,11 @@
     <title>Document</title>
 </head>
 <body>
+        <!--TODO(Link hinzufügen)-->
+        <a href="{{ route('logout') }}"></a>
 
-    <h1>Hallo!</h1>
+        <a href="">Fragenkatalog</a>
+        <a href="">Kategorie hinzufügen</a>
+        <a href="">Kategorie hinzufügen</a>
 </body>
 </html>
