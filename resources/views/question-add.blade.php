@@ -44,26 +44,29 @@
 
     <div class="">
 
+        <h1>Frage Hinzufügen</h1>
+
         <div class="">
 
         </div>
 
         <div class="">
-            <form action="" method="post">
-                <input type="text" id="question" name="question" placeholder="Question">
-                <input type="text" id="antwort_a" name="antwort_a" placeholder="A: Antwort eingeben">
-                <input type="text" id="antwort_b" name="antwort_b" placeholder="B: Antwort eingeben">
-                <input type="text" id="antwort_c" name="antwort_c" placeholder="C: Antwort eingeben">
-                <input type="text" id="antwort_d" name="antwort_d" placeholder="D: Antwort eingeben">
 
-                <select name="korrekte_antwort" id="korrekte_antwort">
+            <form action="" method="post">
+                <input type="text" id="question" name="question" placeholder="Frage Eingeben" required>
+                <input type="text" id="antwort_a" name="antwort_a" placeholder="A: Antwort eingeben" required>
+                <input type="text" id="antwort_b" name="antwort_b" placeholder="B: Antwort eingeben" required>
+                <input type="text" id="antwort_c" name="antwort_c" placeholder="C: Antwort eingeben" required>
+                <input type="text" id="antwort_d" name="antwort_d" placeholder="D: Antwort eingeben" required>
+
+                <select name="korrekte_antwort" id="korrekte_antwort" required>
                     <option value="a">Antwort A</option>
                     <option value="b">Antwort B</option>
                     <option value="c">Antwort C</option>
                     <option value="d">Antwort D</option>
                 </select>
 
-                <select name="schwierigkeit" id="schwierigkeit">
+                <select name="schwierigkeit" id="schwierigkeit" required>
                     <option value="1">Level 1</option>
                     <option value="2">Level 2</option>
                     <option value="3">Level 3</option>
@@ -81,15 +84,16 @@
                     <option value="15">Level 15</option>
                 </select>
 
-                <select name="kategorie" id="kategorie">
+                <select name="kategorie" id="kategorie" required>
+
                     <option value="test">Test Kategorie</option>
                 </select>
 
                 <input type="submit" value="Frage hinzufügen">
-
             </form>
 
         </div>
+
 
 
     </div>
