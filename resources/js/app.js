@@ -8,6 +8,7 @@ Alpine.start();
 
 //musik-objekt
 var currentMusic;
+var secondaryMusic = new Music("");
 //ist gemuted?
 var muted = false;
 //array mit den verschiedenen Stages (der Einfachheit halber :D)
@@ -74,18 +75,46 @@ window.nextStage = function(){
 
 //win-sound abspielen
 window.win = function(){
-    var winMusic = new Music(stages[currentStage] + "W.mp3");
-    winMusic.play();
-
+    secondaryMusic.set(stages[currentStage] + "W.mp3");
+    secondaryMusic.play();
 }
 
 //lose-sound abspielen
 window.lose = function(){
-    var loseMusic = new Music(stages[currentStage] + "L.mp3");
-    loseMusic.play();
+    secondaryMusic.set(stages[currentStage] + "L.mp3");
+    secondaryMusic.play();
 }
 
 //sound muten
 window.mute = function(){
     currentMusic.mute();
+}
+
+window.openingMusic = function(){
+    secondaryMusic.set("MainTheme.mp3");
+    secondaryMusic.play()
+}
+
+window.closingMusic = function(){
+    secondaryMusic.set("ClosingTheme.mp3");
+    secondaryMusic.play();
+}
+
+window.joker5050 = function(){
+    secondaryMusic.set("50-50.mp3");
+    secondaryMusic.play();
+}
+
+window.audienceJoker = function(){
+    secondaryMusic.set("AskTheAudience.mp3");
+    secondaryMusic.play()
+}
+
+window.phoneJoker = function(){
+    secondaryMusic.set("Phone-A-Friend.mp3");
+    secondaryMusic.play();
+}
+
+window.endSecondaryMusic = function(){
+    secondaryMusic.stop();
 }
