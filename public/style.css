@@ -1,0 +1,173 @@
+* {
+	overflow: hidden;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	position: relative;
+	z-index: -999;
+	width: 100%;
+	height: 100vh;
+	user-select: none;
+	font: 16px sans-serif;
+	color: white;
+	background-color: #181852;
+}
+
+main {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: flex-start;
+	height: 100%;
+	padding: 10px 0;
+	row-gap: 10px;
+}
+
+#spread { justify-content: space-between }
+
+a { color: lightskyblue }
+
+a:hover { color: dodgerblue }
+
+p { text-align: center }
+
+.horizontal_bar {
+	flex-shrink: 0;
+	width: 100%;
+	max-width: 500px;
+	height: 30px;
+	padding: 0 10px;
+}
+
+.horizontal_bar h1 {
+	position: absolute;
+	left: 50px;
+	width: calc(100% - 100px);
+	font-size: 20px;
+	font-weight: normal;
+	line-height: 30px;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.horizontal_bar a {
+	text-decoration: none;
+	color: white;
+}
+
+.horizontal_bar a, .horizontal_bar span { line-height: 30px }
+
+.horizontal_bar img { width: 30px }
+
+.horizontal_bar img:hover, .horizontal_bar span { cursor: pointer }
+
+#back, #end_game, #fifty_fifty { float: left }
+
+#toggle_sound, #ask_audience {
+	position: absolute;
+	left: calc(50% - 15px);
+}
+
+#logout, #toggle_money_tree, #call_friend { float: right }
+
+#hub {
+	flex: 1;
+	max-width: 80%;
+	max-height: 50%;
+	animation: pulsate 2500ms ease-in-out infinite alternate;
+	background: url('../img/wwm_logo_light.png') center / 100% no-repeat;
+	aspect-ratio: 1;
+}
+
+#hub:after {
+	display: block;
+	width: 100%;
+	height: 100%;
+	content: '';
+	background: url('../img/wwm_logo.png') center / 75% no-repeat;
+}
+
+form, .button_wrapper {
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	width: 100%;
+	row-gap: 10px;
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	width: 94%;
+	max-width: 470px;
+	height: 36px;
+	margin: 0 auto;
+	padding: 0 8%;
+	text-decoration: none;
+	color: inherit;
+	background: url('../img/blue_button.png') center / 100% 100% no-repeat;
+}
+
+.button:before {
+	position: absolute;
+	z-index: -1;
+	right: 0;
+	width: 100%;
+	content: '';
+	border: 1px solid #9898ff;
+}
+
+.button:not(#question):hover {
+	cursor: default;
+	color: black;
+	background-image: url('../img/orange_button.png');
+}
+
+.button span { width: 100% }
+
+#question {
+	height: 72px;
+	text-align: center;
+}
+
+.answer span:before {
+	font-weight: bold;
+	color: #f99b1c;
+	-webkit-text-stroke: 1px black;
+}
+
+#answer_a span:before { content: 'A: ' }
+
+#answer_b span:before { content: 'B: ' }
+
+#answer_c span:before { content: 'C: ' }
+
+#answer_d span:before { content: 'D: ' }
+
+form { padding: 0 10px }
+
+input {
+	width: 100%;
+	max-width: 500px;
+	height: 30px;
+	margin: 1px auto;
+	padding: 0 10px;
+}
+
+@keyframes pulsate {
+	from { background-size: 100% }
+	to { background-size: 95% }
+}
+
+@media (min-width: 500px) {
+	.horizontal_bar h1 {
+		left: calc(50% - 200px);
+		width: 400px;
+	}
+
+	.button { padding: 0 40px }
+}

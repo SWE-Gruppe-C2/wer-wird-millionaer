@@ -13,6 +13,14 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * Implementation of the hasMany Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function games(){
+        return $this->hasMany(Game::class);
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
