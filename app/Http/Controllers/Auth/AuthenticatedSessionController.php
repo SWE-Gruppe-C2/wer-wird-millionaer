@@ -28,6 +28,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        //TODO: Überprüfen, ob eingeloggte Daten einem Admin oder Spieler gehören.
+        // User Model anpassen und Middleware für alle Admin bereiche erstellen
+        // Dem entsprechend redirecten.
         $request->authenticate();
 
         $request->session()->regenerate();
