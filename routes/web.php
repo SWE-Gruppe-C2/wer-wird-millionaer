@@ -22,11 +22,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::prefix('test')->group(function () {
-    Route::get('/', fn () => view('test.play'));
-    Route::get('/login', fn () => view('test.login'));
-    Route::get('/menu', fn () => view('test.menu'));
-    Route::get('/register', fn () => view('test.register'));
-    Route::get('/reset-password', fn () => view('test.reset-password'));
+    Route::get('/', fn () => view('test.play', ['title' => 'Spielen']));
+    Route::get('/login', fn () => view('test.login', ['title' => 'Login']));
+    Route::get('/menu', fn () => view('test.menu', ['title' => 'Hauptmenü']));
+    Route::get('/register', fn () => view('test.register', ['title' => 'Registrieren']));
+    Route::get('/reset-password', fn () => view('test.reset-password', ['title' => 'Passwort zurücksetzen']));
 });
 
 require __DIR__.'/auth.php';

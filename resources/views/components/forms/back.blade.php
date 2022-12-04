@@ -1,3 +1,5 @@
 <div>
-    <!-- An unexamined life is not worth living. - Socrates -->
+    <a href="{{ url()->previous() }}">
+        <img src="{{ asset('assets/img/back.png') }}" alt="Zurück">
+    </a>
 </div>
