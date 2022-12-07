@@ -21,4 +21,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//TODO: Testweise da, alle admin Bereiche müssen hier hinzugefügt werden müssen. Vielleicht auch unter auth.php oder admin.php
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    /*Route::get('system.control', [SystemController::class, 'index'])
+        ->name('admin.dashboard');*/
+    Route::get('system.control', function () {
+        return view('system-control');
+    });
+});
+
 require __DIR__.'/auth.php';

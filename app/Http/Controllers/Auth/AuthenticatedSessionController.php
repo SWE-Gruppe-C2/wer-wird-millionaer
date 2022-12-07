@@ -28,14 +28,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        //TODO: Überprüfen, ob eingeloggte Daten einem Admin oder Spieler gehören.
-        // User Model anpassen und Middleware für alle Admin bereiche erstellen
-        // Dem entsprechend redirecten.
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if (Auth::user()->user_type == 'admin') {
+            return redirect(RouteServiceProvider::ADMIN);
+        } else {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
     }
 
     /**
@@ -54,4 +55,5 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
 }
