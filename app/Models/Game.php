@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Game extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'stage',
+        'start',
+        'end',
+        'user_id'
     ];
 
-    public function questions()
+    protected function user()
     {
-        return $this->hasMany(Question::class);
+        return $this->belongsTo(User::class);
     }
 }
