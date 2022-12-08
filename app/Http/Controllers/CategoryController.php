@@ -31,11 +31,24 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //
+
+
+        error_log('Successfully called "Store Controller Method');
+
+        $validator = $request->validate([
+            'category' => 'required|string|max:255|unique:categories,name',
+        ]);
+
+        $category = new Category();
+        $category->name = $request->category;
+        $category->save();
+        return redirect('category-add-success');
+
+
     }
 
     /**
@@ -46,7 +59,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+
     }
 
     /**
