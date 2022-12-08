@@ -10,7 +10,7 @@
 <body>
 <main>
     <div class="horizontal_bar">
-        <form action="{{ route('back') }}" method="POST">
+        <form action="{{-- route('back') --}}" method="POST">
             @csrf
             <button type="submit">
                 <img src="{{ asset('assets/img/back.png') }}" id="back" alt="Back">
@@ -29,9 +29,9 @@
 
     /*an dieser Stelle muessen die Kategorien stehen*/
 
-    <ul>
-        <li><input type="button" value="Kategorie"></li>
-    </ul>
+    @foreach($categories as $category)
+        <p>{{$category->name}}   | <a href="{{route('category-edit', $category)}}"><u>EDIT</u></a></p>
+    @endforeach
 
     <form action="{{ route('category-edit') }}" method="POST">
         @csrf

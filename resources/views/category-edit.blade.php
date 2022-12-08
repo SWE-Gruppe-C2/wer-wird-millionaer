@@ -11,7 +11,7 @@
 <main>
 
     <div class="horizontal_bar">
-        <form action="{{ route('back') }}" method="POST">
+        <form action="{{-- route('back') --}}" method="POST">
             @csrf
             <button type="submit">
                 <img src="{{ asset('assets/img/back.png') }}" id="back" alt="Back">
@@ -29,7 +29,7 @@
     </div>
 
     <div>
-        <h1>Kategorie-Name</h1>
+        <h1>{{$category->name}}</h1>
     </div>
 
     <form action="{{ route('category-edit') }}" method="POST">
