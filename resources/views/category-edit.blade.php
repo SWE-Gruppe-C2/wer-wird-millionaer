@@ -29,12 +29,22 @@
     </div>
 
     <div>
-        <h1>{{$category->name}}</h1>
+        <p>{{$category->name}}</p>
     </div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <form action="{{ route('category-edit') }}" method="POST">
-        <input type="text" placeholder="Neuen Kategorienamen eingeben">
+    <form action="{{ route('category.update', $category) }}" method="POST">
         @csrf
+        @method('patch')
+        <input type="text" name="newName" placeholder="Neuen Kategorienamen eingeben">
         <button type="submit">Kategorie speichern</button>
     </form>
 

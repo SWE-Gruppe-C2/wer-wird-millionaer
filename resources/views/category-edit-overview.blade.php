@@ -30,13 +30,8 @@
     /*an dieser Stelle muessen die Kategorien stehen*/
 
     @foreach($categories as $category)
-        <p>{{$category->name}}   | <a href="{{route('category-edit', $category)}}"><u>EDIT</u></a></p>
+        <p>{{$category->name}}   | <a href="{{route('category.edit', $category)}}"><u>EDIT</u></a></p>
     @endforeach
-
-    <form action="{{ route('category-edit') }}" method="POST">
-        @csrf
-        <button type="submit">Kategorie bearbeiten</button>
-    </form>
 
 </main>
 </body>

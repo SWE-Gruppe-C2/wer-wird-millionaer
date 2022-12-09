@@ -22,12 +22,18 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::get('/category-edit-overview',[CategoryController::class, 'index'])->name('category-edit-overview');
 
-Route::get('/category-edit',[CategoryController::class, 'edit'])->name('category-edit');;
 
 Route::get('/category-edit-success',function(){
     return view('category-edit-success');
 })->name('category-edit-success');
+
+
+
+Route::resource('category', CategoryController::class)
+    ->only(['edit', 'update', 'success'])
+    ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

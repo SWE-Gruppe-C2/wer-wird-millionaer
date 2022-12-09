@@ -27,16 +27,14 @@
         <h1>Kategorie bearbeiten</h1>
     </div>
 
-    <p>Kategorie erfolgreich bearbeitet</p>
+    <h3>Kategorie erfolgreich bearbeitet</h3>
 
     <div>
-        <h1>Kategorie-Name</h1>
+        <p>{{ $category->name }}</p>
     </div>
 
-    <form action="{{ route('category-edit-overview') }}" method="POST">
-        @csrf
-        <button type="submit">Zurück zu Kategorie bearbeiten</button>
-    </form>
+    <a href="/category-edit-overview"> Zurück zu Kategorie bearbeiten</a>
+
 
 
 

@@ -59,18 +59,33 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('category-edit', ['category' => $category]);
+        //TODO WE might have to include Authorization RUlES? - see Chirps Guide
+        //$this->authorize('update', $category);
+
+        return view('category-edit', [
+            'category' => $category
+        ]);
     }
 
     /**
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, Category $category)
     {
-        //
+        //$this->authorize('update', $category);
+
+        $validator = $request->validate([
+            'newName' => 'required|string|max:255|unique:categories,name'
+        ]);
+
+        $category->name = $request->newName;
+        $category->save();
+
+        return view('category-edit-success', ['category' =>$category]);
+
     }
 
     /**
@@ -83,4 +98,6 @@ class CategoryController extends Controller
     {
         //
     }
+
+
 }
