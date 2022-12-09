@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource();
+
+//Catalog Seite entspricht index Method
+Route::resource('questions', QuestionController::class)
+    ->only(['index', 'edit', 'store', 'delete', 'update'])
+    ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
