@@ -29,8 +29,5 @@ Route::resource('questions', QuestionController::class)
     ->only(['index', 'edit', 'store', 'delete', 'update'])
     ->middleware(['auth', 'verified']);
 
-Route::get('question-add-success', function () {
-    return view('temp-question-add-success');
-})->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
