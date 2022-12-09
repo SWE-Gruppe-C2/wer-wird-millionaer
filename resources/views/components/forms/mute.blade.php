@@ -1,3 +1,1 @@
-<div>
-    <!-- Because you are alive, everything is possible. - Thich Nhat Hanh -->
-</div>
+<img src="{{ asset('assets/img/volume.png' )}}" id="toggle_sound" alt="Musik ausschalten">

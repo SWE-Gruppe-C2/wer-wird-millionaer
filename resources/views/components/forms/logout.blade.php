@@ -1,3 +1,3 @@
-<div>
-    <!-- Be present above all else. - Naval Ravikant -->
-</div>
+<a href="{{ route('login') }}" id="logout">
+	<img src="{{ asset('assets/img/logout.png') }}" alt="Abmelden">
+</a>
