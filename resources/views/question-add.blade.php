@@ -43,16 +43,24 @@
 <main>
 
     <div class="">
-
         <h1>Frage Hinzufügen</h1>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if($questionAdded)
+            <p>Frage erfolgreich hinzugefügt</p>
+        @endif
 
         <div class="">
-
-        </div>
-
-        <div class="">
-
-            <form action="" method="post">
+            <form action="{{ route('questions.store') }}" method="POST">
+                @csrf
                 <input type="text" id="question" name="question" placeholder="Frage Eingeben" required>
                 <input type="text" id="antwort_a" name="antwort_a" placeholder="A: Antwort eingeben" required>
                 <input type="text" id="antwort_b" name="antwort_b" placeholder="B: Antwort eingeben" required>
@@ -84,9 +92,10 @@
                     <option value="15">Level 15</option>
                 </select>
 
-                <select name="kategorie" id="kategorie" required>
-
-                    <option value="test">Test Kategorie</option>
+                <select name="kategorie_id" id="kategorie_id" required>
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
                 </select>
 
                 <input type="submit" value="Frage hinzufügen">
@@ -94,29 +103,7 @@
 
         </div>
 
-
-
     </div>
-
-
-
-
-
-    <div class="horizontal_bar">
-        <h1>Login</h1>
-    </div>
-    <div id="hub"></div>
-    <form action="#" method="post">
-        <input type="text" id="username" name="username" placeholder="Benutzername">
-        <input type="password" id="password" name="password" placeholder="Passwort">
-        <input type="submit" value="Einloggen">
-    </form>
-    <a href="reset_password.html">Passwort vergessen?</a>
-    <p>
-        oder<br>
-        Noch nicht registriert?
-    </p>
-    <a href="register.html">Registrieren</a>
 </main>
 </body>
 </html>

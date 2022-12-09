@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/add-question', function ()  {
-    return view('question-add');
-});
+Route::get('/question-add', [QuestionController::class, 'questionAdd']);
+
+//Catalog Seite entspricht index Method
+Route::resource('questions', QuestionController::class)
+    ->only(['index', 'edit', 'store', 'delete', 'update'])
+    ->middleware(['auth', 'verified']);
+
+Route::get('question-add-success', function () {
+    return view('temp-question-add-success');
+})->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
