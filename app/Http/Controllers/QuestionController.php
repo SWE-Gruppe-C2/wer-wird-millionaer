@@ -66,8 +66,8 @@ class QuestionController extends Controller
     {
         $categories = Category::all();
 
-        return view('question-edit.blade.php', [
-           'question' => $question,
+        return view('question-edit', [
+           'oldQuestion' => $question,
             'categories' => $categories
         ]);
     }
@@ -93,7 +93,6 @@ class QuestionController extends Controller
         ]);
 
 
-        $question = new Question();
         $question->text = $request->question;
         $answers = [$request->antwort_a, $request->antwort_b, $request->antwort_c, $request->antwort_d];
         $question->answers = $answers;
