@@ -21,12 +21,4 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::prefix('test')->group(function () {
-    Route::get('/', fn () => view('test.play', ['title' => 'Spielen']));
-    Route::get('/login', fn () => view('test.login', ['title' => 'Login']));
-    Route::get('/menu', fn () => view('test.menu', ['title' => 'Hauptmenü']));
-    Route::get('/register', fn () => view('test.register', ['title' => 'Registrieren']));
-    Route::get('/reset-password', fn () => view('test.reset-password', ['title' => 'Passwort zurücksetzen']));
-});
-
 require __DIR__.'/auth.php';
