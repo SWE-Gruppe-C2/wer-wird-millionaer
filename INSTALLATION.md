@@ -1,6 +1,6 @@
 # Installation
 ## Windows
-### PHP 8.1.7
+### PHP 8.1.12
 1. [Download](https://windows.php.net/downloads/releases/php-8.1.12-Win32-vs16-x64.zip)
 2. Unter `C:\php` extrahieren
 3. Unter "Systemumgebungsvariablen" bei `PATH` den Pfad `C:\php` angeben.
