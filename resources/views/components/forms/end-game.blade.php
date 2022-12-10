@@ -1,3 +1,3 @@
 <div>
-    <!-- He who is contented is rich. - Laozi -->
+	<a href="{{ route('result') }}" id="end_game">ENDE</a>
 </div>
