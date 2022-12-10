@@ -24,12 +24,12 @@
         </form>
     </div>
 
-    {{//TODO Korrekter Link zu Question Add Page}}
+    {{--//TODO Korrekter Link zu Question Add Page--}}
     <p><a href="/questions-add"></a></p>
 
     <h3>Fragen Übersicht</h3>
     @foreach($questions as $question)
-        <p>{{$question->name}}   |   <a href="{{route('$question.edit', $question)}}"><u>EDIT</u></a>   |   <a href="{{route('question.delete', $question)}}"><u>EDIT</u></a></p>
+        <p>{{$question->text}}   |   <a href="route('question.edit', $question)"><u>EDIT</u></a>   |   <a href="route('question.delete', $question)"><u>DELETE</u></a></p>
     @endforeach
 
 </main>
