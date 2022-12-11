@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class QuestionController extends Controller
 {
@@ -36,11 +37,42 @@ class QuestionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function store(Request $request)
     {
-        //
+
+        //$validator = null;
+        //$validator->setException( (new ValidationException($validator))->redirectTo('questions-add'));
+
+        $validator= $request->validate([
+            'question' => 'required|unique:questions,text',
+            'antwort_a' => 'required|string',
+            'antwort_b' => 'required|string',
+            'antwort_c' => 'required|string',
+            'antwort_d' => 'required|string',
+            'korrekte_antwort' => 'required',
+            'schwierigkeit' => 'required|int',
+            'kategorie_id' => 'required|int'
+        ]);
+
+
+        $answers = [$request->antwort_a, $request->antwort_b, $request->antwort_c, $request->antwort_d];
+
+        $question = new Question();
+        $question->text = $request->question;
+
+        $question->answers = $answers;
+        $question->correct_answer = $request->korrekte_antwort;
+        $question->difficulty = $request->schwierigkeit;
+        $question->category_id = $request->kategorie_id;
+
+        $question->save();
+
+        $request->session()->put('questionAdded', true);
+
+        return redirect('question-add');
+
     }
 
     /**
@@ -115,4 +147,25 @@ class QuestionController extends Controller
     {
         //
     }
+
+    public function questionAdd(Request $request){
+
+        $categories = Category::all();
+
+        if($request->session()->has('questionAdded')){
+            $questionAdded = true;
+        }
+        else{
+            $questionAdded = false;
+        }
+
+        $request->session()->forget('questionAdded');
+
+        return(view('question-add', [
+            'categories' => $categories,
+            'questionAdded' => $questionAdded
+        ]));
+    }
+
+
 }
