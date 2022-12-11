@@ -55,6 +55,7 @@
     @endsection
 
         <form method="POST" action="{{ route('register') }}">
+
             @csrf
             <!-- Username -->
             <div>
@@ -76,7 +77,8 @@
                 <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Passwort wiederholen" required>
             </div>
 
-            <input type="submit" value="Registrieren">
+            <input type="submit" value="Registrieren" name="registrieren">
+
         </form>
 
 
