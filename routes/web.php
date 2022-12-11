@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('system-control', function(){
+    return view('system-control');
+});
+
 Route::get('/question-add', [QuestionController::class, 'questionAdd']);
 /*
 Route::get('/question-edit', [QuestionController::class, 'edit'])->name('question-edit');
