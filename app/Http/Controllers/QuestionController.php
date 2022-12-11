@@ -15,13 +15,11 @@ class QuestionController extends Controller
      */
     public function index()
     {
-
         $questions = Question::all();
 
         return view('questions-index', [
             'questions' => $questions
         ]);
-
     }
 
     /**
@@ -66,10 +64,11 @@ class QuestionController extends Controller
     {
         $categories = Category::all();
 
-        return view('question-edit', [
+        /*return view('question-edit', [
            'oldQuestion' => $question,
             'categories' => $categories
         ]);
+        */
     }
 
     /**
@@ -102,7 +101,7 @@ class QuestionController extends Controller
 
         $question->save();
 
-        return view('question-edit-success', ['question' =>$question]);
+        //return view('question-edit-success', ['question' =>$question]);
 
     }
 

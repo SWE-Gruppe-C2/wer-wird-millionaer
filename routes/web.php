@@ -23,16 +23,20 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-//Route::get('/questions-overview', [QuestionController::class, 'index'])->name('questions-overview');
-
+/*
 Route::get('/question-edit', [QuestionController::class, 'edit'])->name('question-edit');
 Route::get('/question-delete', [QuestionController::class, 'delete'])->name('question-delete');
 Route::get('/question-update', [QuestionController::class, 'update'])->name('question-update');
-
 
 //Catalog Seite entspricht index Method
 Route::resource('questions', QuestionController::class)
     ->only(['index', 'edit', 'store', 'delete', 'update'])
     ->middleware(['auth', 'verified']);
+*/
+
+Route::resource('question', QuestionController::class)
+    ->only(['index', 'edit', 'delete'])
+    ->middleware(['auth', 'verified']);
+
 
 require __DIR__.'/auth.php';
