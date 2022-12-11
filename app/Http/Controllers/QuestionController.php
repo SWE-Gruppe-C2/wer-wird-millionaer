@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Question;
+
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
+
 
 class QuestionController extends Controller
 {
@@ -96,11 +97,11 @@ class QuestionController extends Controller
     {
         $categories = Category::all();
 
-        /*return view('question-edit', [
+        return view('question-edit', [
            'oldQuestion' => $question,
             'categories' => $categories
         ]);
-        */
+
     }
 
     /**

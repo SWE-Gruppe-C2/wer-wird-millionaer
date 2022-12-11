@@ -59,7 +59,7 @@
         @endif
 
         <div class="">
-            <form action="{{ route('questions.store') }}" method="POST">
+            <form action="{{ route('question.store') }}" method="POST">
                 @csrf
                 <input type="text" id="question" name="question" placeholder="Frage Eingeben" required>
                 <input type="text" id="antwort_a" name="antwort_a" placeholder="A: Antwort eingeben" required>

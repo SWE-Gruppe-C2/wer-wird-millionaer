@@ -27,7 +27,6 @@ Route::get('system-control', function(){
     return view('system-control');
 });
 
-Route::get('/question-add', [QuestionController::class, 'questionAdd']);
 /*
 Route::get('/question-edit', [QuestionController::class, 'edit'])->name('question-edit');
 Route::get('/question-delete', [QuestionController::class, 'delete'])->name('question-delete');
@@ -40,18 +39,18 @@ Route::resource('questions', QuestionController::class)
 
 */
 
+Route::get('/question-add', [QuestionController::class, 'questionAdd']);
+
 Route::resource('question', QuestionController::class)
-    ->only(['index', 'edit', 'delete'])
+    ->only(['index', 'edit', 'delete', 'update', 'store'])
     ->middleware(['auth', 'verified']);
 
-Route::get('/category-edit-overview', [CategoryController::class, 'index'])->name('category-edit-overview');
+Route::resource('category', CategoryController::class)
+    ->only(['index', 'edit', 'update', 'success'])
+    ->middleware(['auth', 'verified']);
 
 Route::get('/category-edit-success',function(){
     return view('category-edit-success');
 })->name('category-edit-success');
-
-Route::resource('category', CategoryController::class)
-    ->only(['edit', 'update', 'success'])
-    ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

@@ -29,7 +29,7 @@
 
     <h3>Fragen Übersicht</h3>
     @foreach($questions as $question)
-        <p>{{$question->text}}   |   <a href="{{route('question.edit', $question)}}"><u>EDIT</u></a>   |   <a href="{{route('question.delete', $question)}}"><u>DELETE</u></a></p>
+        <p>{{$question->text}}   |   <a href="{{route('question.edit', $question)}}"><u>EDIT</u></a>   |    <a href=""><u>DELETE</u></a></p>
     @endforeach
 
 </main>

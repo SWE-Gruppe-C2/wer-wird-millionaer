@@ -29,7 +29,7 @@
     </div>
 
     <div>
-        <p>{{$oldQuestion->text}}</p>
+        <p>Frage: {{($oldQuestion->text)}}</p>
     </div>
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -41,15 +41,14 @@
         </div>
     @endif
 
-    <form action="{{ route('question-update', $oldQuestion) }}" method="POST">
+    <form action="{{ route('question.update', $oldQuestion) }}" method="POST">
         @csrf
         @method('patch')
-        <p>{{($oldQuestion->text)}}</p>
         <input type="text" id="question" name="question" placeholder="Frage Eingeben" value="{{$oldQuestion->text}}"required>
         <input type="text" id="antwort_a" name="antwort_a" placeholder="A: Antwort eingeben" value="{{$oldQuestion->answers[0]}}" required>
-        <input type="text" id="antwort_b" name="antwort_b" placeholder="B: Antwort eingeben" value="" required>
-        <input type="text" id="antwort_c" name="antwort_c" placeholder="C: Antwort eingeben" value="" required>
-        <input type="text" id="antwort_d" name="antwort_d" placeholder="D: Antwort eingeben" value="" required>
+        <input type="text" id="antwort_b" name="antwort_b" placeholder="B: Antwort eingeben" value="{{$oldQuestion->answers[1]}}" required>
+        <input type="text" id="antwort_c" name="antwort_c" placeholder="C: Antwort eingeben" value="{{$oldQuestion->answers[2]}}" required>
+        <input type="text" id="antwort_d" name="antwort_d" placeholder="D: Antwort eingeben" value="{{$oldQuestion->answers[3]}}" required>
 
         <select name="korrekte_antwort" id="korrekte_antwort" required>
             <option value="a">Antwort A</option>
