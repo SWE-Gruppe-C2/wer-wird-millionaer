@@ -53,6 +53,9 @@
         <h1>Registrieren</h1>
     </nav>
     @endsection
+    <div id="hub">
+        <div id="logo"></div>
+    </div>
 
         <form method="POST" action="{{ route('register') }}">
 
