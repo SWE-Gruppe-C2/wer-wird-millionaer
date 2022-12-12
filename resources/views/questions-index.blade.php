@@ -25,9 +25,10 @@
     </div>
 
     {{--//TODO Korrekter Link zu Question Add Page--}}
-    <p><a href="/questions-add"></a></p>
+    <p><a href="{{route('question-add')}}">Frage hinzufügen</a></p>
+    <p><a href="{{route('question-filter')}}">Frage filtern</a></p>
 
-    <h3>Fragen Übersicht</h3>
+    <h3>Fragenkatalog</h3>
     @foreach($questions as $question)
         <p>{{$question->text}}   |   <a href="{{route('question.edit', $question)}}"><u>EDIT</u></a>   |    <a href=""><u>DELETE</u></a></p>
     @endforeach

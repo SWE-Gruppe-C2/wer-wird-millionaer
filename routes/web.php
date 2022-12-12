@@ -40,15 +40,18 @@ Route::resource('questions', QuestionController::class)
 */
 
 
-Route::get('/question-add', [QuestionController::class, 'questionAdd']);
+Route::get('/question-add', [QuestionController::class, 'questionAdd'])->name('question-add');
 
 Route::resource('question', QuestionController::class)
     ->only(['index', 'edit', 'delete', 'update', 'store'])
     ->middleware(['auth', 'verified']);
 
+Route::get('/question-filter', function(){
+    return view('questions-filter');
+})->name('question-filter');
 
 Route::resource('category', CategoryController::class)
-    ->only(['index', 'edit', 'update', 'success'])
+    ->only(['index', 'edit', 'store', 'update', 'success'])
     ->middleware(['auth', 'verified']);
 
 //Route::get('/category-edit-overview', [CategoryController::class, 'index'])->name('category-edit-overview');
@@ -61,7 +64,7 @@ Route::get('/category-add', function(){
     return view('category-add');
 })->middleware(['auth', 'verified'])->name('category-add');
 
-Route::post('category-add', [CategoryController::class, 'store'])->name('category-add.store');
+//Route::post('category-add', [CategoryController::class, 'store'])->name('category-add.store');
 
 Route::get('category-add-success', function(){
     return view('category-add-success');

@@ -168,5 +168,16 @@ class QuestionController extends Controller
         ]));
     }
 
+    public function questionFilter(Request $request){
+
+        $questions = Question::where('difficulty', $request->schwierigkeit)->where('category_id', $request->kategorie_id);
+        $categories = Category::all();
+
+        return view('questions-filter', [
+            'questions' => $questions
+        ]);
+
+
+    }
 
 }
