@@ -13,5 +13,4 @@
 
     </main>
 
-
 </x-base-layout>

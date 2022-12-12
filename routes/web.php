@@ -27,19 +27,6 @@ Route::get('system-control', function(){
     return view('system-control');
 });
 
-/*
-Route::get('/question-edit', [QuestionController::class, 'edit'])->name('question-edit');
-Route::get('/question-delete', [QuestionController::class, 'delete'])->name('question-delete');
-Route::get('/question-update', [QuestionController::class, 'update'])->name('question-update');
-
-//Catalog Seite entspricht index Method
-Route::resource('questions', QuestionController::class)
-    ->only(['index', 'edit', 'store', 'delete', 'update'])
-    ->middleware(['auth', 'verified']);
-
-*/
-
-
 Route::get('/question-add', [QuestionController::class, 'questionAdd'])->name('question-add');
 
 Route::resource('question', QuestionController::class)
@@ -52,7 +39,16 @@ Route::get('/question-filter', [QuestionController::class, 'questionFilter']
 Route::post('/question-filter', [QuestionController::class, 'questionFilter']
 )->name('question-filter');
 
-Route::get('/question-delete', [QuestionController::class, 'questionDeletePage'])->name('question-delete');
+Route::get('/question-delete/{id}', [QuestionController::class, 'questionDeletePage'])->name('question-delete');
+
+/*
+Route::get('/question-delete', function($question){
+    return view('question-delete', [
+        'question' => $question
+    ]);
+
+})->name('question-delete');
+*/
 
 Route::resource('category', CategoryController::class)
     ->only(['index', 'edit', 'store', 'update', 'success'])
@@ -73,7 +69,5 @@ Route::get('/category-add', function(){
 Route::get('category-add-success', function(){
     return view('category-add-success');
 })->middleware(['auth', 'verified']);
-
-//TEST MERGE
 
 require __DIR__.'/auth.php';

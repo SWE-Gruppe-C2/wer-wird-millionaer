@@ -27,12 +27,16 @@
         <h1>Frage löschen</h1>
         <p>{{$question->text}}</p>
         <p>{{$question->answers[0]}}</p>
-        <p>{{$question->answers[0]}}</p>
-        <p>{{$question->answers[0]}}</p>
-        <p>{{$question->answers[0]}}</p>
-        <a href="{{route('question.destroy', $question)}}">Löschen</a>
-        <a href="">Abbrechen</a>
+        <p>{{$question->answers[1]}}</p>
+        <p>{{$question->answers[2]}}</p>
+        <p>{{$question->answers[3]}}</p>
 
+        <form method="POST" action="{{ route('question.destroy', $question) }}">
+            @csrf
+            @method('delete')
+            <input type="submit" value="Frage löschen">
+        </form>
+        <a href="">Abbrechen</a>
     </div>
 </main>
 </body>

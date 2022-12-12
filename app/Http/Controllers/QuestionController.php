@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Question;
 
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Integer;
 
 
 class QuestionController extends Controller
@@ -192,10 +193,12 @@ class QuestionController extends Controller
         ]);
     }
 
-    public function questionDeletePage(Question $question){
+    public function questionDeletePage($id){
+
+        $question = Question::where('id', $id)->get();
 
         return view('question-delete', [
-           'question' => $question
+           'question' => $question[0]
         ]);
     }
 
