@@ -1,0 +1,320 @@
+Index: resources/views/auth/confirm-password.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/auth/confirm-password.blade.php b/resources/views/auth/confirm-password.blade.php
+--- a/resources/views/auth/confirm-password.blade.php	(revision e190fbc07a5571890ea89d4ee4dda8ee470efe5e)
++++ b/resources/views/auth/confirm-password.blade.php	(revision 46fe266a95baf30037b178cb14b3252986085a71)
+@@ -1,11 +1,12 @@
+-<x-guest-layout>
+-    <x-auth-card>
+-        <x-slot name="logo">
+-            <a href="/">
+-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+-            </a>
+-        </x-slot>
+-
++<x-base-layout :title="'Passwort bestätigen'">
++    <nav>
++        <x-forms.back/>
++        <h1>Passwort bestätigen</h1>
++    </nav>
++    <main>
++        <div id="hub">
++            <div id="logo"></div>
++        </div>
+         <div class="mb-4 text-sm text-gray-600">
+             {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+         </div>
+@@ -31,5 +32,5 @@
+                 </x-primary-button>
+             </div>
+         </form>
+-    </x-auth-card>
+-</x-guest-layout>
++    </main>
++</x-base-layout>
+Index: resources/views/auth/forgot-password.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/auth/forgot-password.blade.php b/resources/views/auth/forgot-password.blade.php
+--- a/resources/views/auth/forgot-password.blade.php	(revision e190fbc07a5571890ea89d4ee4dda8ee470efe5e)
++++ b/resources/views/auth/forgot-password.blade.php	(revision 46fe266a95baf30037b178cb14b3252986085a71)
+@@ -1,11 +1,12 @@
+-<x-guest-layout>
+-    <x-auth-card>
+-        <x-slot name="logo">
+-            <a href="/">
+-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+-            </a>
+-        </x-slot>
+-
++<x-base-layout :title="'Passwort vergessen'">
++    <nav>
++        <x-forms.back/>
++        <h1>Passwort vergessen</h1>
++    </nav>
++    <main>
++        <div id="hub">
++            <div id="logo"></div>
++        </div>
+         <div class="mb-4 text-sm text-gray-600">
+             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+         </div>
+@@ -31,5 +32,5 @@
+                 </x-primary-button>
+             </div>
+         </form>
+-    </x-auth-card>
+-</x-guest-layout>
++    </main>
++</x-base-layout>
+Index: resources/views/auth/login.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/auth/login.blade.php b/resources/views/auth/login.blade.php
+--- a/resources/views/auth/login.blade.php	(revision e190fbc07a5571890ea89d4ee4dda8ee470efe5e)
++++ b/resources/views/auth/login.blade.php	(revision 46fe266a95baf30037b178cb14b3252986085a71)
+@@ -1,11 +1,11 @@
+-<x-guest-layout>
+-    <x-auth-card>
+-        <x-slot name="logo">
+-            <a href="/">
+-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+-            </a>
+-        </x-slot>
+-
++<x-base-layout :title="'Login'">
++    <nav>
++        <h1>Login</h1>
++    </nav>
++    <main>
++        <div id="hub">
++            <div id="logo"></div>
++        </div>
+         <!-- Session Status -->
+         <x-auth-session-status class="mb-4" :status="session('status')" />
+ 
+@@ -53,5 +53,5 @@
+                 </x-primary-button>
+             </div>
+         </form>
+-    </x-auth-card>
+-</x-guest-layout>
++    </main>
++</x-base-layout>
+Index: resources/views/auth/register.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/auth/register.blade.php b/resources/views/auth/register.blade.php
+--- a/resources/views/auth/register.blade.php	(revision e190fbc07a5571890ea89d4ee4dda8ee470efe5e)
++++ b/resources/views/auth/register.blade.php	(revision 46fe266a95baf30037b178cb14b3252986085a71)
+@@ -1,11 +1,12 @@
+-<x-guest-layout>
+-    <x-auth-card>
+-        <x-slot name="logo">
+-            <a href="/">
+-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+-            </a>
+-        </x-slot>
+-
++<x-base-layout :title="'Registrieren'">
++    <nav>
++        <x-forms.back/>
++        <h1>Registrieren</h1>
++    </nav>
++    <main>
++        <div id="hub">
++            <div id="logo"></div>
++        </div>
+         <form method="POST" action="{{ route('register') }}">
+             @csrf
+ 
+@@ -60,5 +61,5 @@
+                 </x-primary-button>
+             </div>
+         </form>
+-    </x-auth-card>
+-</x-guest-layout>
++    </main>>
++</x-base-layout>
+Index: resources/views/auth/reset-password.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/auth/reset-password.blade.php b/resources/views/auth/reset-password.blade.php
+--- a/resources/views/auth/reset-password.blade.php	(revision e190fbc07a5571890ea89d4ee4dda8ee470efe5e)
++++ b/resources/views/auth/reset-password.blade.php	(revision 46fe266a95baf30037b178cb14b3252986085a71)
+@@ -1,10 +1,9 @@
+-<x-base-layout :title="'Passwort reset'">
+-    @section('navigation')
+-        <nav>
+-            <x-forms.back/>
+-            <h1>Passwort reset</h1>
+-        </nav>
+-    @endsection
++<x-base-layout :title="'Passwort zurücksetzen'">
++    <nav>
++        <x-forms.back/>
++        <h1>Passwort zurücksetzen</h1>
++    </nav>
++    <main>
+     <div id="hub">
+         <div id="logo"></div>
+     </div>
+@@ -49,4 +48,5 @@
+             </x-primary-button>
+         </div>
+     </form>
++    </main>
+ </x-base-layout>
+Index: resources/views/auth/verify-email.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/auth/verify-email.blade.php b/resources/views/auth/verify-email.blade.php
+--- a/resources/views/auth/verify-email.blade.php	(revision e190fbc07a5571890ea89d4ee4dda8ee470efe5e)
++++ b/resources/views/auth/verify-email.blade.php	(revision 46fe266a95baf30037b178cb14b3252986085a71)
+@@ -1,11 +1,12 @@
+-<x-guest-layout>
+-    <x-auth-card>
+-        <x-slot name="logo">
+-            <a href="/">
+-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+-            </a>
+-        </x-slot>
+-
++<x-base-layout :title="'Email bestätigen'">
++    <nav>
++        <x-forms.back/>
++        <h1>Email bestätigen</h1>
++    </nav>
++    <main>
++        <div id="hub">
++            <div id="logo"></div>
++        </div>
+         <div class="mb-4 text-sm text-gray-600">
+             {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+         </div>
+@@ -35,5 +36,5 @@
+                 </button>
+             </form>
+         </div>
+-    </x-auth-card>
+-</x-guest-layout>
++    </main>
++</x-base-layout>
+Index: resources/views/category-add-success.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/category-add-success.blade.php b/resources/views/category-add-success.blade.php
+--- a/resources/views/category-add-success.blade.php	(revision e190fbc07a5571890ea89d4ee4dda8ee470efe5e)
++++ b/resources/views/category-add-success.blade.php	(revision 46fe266a95baf30037b178cb14b3252986085a71)
+@@ -1,32 +1,13 @@
+-<!DOCTYPE html>
+-<html lang="de">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>category add</title>
+-
+-</head>
+-<body>
++<x-base-layout :title="'Kategorie erfolgreich hinzugefügt'">
++    <nav>
++        <x-forms.back/>
++        <x-forms.logout/>
++        <h1>Kategorie erfolgreich hinzugefügt</h1>
++    </nav>
+     <main>
+-        <div class="horizontal_bar">
+-            <form action="{{--{{ route('back') }} --}}" method="POST">
+-                @csrf
+-                <button type="submit">
+-                    <img src="{{ asset('assets/img/back.png') }}" id="back" alt="Back">
+-                </button>
+-            </form>
+-
+-            <form action="{{ route('logout') }}" method="POST">
+-                @csrf
+-                <button type="submit">
+-                    <img src="{{ asset('assets/img/logout.png') }}" id="logout" alt="Logout">
+-                </button>
+-            </form>
+-        </div>
+-        <div>
+-            <h1>Kategorie erfolgreich hinzugefügt</h1>
++        <div id="hub">
++            <div id="logo"></div>
+         </div>
+     </main>
+-</body>
+-</html>
++</x-base-layout>
+ 
+Index: resources/views/category-add.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/category-add.blade.php b/resources/views/category-add.blade.php
+--- a/resources/views/category-add.blade.php	(revision e190fbc07a5571890ea89d4ee4dda8ee470efe5e)
++++ b/resources/views/category-add.blade.php	(revision 46fe266a95baf30037b178cb14b3252986085a71)
+@@ -1,32 +1,10 @@
+-<!DOCTYPE html>
+-<html lang="de">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>category add</title>
+-
+-</head>
+-<body>
++<x-base-layout :title="'Kategorie hinzufügen'">
++    <nav>
++        <x-forms.back/>
++        <x-forms.logout/>
++        <h1>Kategorie hinzufügen</h1>
++    </nav>
+     <main>
+-        <div class="horizontal_bar">
+-            <form action="{{--{{ route('back') }} --}}" method="POST">
+-                @csrf
+-                <button type="submit">
+-                    <img src="{{ asset('assets/img/back.png') }}" id="back" alt="Back">
+-                </button>
+-            </form>
+-
+-            <form action="{{ route('logout') }}" method="POST">
+-                @csrf
+-                <button type="submit">
+-                    <img src="{{ asset('assets/img/logout.png') }}" id="logout" alt="Logout">
+-                </button>
+-            </form>
+-        </div>
+-        <div>
+-            <h1>Kategorie Hinzufügen</h1>
+-        </div>
+-
+         @if ($errors->any())
+             <div class="alert alert-danger">
+                 <ul>
+@@ -45,6 +23,5 @@
+             </form>
+         </div>
+     </main>
+-</body>
+-</html>
++</x-base-layout>
+ 
