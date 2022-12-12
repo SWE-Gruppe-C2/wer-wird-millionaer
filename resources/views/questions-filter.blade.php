@@ -26,7 +26,7 @@
 
     <h3>Fragenkatalog Filter</h3>
     <div>
-        <form action="" methode="POST"></form>
+        <form action="{{ route('question-filter') }}" method="POST">
         @csrf
         <select name="schwierigkeit" id="schwierigkeit" required>
             <option value="1">Level 1</option>
@@ -46,18 +46,18 @@
             <option value="15">Level 15</option>
         </select>
 
-        <select name="kategorie_id" id="kategorie_id" required>
-            @foreach($categories as $category)
-                <option value="{{$category->id}}">{{$category->name}}</option>
-            @endforeach
-        </select>
+            <select name="kategorie_id" id="kategorie_id" required>
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
 
         <input type="submit" value="Frage filtern">
+    </form>
     </div>
 
-
     @foreach($questions as $question)
-        <p>{{$question->text}}   |   <a href="{{route('question.edit', $question)}}"><u>EDIT</u></a>   |    <a href=""><u>DELETE</u></a></p>
+        <p>{{$question->text}}   </p>
     @endforeach
 
 </main>

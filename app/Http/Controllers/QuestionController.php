@@ -170,11 +170,23 @@ class QuestionController extends Controller
 
     public function questionFilter(Request $request){
 
-        $questions = Question::where('difficulty', $request->schwierigkeit)->where('category_id', $request->kategorie_id);
+
+        if(empty($request->schwierigkeit) && empty($request->kategorie_id)){
+            $questions = Question::all();
+        }
+        else{
+            $questions = Question::where('difficulty', $request->schwierigkeit)->where('category_id', $request->kategorie_id)->get();
+        }
         $categories = Category::all();
 
+
+        $request->request->remove('schwierigkeit');
+        $request->request->remove('kategorie_id');
+
+
         return view('questions-filter', [
-            'questions' => $questions
+            'questions' => $questions,
+            'categories' => $categories
         ]);
 
 

@@ -46,9 +46,12 @@ Route::resource('question', QuestionController::class)
     ->only(['index', 'edit', 'delete', 'update', 'store'])
     ->middleware(['auth', 'verified']);
 
-Route::get('/question-filter', function(){
-    return view('questions-filter');
-})->name('question-filter');
+Route::get('/question-filter', [QuestionController::class, 'questionFilter']
+)->name('question-filter');
+
+Route::post('/question-filter', [QuestionController::class, 'questionFilter']
+)->name('question-filter');
+
 
 Route::resource('category', CategoryController::class)
     ->only(['index', 'edit', 'store', 'update', 'success'])
