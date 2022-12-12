@@ -5,7 +5,7 @@
         <h1>Frage Bearbeiten</h1>
     </nav>
 
-    <main>
+    <main class="center-content">
         <div>
             <p>Frage: {{($oldQuestion->text)}}</p>
         </div>
