@@ -10,7 +10,8 @@
 <body>
 <main>
     <div class="horizontal_bar">
-        <form action="{{ route('category-edit-overview') }}" method="POST">
+        <form action="{{-- route('category-edit-overview') --}}" method="POST">
+            @method('patch')
             @csrf
             <button type="submit">
                 <img src="{{ asset('assets/img/back.png') }}" id="back" alt="Back">

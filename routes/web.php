@@ -49,6 +49,8 @@ Route::resource('category', CategoryController::class)
     ->only(['index', 'edit', 'update', 'success'])
     ->middleware(['auth', 'verified']);
 
+Route::get('/category-edit-overview', [CategoryController::class, 'index'])->name('category-edit-overview');
+
 Route::get('/category-edit-success',function(){
     return view('category-edit-success');
 })->name('category-edit-success');
