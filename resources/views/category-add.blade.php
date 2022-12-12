@@ -38,7 +38,7 @@
     @endif
 
     <div class="">
-        <form action="{{url('category-add')}}" method="POST">
+        <form action="{{url('category-store')}}" method="POST">
             @csrf
             <input type="text" id="category" name="category" placeholder="Category">
             <input type="submit" value="Kategorie hinzufügen">

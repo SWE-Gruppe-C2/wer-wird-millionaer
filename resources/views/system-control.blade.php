@@ -11,8 +11,8 @@
         <!--TODO(Link hinzufügen)-->
         <a href="{{ route('logout') }}"></a>
 
-        <a href="">Fragenkatalog</a>
-        <a href="">Kategorie hinzufügen</a>
-        <a href="">Kategorie hinzufügen</a>
+        <a href="{{route('question.index')}}">Fragenkatalog</a>
+        <a href="{{route('category-add')}}">Kategorie hinzufügen</a>
+        <a href="{{route('category.index')}}">Kategorie bearbeiten</a>
 </body>
 </html>

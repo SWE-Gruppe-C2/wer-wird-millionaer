@@ -46,11 +46,12 @@ Route::resource('question', QuestionController::class)
     ->only(['index', 'edit', 'delete', 'update', 'store'])
     ->middleware(['auth', 'verified']);
 
+
 Route::resource('category', CategoryController::class)
     ->only(['index', 'edit', 'update', 'success'])
     ->middleware(['auth', 'verified']);
 
-Route::get('/category-edit-overview', [CategoryController::class, 'index'])->name('category-edit-overview');
+//Route::get('/category-edit-overview', [CategoryController::class, 'index'])->name('category-edit-overview');
 
 Route::get('/category-edit-success',function(){
     return view('category-edit-success');
@@ -58,7 +59,7 @@ Route::get('/category-edit-success',function(){
 
 Route::get('/category-add', function(){
     return view('category-add');
-})->middleware(['auth', 'verified']);
+})->middleware(['auth', 'verified'])->name('category-add');
 
 Route::post('category-add', [CategoryController::class, 'store'])->name('category-add.store');
 

@@ -97,7 +97,6 @@ class CategoryController extends Controller
         return view('category-edit-success', ['category' =>$category]);
 
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -108,5 +107,8 @@ class CategoryController extends Controller
     {
         //
     }
+
+
+
 
 }
