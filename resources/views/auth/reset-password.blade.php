@@ -1,10 +1,9 @@
-<x-base-layout :title="'Passwort reset'">
-    @section('navigation')
-        <nav>
-            <x-forms.back/>
-            <h1>Passwort reset</h1>
-        </nav>
-    @endsection
+<x-base-layout :title="'Passwort zurücksetzen'">
+    <nav>
+        <x-forms.back/>
+        <h1>Passwort zurücksetzen</h1>
+    </nav>
+    <main>
     <div id="hub">
         <div id="logo"></div>
     </div>
@@ -49,4 +48,5 @@
             </x-primary-button>
         </div>
     </form>
+    </main>
 </x-base-layout>

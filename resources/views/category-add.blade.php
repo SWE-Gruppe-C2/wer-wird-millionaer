@@ -1,32 +1,10 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>category add</title>
-
-</head>
-<body>
+<x-base-layout :title="'Kategorie hinzufügen'">
+    <nav>
+        <x-forms.back/>
+        <x-forms.logout/>
+        <h1>Kategorie hinzufügen</h1>
+    </nav>
     <main>
-        <div class="horizontal_bar">
-            <form action="{{--{{ route('back') }} --}}" method="POST">
-                @csrf
-                <button type="submit">
-                    <img src="{{ asset('assets/img/back.png') }}" id="back" alt="Back">
-                </button>
-            </form>
-
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit">
-                    <img src="{{ asset('assets/img/logout.png') }}" id="logout" alt="Logout">
-                </button>
-            </form>
-        </div>
-        <div>
-            <h1>Kategorie Hinzufügen</h1>
-        </div>
-
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -45,6 +23,5 @@
             </form>
         </div>
     </main>
-</body>
-</html>
+</x-base-layout>
 

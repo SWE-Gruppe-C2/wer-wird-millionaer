@@ -1,11 +1,12 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
+<x-base-layout :title="'Passwort bestätigen'">
+    <nav>
+        <x-forms.back/>
+        <h1>Passwort bestätigen</h1>
+    </nav>
+    <main>
+        <div id="hub">
+            <div id="logo"></div>
+        </div>
         <div class="mb-4 text-sm text-gray-600">
             {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
         </div>
@@ -31,5 +32,5 @@
                 </x-primary-button>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </main>
+</x-base-layout>
