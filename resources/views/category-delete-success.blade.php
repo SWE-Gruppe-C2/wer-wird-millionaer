@@ -25,14 +25,8 @@
     </div>
     <div>
         <h1>Frage löschen</h1>
-        <p>{{$question->text}}</p>
-        <p>{{$question->answers[0]}}</p>
-        <p>{{$question->answers[0]}}</p>
-        <p>{{$question->answers[0]}}</p>
-        <p>{{$question->answers[0]}}</p>
-        <a href="{{route('question.destroy', $question)}}">Löschen</a>
-        <a href="">Abbrechen</a>
 
+        <h3>Frage gelöscht</h3>
     </div>
 </main>
 </body>

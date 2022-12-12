@@ -142,11 +142,13 @@ class QuestionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+
+        return view('question-delete-success');
     }
 
     public function questionAdd(Request $request){
@@ -170,6 +172,10 @@ class QuestionController extends Controller
 
     public function questionFilter(Request $request){
 
+        if($request->reset){
+            $request->request->remove('schwierigkeit');
+            $request->request->remove('kategorie_id');
+        }
 
         if(empty($request->schwierigkeit) && empty($request->kategorie_id)){
             $questions = Question::all();
@@ -177,19 +183,20 @@ class QuestionController extends Controller
         else{
             $questions = Question::where('difficulty', $request->schwierigkeit)->where('category_id', $request->kategorie_id)->get();
         }
+
         $categories = Category::all();
-
-
-        $request->request->remove('schwierigkeit');
-        $request->request->remove('kategorie_id');
-
 
         return view('questions-filter', [
             'questions' => $questions,
             'categories' => $categories
         ]);
+    }
 
+    public function questionDeletePage(Question $question){
 
+        return view('question-delete', [
+           'question' => $question
+        ]);
     }
 
 }

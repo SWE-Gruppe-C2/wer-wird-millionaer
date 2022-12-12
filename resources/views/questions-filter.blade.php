@@ -25,6 +25,7 @@
     </div>
 
     <h3>Fragenkatalog Filter</h3>
+    <a href="{{route('question-filter')}}?reset=true"> RESET </a>
     <div>
         <form action="{{ route('question-filter') }}" method="POST">
         @csrf
