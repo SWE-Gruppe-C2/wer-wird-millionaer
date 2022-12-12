@@ -46,6 +46,7 @@ nav {
 	font-family: 'Manrope', sans-serif;
 	background-color: rgba(10, 10, 57, .9);
 	box-shadow: 0 0 10px #e763bc;
+    top: 0;
 }
 
 nav *, .horizontal_bar { height: 30px }
