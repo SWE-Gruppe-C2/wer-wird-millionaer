@@ -239,6 +239,7 @@ input {
 	height: 30px;
 	margin: 1px auto;
 	padding: 0 10px;
+    font-size: 16px;
 }
 
 @keyframes pulsate {
@@ -249,3 +250,5 @@ input {
 @media (min-width: 500px) {
 	.button { padding: 0 40px }
 }
+
+
