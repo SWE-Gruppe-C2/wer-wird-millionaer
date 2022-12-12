@@ -1,17 +1,11 @@
-
-
-
 <x-base-layout :title="'Kategorie Hinzufügen'">
 
         <nav>
-            <x-forms.back>
-
-            </x-forms.back>
-
+            <x-forms.back/>
             <h1>Kategorie Hinzufügen</h1>
         </nav>
 
-        <main>
+        <main class="center-content">
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
