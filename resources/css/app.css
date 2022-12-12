@@ -231,9 +231,11 @@ form, .button_wrapper {
 
 #answer_d span:before { content: 'D: ' }
 
-form { padding: 0 10px }
+form {
+    padding: 0 10px;
+}
 
-input {
+input, select {
 	width: 100%;
 	max-width: 500px;
 	height: 30px;
@@ -241,6 +243,8 @@ input {
 	padding: 0 10px;
     font-size: 16px;
 }
+
+
 
 @keyframes pulsate {
 	from { background-size: auto 100% }

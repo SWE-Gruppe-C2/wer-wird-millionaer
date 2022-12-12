@@ -1,5 +1,3 @@
-
-
 <x-base-layout :title="'Kategorie Start Page'">
 
     <nav>

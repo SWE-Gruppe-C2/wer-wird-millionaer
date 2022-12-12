@@ -2,13 +2,13 @@
 
     <nav>
         <x-forms.back/>
-        <h1>Frage Löschen</h1>
+        <h1>Frage Bearbeiten</h1>
     </nav>
 
     <main class="center-content">
 
         <article>
-            Frage wurde gelöscht
+            Frage wurde bearbeitet
         </article>
 
     </main>

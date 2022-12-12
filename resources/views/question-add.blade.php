@@ -1,4 +1,3 @@
-
 <x-base-layout :title="'Frage Hinzufügen'">
 
     <nav>
