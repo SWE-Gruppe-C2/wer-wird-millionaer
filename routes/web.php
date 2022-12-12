@@ -39,6 +39,7 @@ Route::resource('questions', QuestionController::class)
 
 */
 
+
 Route::get('/question-add', [QuestionController::class, 'questionAdd']);
 
 Route::resource('question', QuestionController::class)
@@ -54,5 +55,17 @@ Route::get('/category-edit-overview', [CategoryController::class, 'index'])->nam
 Route::get('/category-edit-success',function(){
     return view('category-edit-success');
 })->name('category-edit-success');
+
+Route::get('/category-add', function(){
+    return view('category-add');
+})->middleware(['auth', 'verified']);
+
+Route::post('category-add', [CategoryController::class, 'store'])->name('category-add.store');
+
+Route::get('category-add-success', function(){
+    return view('category-add-success');
+})->middleware(['auth', 'verified']);
+
+
 
 require __DIR__.'/auth.php';

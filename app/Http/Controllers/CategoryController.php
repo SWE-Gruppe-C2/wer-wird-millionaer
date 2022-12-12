@@ -37,7 +37,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        error_log('Successfully called "Store Controller Method');
+
+        $validator = $request->validate([
+            'category' => 'required|string|max:255|unique:categories,name',
+        ]);
+
+        $category = new Category();
+        $category->name = $request->category;
+        $category->save();
+        return redirect('category-add-success');
+
     }
 
     /**
@@ -98,6 +108,5 @@ class CategoryController extends Controller
     {
         //
     }
-
 
 }
