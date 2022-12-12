@@ -19,7 +19,7 @@
             <p>{{$question->text}}   |   <a href="{{route('question.edit', $question)}}"><u>EDIT</u></a>   |    <a href="{{route('question-delete', $question)}}"><u>DELETE</u></a></p>
         @endforeach
 
-        {{--//TODO Fragenkatalog anzeige funktioniert nicht --}}
+
 
 
     </main>
