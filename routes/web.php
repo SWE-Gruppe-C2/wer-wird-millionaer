@@ -70,4 +70,6 @@ Route::get('category-add-success', function(){
     return view('category-add-success');
 })->middleware(['auth', 'verified']);
 
+Route::get('logout', '\App\Http\Controllers\Auth\AuthenticatedSessionController@logout');
+
 require __DIR__.'/auth.php';

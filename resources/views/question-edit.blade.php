@@ -29,33 +29,34 @@
             <input type="text" id="antwort_d" name="antwort_d" placeholder="D: Antwort eingeben" value="{{$oldQuestion->answers[3]}}" required>
 
             <select name="korrekte_antwort" id="korrekte_antwort" required>
-                <option value="a">Antwort A</option>
-                <option value="b">Antwort B</option>
-                <option value="c">Antwort C</option>
-                <option value="d">Antwort D</option>
+                <option value="a" @if($oldQuestion->correct_answer === 'a') selected @endif>Antwort A</option>
+                <option value="b" @if($oldQuestion->correct_answer === 'b') selected @endif>Antwort B</option>
+                <option value="c" @if($oldQuestion->correct_answer === 'c') selected @endif>Antwort C</option>
+                <option value="d" @if($oldQuestion->correct_answer === 'd') selected @endif>Antwort D</option>
             </select>
 
-            <select name="schwierigkeit" id="schwierigkeit" required>
-                <option value="1">Level 1</option>
-                <option value="2">Level 2</option>
-                <option value="3">Level 3</option>
-                <option value="4">Level 4</option>
-                <option value="5">Level 5</option>
-                <option value="6">Level 6</option>
-                <option value="7">Level 7</option>
-                <option value="8">Level 8</option>
-                <option value="9">Level 9</option>
-                <option value="10">Level 10</option>
-                <option value="11">Level 11</option>
-                <option value="12">Level 12</option>
-                <option value="13">Level 13</option>
-                <option value="14">Level 14</option>
-                <option value="15">Level 15</option>
+            <select name="schwierigkeit" id="schwierigkeit" onselect="" required>
+
+                @for($i = 1; $i < 16; $i++)
+
+                    @if($oldQuestion->difficulty == $i)
+                        <option value="{{ $i }}" selected>Level {{ $i }}</option>
+                    @endif
+                        <option value="{{ $i }}">Level {{ $i }}</option>
+
+                @endfor
             </select>
 
             <select name="kategorie_id" id="kategorie_id" required>
                 @foreach($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
+
+                    {{-- SELECTS DEFAULT FOR QUESTION CATEGORY WHEN DISPLAYING --}}
+                    @if($oldQuestion->category == '$category->name')
+                        <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                    @endif
+
+                    <option value="{{$category->id}}" >{{$category->name}}</option>
+
                 @endforeach
             </select>
 
