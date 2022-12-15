@@ -1,6 +1,7 @@
-<x-base-layout :title="'Register'">
+<x-base-layout :title="'Registrierung'">
     @section('navigation')
     <nav>
+        <x-forms.back/>
         <h1>Registrieren</h1>
     </nav>
     @endsection
@@ -8,27 +9,27 @@
         <div id="logo"></div>
     </div>
 
-        <form method="POST" action="{{ route('register') }}">
-
+        <x-input-error :messages="$errors->all()"/>
+        <form class="center-content" method="POST" action="{{ route('register') }}">
             @csrf
             <!-- Username -->
             <div>
-                <input type="text" id="name" name="name" placeholder="Benutzername" required autofocus>
+                <input type="text" id="name" name="name" placeholder="Benutzername" value="{{ old('name') }}" autofocus>
             </div>
 
             <!-- Email -->
             <div>
-                <input type="email" id="email" name="email" placeholder="E-Mail" required>
+                <input type="text" id="email" name="email" placeholder="E-Mail" value="{{ old('email') }}">
             </div>
 
             <!-- Passwort -->
             <div>
-                <input type="password" id="password" name="password" placeholder="Neues Passwort eingeben" required>
+                <input type="password" id="password" name="password" placeholder="Passwort">
             </div>
 
             <!-- Passwort bestätigen-->
             <div>
-                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Passwort wiederholen" required>
+                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Passwort erneut eingeben">
             </div>
 
             <input type="submit" value="Registrieren" name="registrieren">
