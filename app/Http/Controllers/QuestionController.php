@@ -114,28 +114,65 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        $validator = $request->validate([
-            'question' => 'required|unique:questions,text',
-            'antwort_a' => 'required|string',
-            'antwort_b' => 'required|string',
-            'antwort_c' => 'required|string',
-            'antwort_d' => 'required|string',
-            'korrekte_antwort' => 'required',
-            'schwierigkeit' => 'required|int',
-            'kategorie_id' => 'required|int'
-        ]);
+        //Geänderte Frage bereits vorhanden
+        //-->
+        //Es wurden keine Änderungen vorgenommen
 
+        if($question->text == $request->question){
 
-        $question->text = $request->question;
-        $answers = [$request->antwort_a, $request->antwort_b, $request->antwort_c, $request->antwort_d];
-        $question->answers = $answers;
-        $question->correct_answer = $request->korrekte_antwort;
-        $question->difficulty = $request->schwierigkeit;
-        $question->category_id = $request->kategorie_id;
+            //Überprüfen ob Änderungen vorgenommen worden sind.
+            // Wenn nicht ->
+            if($question->answers == '..' && $question->correct_answer == $request->korrekte_antwort){
 
-        $question->save();
+                //error message setzten
+                $errors = null;
+                //return view wie bei validate funktion Frage: muss man dann auch question übergeben
+                return view('question-edit', [
+                    'oldQuestion' => $question,
+                    'errors' => $errors
+                ]);
+            }else{
 
-        //return view('question-edit-success', ['question' =>$question]);
+                //Normale Validate Funktion ohne auf FragenText Unique zu checken
+
+                $validator = $request->validate([
+                    'question' => 'required|string',
+                    'antwort_a' => 'required|string',
+                    'antwort_b' => 'required|string',
+                    'antwort_c' => 'required|string',
+                    'antwort_d' => 'required|string',
+                    'korrekte_antwort' => 'required',
+                    'schwierigkeit' => 'required|int',
+                    'kategorie_id' => 'required|int'
+                ]);
+
+                //Werte abspeichern
+            }
+
+        }else{
+
+            $validator = $request->validate([
+                'question' => 'required|unique:questions,text',
+                'antwort_a' => 'required|string',
+                'antwort_b' => 'required|string',
+                'antwort_c' => 'required|string',
+                'antwort_d' => 'required|string',
+                'korrekte_antwort' => 'required',
+                'schwierigkeit' => 'required|int',
+                'kategorie_id' => 'required|int'
+            ]);
+
+            $question->text = $request->question;
+            $answers = [$request->antwort_a, $request->antwort_b, $request->antwort_c, $request->antwort_d];
+            $question->answers = $answers;
+            $question->correct_answer = $request->korrekte_antwort;
+            $question->difficulty = $request->schwierigkeit;
+            $question->category_id = $request->kategorie_id;
+
+            $question->save();
+
+            return view('question-edit-success', ['question' =>$question]);
+        }
 
     }
 
