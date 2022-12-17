@@ -38,7 +38,7 @@ let quotes = [
 
 window.onload = () => { update() }
 
-function update() {
+window.update = function() {
     question.innerHTML = '<span>' + questions[level][0] + '</span>'
 
     for (let i = 0; i < answers.length; i++) {
@@ -49,31 +49,31 @@ function update() {
     moneyTree.getElementsByTagName('tr')[14 - level].classList.add('current_level')
 }
 
-function openMoneyTree() {
+window.openMoneyTree = function() {
     moneyTreeButton.setAttribute('onclick', 'closeMoneyTree()')
-    moneyTreeButton.src = 'img/close.png'
+    moneyTreeButton.src = 'assets/img/close.png'
     moneyTreeButton.alt = 'Schließen'
     moneyTree.style.bottom = '0'
 }
 
-function closeMoneyTree() {
+window.closeMoneyTree = function() {
     moneyTreeButton.setAttribute('onclick', 'openMoneyTree()')
-    moneyTreeButton.src = 'img/list.png'
+    moneyTreeButton.src = 'assets/img/list.png'
     moneyTreeButton.alt = 'Spielfortschritt'
     moneyTree.style.bottom = "-100%"
 }
 
-function check() {
+window.check = function() {
     if (processing) return
     processing = true
-    this.style.backgroundImage = "url('img/orange_button.png')"
+    this.style.backgroundImage = "url('assets/img/orange_button.png')"
     this.style.color = 'black'
 
     for (let answer of answers) answer.classList.add('disabled')
 
     setTimeout(() => {
         if (Array.from(this.parentNode.children).indexOf(this) === questions[level][5]) {
-            this.style.backgroundImage = "url('img/green_button.png')"
+            this.style.backgroundImage = "url('assets/img/green_button.png')"
             question.innerHTML = '<span>' + moneyTree.getElementsByTagName('tr')[14 - level].getElementsByTagName('td')[1].innerHTML + '</span>'
 
             if (level < 14) {
@@ -96,13 +96,13 @@ function check() {
             }
         }
         else {
-            answers[questions[level][5] - 1].style.backgroundImage  = "url('img/green_button.png')"
+            answers[questions[level][5] - 1].style.backgroundImage  = "url('assets/img/green_button.png')"
             answers[questions[level][5] - 1].style.color = 'black'
         }
     }, 1500)
 }
 
-function fiftyFifty() {
+window.fiftyFifty = function() {
     if (processing) return
     const fiftyFiftyButton = document.getElementById('fifty_fifty')
     keep = (questions[level][5] + Math.floor(Math.random() * 3)) % 4
@@ -119,7 +119,7 @@ function fiftyFifty() {
     }
 }
 
-function callFriend() {
+window.callFriend = function() {
     if (processing) return
     calcTendencies()
     const hint = document.getElementById('friends_opinion')
@@ -135,7 +135,7 @@ function callFriend() {
     hint.style.opacity = '1'
 }
 
-function askAudience() {
+window.askAudience = function (){
     if (processing) return
     calcTendencies()
     const hints = document.getElementById('audience_opinion')
@@ -155,7 +155,7 @@ function askAudience() {
     hints.style.opacity = '1'
 }
 
-function calcTendencies() {
+window.calcTendencies = function() {
     let rightAnswer = questions[level][5] - 1
     let maxTend = Math.ceil(level < 7 ? -1.1726 * level * level + .8393 * level + 99.958 : -2.14891 * level + 63.4181)
     let minTend = maxTend - level - 4
@@ -184,4 +184,5 @@ window.submitWithValue = function(value) {
     // form.append(`<input type="hidden" name="answer" value="${value}" />`);
     document.getElementById('answer').value = value;
     form.submit();
+    //TODO: check if Jokers were used
 }
