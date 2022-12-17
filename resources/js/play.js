@@ -178,3 +178,10 @@ function calcTendencies() {
         percentages[keep] += remaining
     }
 }
+
+window.submitWithValue = function(value) {
+    const form = document.getElementById('form');
+    // form.append(`<input type="hidden" name="answer" value="${value}" />`);
+    document.getElementById('answer').value = value;
+    form.submit();
+}

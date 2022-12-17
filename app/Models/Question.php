@@ -31,7 +31,7 @@ class Question extends Model
      *
      * @return Attribute
      */
-    protected function answers(): Attribute
+    public function answers(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => explode(';', $value),
