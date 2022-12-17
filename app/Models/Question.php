@@ -39,8 +39,13 @@ class Question extends Model
         );
     }
 
-    protected function category()
+    public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function games()
+    {
+        return $this->belongsToMany(Game::class);
     }
 }

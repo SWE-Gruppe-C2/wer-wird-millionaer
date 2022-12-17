@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('game-page', function() {
-    return view('game-page');
-})->name('game-page');
+Route::get('/game', [GameController::class, 'index'])->name('game');
+Route::post('/answer', [GameController::class, 'answer'])->name('answer');
 
 require __DIR__.'/auth.php';
