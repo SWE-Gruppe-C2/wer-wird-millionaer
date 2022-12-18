@@ -40,7 +40,7 @@
                 @for($i = 1; $i < 16; $i++)
 
                     @if($oldQuestion->difficulty == $i)
-                        <option value="{{ $i }}" selected>Level {{ $i }}</option>
+                        <option value="{{ $i }}" selected style="color: green"> Level {{ $i }}</option>
                     @endif
                         <option value="{{ $i }}">Level {{ $i }}</option>
 
@@ -51,7 +51,7 @@
                 @foreach($categories as $category)
 
                     {{-- SELECTS DEFAULT FOR QUESTION CATEGORY WHEN DISPLAYING --}}
-                    @if($oldQuestion->category == '$category->name')
+                    @if($oldQuestion->category_id == $category->id)
                         <option value="{{$category->id}}" selected>{{$category->name}}</option>
                     @endif
 

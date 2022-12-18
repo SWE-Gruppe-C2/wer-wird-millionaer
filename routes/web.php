@@ -27,7 +27,7 @@ Route::get('system-control', function(){
     return view('system-control');
 });
 
-Route::get('/question-add', [QuestionController::class, 'questionAdd'])->name('question-add');
+Route::get('/question-add', [QuestionController::class, 'questionAdd'])->middleware(['auth', 'verified'])->name('question-add');
 
 Route::resource('question', QuestionController::class)
     ->only(['index', 'edit', 'delete', 'update', 'store','destroy'])
