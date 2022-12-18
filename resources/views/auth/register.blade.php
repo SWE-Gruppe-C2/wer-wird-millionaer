@@ -1,17 +1,21 @@
 <x-base-layout :title="'Registrierung'">
-    @section('navigation')
+
     <nav>
         <x-forms.back/>
         <h1>Registrieren</h1>
     </nav>
-    @endsection
-    <div id="hub">
-        <div id="logo"></div>
-    </div>
+
+    <main class="center-content">
+
+        <div id="hub">
+            <div id="logo"></div>
+        </div>
 
         <x-input-error :messages="$errors->all()"/>
-        <form class="center-content" method="POST" action="{{ route('register') }}">
+
+        <form method="POST" action="{{ route('register') }}">
             @csrf
+
             <!-- Username -->
             <div>
                 <input type="text" id="name" name="name" placeholder="Benutzername" value="{{ old('name') }}" autofocus>
@@ -35,5 +39,7 @@
             <input type="submit" value="Registrieren" name="registrieren">
 
         </form>
+
+    </main>
 
 </x-base-layout>
