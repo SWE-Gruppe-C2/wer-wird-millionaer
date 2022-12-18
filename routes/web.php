@@ -25,4 +25,16 @@ Route::get('/dashboard', function () {
 Route::get('/game', [GameController::class, 'index'])->name('game');
 Route::post('/answer', [GameController::class, 'answer'])->name('answer');
 
+Route::get('/game-over', function() {
+    return view('game-over');
+})->name('game-over');
+
+Route::get('/highscores', function() {
+    return view('highscores');
+})->name('highscores');
+
+Route::get('/menu', function() {
+    return view('menu');
+})->name('menu');
+
 require __DIR__.'/auth.php';
