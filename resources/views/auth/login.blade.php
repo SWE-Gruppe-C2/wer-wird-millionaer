@@ -1,10 +1,10 @@
 <x-base-layout :title="'Login'">
-    @section('navigation')
+    <main>
         <nav>
             <x-forms.back/>
             <h1>Login</h1>
         </nav>
-    @endsection
+
     <div id="hub">
         <div id="logo"></div>
     </div>
@@ -47,5 +47,5 @@
                 <a href="{{ route('register') }}">{{ __('Registrieren') }}</a><br>
             @endif
         </div>
-
+    </main>
 </x-base-layout>
