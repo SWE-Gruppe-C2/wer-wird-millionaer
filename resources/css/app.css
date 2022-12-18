@@ -170,7 +170,7 @@ a {
 #logo {
 	height: 100%;
 	/*noinspection CssUnknownTarget*/
-	background: url('assets/img/wwm_logo_light.png') center / auto 100% no-repeat;
+	background: url('/assets/img/wwm_logo_light.png') center / auto 100% no-repeat;
 	animation: pulsate 2500ms ease-in-out infinite alternate;
 }
 
@@ -180,7 +180,7 @@ a {
 	height: 100%;
 	content: '';
 	/*noinspection CssUnknownTarget*/
-	background: url('assets/img/wwm_logo.png') center / auto 75% no-repeat;
+	background: url('/assets/img/wwm_logo.png') center / auto 75% no-repeat;
 }
 
 form, .button_wrapper {
@@ -226,7 +226,7 @@ label { line-height: 20px }
 	font-family: Arial, sans-serif;
 	color: inherit;
 	/*noinspection CssUnknownTarget*/
-	background: url('assets/img/blue_button.png') center / 100% 100% no-repeat;
+	background: url('/assets/img/blue_button.png') center / 100% 100% no-repeat;
 }
 
 .button:before {
@@ -242,7 +242,21 @@ label { line-height: 20px }
 	cursor: default;
 	color: black;
 	/*noinspection CssUnknownTarget*/
-	background-image: url('assets/img/orange_button.png');
+	background-image: url('/assets/img/orange_button.png');
+}
+
+.chosen {
+    cursor: default;
+    color: black;
+    /*noinspection CssUnknownTarget*/
+    background-image: url('/assets/img/orange_button.png');
+}
+
+.correct {
+    cursor: default;
+    color: black;
+    /*noinspection CssUnknownTarget*/
+    background-image: url('/assets/img/green_button.png');
 }
 
 .button span { width: 100% }

@@ -48,8 +48,39 @@ class User extends Authenticatable
         return $this->hasMany(Game::class);
     }
 
+    /**
+     * Gibt das aktuell gespielte Spiel zurück und fängt ein neues an, wenn kein
+     * aktuelles existiert.
+     *
+     * @return Game
+     */
     public function current()
     {
-        return $this->games()->where('active', '=', true);
+        return $this->games()
+            ->firstOrCreate(
+                ['active' => true],
+                [
+                    'active' => true,
+                    'start' => now(),
+                    'user_id' => $this->id,
+                    'question_id' => Question::random(1)->id,
+                    'gamestage_id' => GameStage::first()->id
+                ]
+            );
+    }
+
+    /**
+     * Gibt das aktuell gespielte Spiel zurück oder das letzte beendete falls
+     * kein aktuelles läuft.
+     *
+     * @return Game
+     */
+    public function last()
+    {
+        return $this->games()
+            ->where('active', '=', true)
+            ->orWhereNotNull('end')
+            ->latest('end')
+            ->first();
     }
 }

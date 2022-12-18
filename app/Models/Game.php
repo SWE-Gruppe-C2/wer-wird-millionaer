@@ -11,9 +11,12 @@ class Game extends Model
 
     protected $fillable = [
         'stage',
+        'active',
         'start',
         'end',
-        'user_id'
+        'user_id',
+        'question_id',
+        'gamestage_id'
     ];
 
     public function user()
@@ -23,6 +26,11 @@ class Game extends Model
 
     public function question()
     {
-        return $this->hasOne(Question::class);
+        return $this->belongsTo(Question::class);
+    }
+
+    public function stage()
+    {
+        return $this->belongsTo(GameStage::class);
     }
 }

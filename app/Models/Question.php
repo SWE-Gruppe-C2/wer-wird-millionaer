@@ -39,6 +39,14 @@ class Question extends Model
         );
     }
 
+    public static function random(int $difficulty)
+    {
+        return self::all()
+            ->where('difficulty', '=', $difficulty)
+            ->random(1)
+            ->first();
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -46,6 +54,6 @@ class Question extends Model
 
     public function games()
     {
-        return $this->belongsToMany(Game::class);
+        return $this->hasMany(Game::class);
     }
 }

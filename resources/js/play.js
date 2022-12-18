@@ -1,5 +1,23 @@
 const moneyTreeButton = document.getElementById('toggle_money_tree')
 const moneyTree = document.getElementById('money_tree')
+
+window.openMoneyTree = function() {
+    moneyTreeButton.setAttribute('onclick', 'closeMoneyTree()')
+    moneyTreeButton.src = 'assets/img/close.png'
+    moneyTreeButton.alt = 'Schließen'
+    moneyTree.style.bottom = '0'
+}
+
+window.closeMoneyTree = function() {
+    moneyTreeButton.setAttribute('onclick', 'openMoneyTree()')
+    moneyTreeButton.src = 'assets/img/list.png'
+    moneyTreeButton.alt = 'Spielfortschritt'
+    moneyTree.style.bottom = "-100%"
+}
+
+/*
+
+
 const logo = document.getElementById('logo')
 const question = document.getElementById('question')
 const answers = document.getElementsByClassName('answer')
@@ -48,22 +66,11 @@ window.update = function() {
 
     moneyTree.getElementsByTagName('tr')[14 - level].classList.add('current_level')
 }
+*/
 
-window.openMoneyTree = function() {
-    moneyTreeButton.setAttribute('onclick', 'closeMoneyTree()')
-    moneyTreeButton.src = 'assets/img/close.png'
-    moneyTreeButton.alt = 'Schließen'
-    moneyTree.style.bottom = '0'
-}
 
-window.closeMoneyTree = function() {
-    moneyTreeButton.setAttribute('onclick', 'openMoneyTree()')
-    moneyTreeButton.src = 'assets/img/list.png'
-    moneyTreeButton.alt = 'Spielfortschritt'
-    moneyTree.style.bottom = "-100%"
-}
 
-window.check = function() {
+/*window.check = function() {
     if (processing) return
     processing = true
     this.style.backgroundImage = "url('assets/img/orange_button.png')"
@@ -186,3 +193,4 @@ window.submitWithValue = function(value) {
     form.submit();
     //TODO: check if Jokers were used
 }
+*/

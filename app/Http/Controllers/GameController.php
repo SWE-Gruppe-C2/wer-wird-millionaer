@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\GameStage;
 use App\Models\Question;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
@@ -13,29 +12,81 @@ class GameController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $game = $user->current();
 
-        if (!$game)
-        {
-            $game = Game::create([
-                'stage' => 1,
-                'active' => true,
-                'start' => now(),
-                'question_id' => Question::all()
-                    ->random(1)
-                    ->where('difficulty', '=', 1)
-                    ->id,
-                'user_id' => $user->id
-            ]);
-        }
+        /** @var Game $game */
+        $game     = $user->current();
 
-        return view('game', ['question' => $game->question()]);
+        /** @var Question $question */
+        $question = $game->question;
+
+        return view('game', [
+            'game' => $game,
+            'stages' => GameStage::all()
+        ]);
     }
 
-    public function answer(Request $request)
+    public function result(int $id)
     {
-        $answer = $request->input('answer');
-        $game = Auth::user()->current();
+        $user = Auth::user();
 
+        /** @var Game $game */
+        $game     = $user->current();
+
+        /** @var Question $question */
+        $question = $game->question;
+
+        return view('game-result', [
+            'game' => $game,
+            'stages' => GameStage::all()
+        ]);
+    }
+
+    public function end()
+    {
+        $user = Auth::user();
+
+        /** @var Game $game */
+        $game     = $user->current();
+
+        /** @var Question $question */
+        $question = $game->question;
+
+        $game->active = false;
+        $game->end = now();
+        $game->save();
+
+        return to_route('game.over');
+    }
+
+    public function answer(int $id)
+    {
+        $user = Auth::user();
+
+        /** @var Game $game */
+        $game     = $user->current();
+
+        /** @var Question $question */
+        $question = $game->question;
+
+        if ($id != $question->correct_answer)
+        {
+            return to_route('game.end');
+        }
+
+        if ($game->stage == 15)
+        {
+            return to_route('game.end');
+        }
+
+        $game->stage += 1;
+        $game->question_id = Question::random($game->stage)->id;
+        $game->save();
+
+        return to_route('game');
+    }
+
+    public function gameover()
+    {
+        return view('game-over');
     }
 }
