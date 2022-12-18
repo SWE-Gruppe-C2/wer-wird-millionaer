@@ -29,6 +29,10 @@ Route::get('/menu', function() {
     return view('menu');
 })->name('menu');
 
+Route::get('/system-control', function() {
+    return view('system-control');
+})->name('system');
+
 
 
 require __DIR__.'/auth.php';
