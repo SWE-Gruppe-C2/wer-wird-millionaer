@@ -9,10 +9,8 @@ window.Alpine = Alpine;
 Alpine.start();
 
 //musik-objekt
-var currentMusic;
+var currentMusic = new Music("");
 var secondaryMusic = new Music("");
-//ist gemuted?
-var muted = false;
 //array mit den verschiedenen Stages (der Einfachheit halber :D)
 var stages = ["100-1000", "100-1000", "100-1000", "100-1000", 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 500000, 1000000];
 //aktuelle Stage
@@ -25,6 +23,8 @@ var currentStage = 0;
  * @constructor für die Musik
  */
 function Music(src, loop = false){
+    //ist gemuted?
+    var muted = true;
     //neues audio-element (HTML element)
     this.music = document.createElement("audio");
     //audioquelle
@@ -39,6 +39,7 @@ function Music(src, loop = false){
     this.music.style.display = "none";
     //audio element and html anhängen
     document.body.appendChild(this.music);
+    this.music.volume = 0;
     //musik starten
     this.play = function(){
         this.music.play();
@@ -62,7 +63,13 @@ function Music(src, loop = false){
 //musik starten
 window.startMusic = function(){
     currentMusic = new Music(stages[currentStage] + "Q.mp3", true);
+    currentMusic.volume = 0;
     currentMusic.play();
+}
+
+window.initMusic = function(stage){
+    currentStage = stage;
+    startMusic();
 }
 
 //nächste Stage
@@ -90,6 +97,8 @@ window.lose = function(){
 //sound muten
 window.mute = function(){
     currentMusic.mute();
+    secondaryMusic.mute();
+    //TODO: Icon ändern
 }
 
 window.openingMusic = function(){
@@ -108,12 +117,14 @@ window.joker5050 = function(){
 }
 
 window.audienceJoker = function(){
-    secondaryMusic.set("AskTheAudience.mp3");
+    // secondaryMusic.set("AskTheAudience.mp3");
+    secondaryMusic.set("50-50.mp3");
     secondaryMusic.play()
 }
 
 window.phoneJoker = function(){
-    secondaryMusic.set("Phone-A-Friend.mp3");
+    // secondaryMusic.set("Phone-A-Friend.mp3");
+    secondaryMusic.set("50-50.mp3");
     secondaryMusic.play();
 }
 

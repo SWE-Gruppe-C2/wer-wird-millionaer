@@ -1,3 +1,5 @@
+import './app'
+
 const moneyTreeButton = document.getElementById('toggle_money_tree')
 const moneyTree = document.getElementById('money_tree')
 
@@ -14,9 +16,6 @@ window.closeMoneyTree = function() {
     moneyTreeButton.alt = 'Spielfortschritt'
     moneyTree.style.bottom = "-100%"
 }
-
-/*
-
 
 const logo = document.getElementById('logo')
 const question = document.getElementById('question')
@@ -54,23 +53,20 @@ let quotes = [
     'Antwort % natürlich!'
 ]
 
-window.onload = () => { update() }
+// window.onload = () => { update() }
 
-window.update = function() {
-    question.innerHTML = '<span>' + questions[level][0] + '</span>'
+// window.update = function() {
+//     question.innerHTML = '<span>' + questions[level][0] + '</span>'
+//
+//     for (let i = 0; i < answers.length; i++) {
+//         answers[i].innerHTML = '<span>' + questions[level][i + 1] + '</span>'
+//         answers[i].addEventListener('click', check)
+//     }
+//
+//     moneyTree.getElementsByTagName('tr')[14 - level].classList.add('current_level')
+// }
 
-    for (let i = 0; i < answers.length; i++) {
-        answers[i].innerHTML = '<span>' + questions[level][i + 1] + '</span>'
-        answers[i].addEventListener('click', check)
-    }
-
-    moneyTree.getElementsByTagName('tr')[14 - level].classList.add('current_level')
-}
-*/
-
-
-
-/*window.check = function() {
+window.check = function() {
     if (processing) return
     processing = true
     this.style.backgroundImage = "url('assets/img/orange_button.png')"
@@ -110,6 +106,7 @@ window.update = function() {
 }
 
 window.fiftyFifty = function() {
+    joker5050();
     if (processing) return
     const fiftyFiftyButton = document.getElementById('fifty_fifty')
     keep = (questions[level][5] + Math.floor(Math.random() * 3)) % 4
@@ -127,6 +124,7 @@ window.fiftyFifty = function() {
 }
 
 window.callFriend = function() {
+    phoneJoker();
     if (processing) return
     calcTendencies()
     const hint = document.getElementById('friends_opinion')
@@ -143,6 +141,7 @@ window.callFriend = function() {
 }
 
 window.askAudience = function (){
+    audienceJoker();
     if (processing) return
     calcTendencies()
     const hints = document.getElementById('audience_opinion')
@@ -193,4 +192,3 @@ window.submitWithValue = function(value) {
     form.submit();
     //TODO: check if Jokers were used
 }
-*/
