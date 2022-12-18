@@ -23,14 +23,14 @@ Route::get('/dashboard', function () {
 
 Route::get('main-menu', function() {
     return view('main-menu');
-})->name('main-menu');
+})->name('main.menu');
 
-Route::get('/play', function() {
+Route::get('/game', function() {
     return view('play');
-})->name('play');
+})->name('game');
 
-Route::get('/highscores', function() {
-    return view('highscores');
-})->name('highscores');
+Route::get('/leaderboard', function() {
+    return view('leaderboard');
+})->name('leaderboard');
 
 require __DIR__.'/auth.php';
