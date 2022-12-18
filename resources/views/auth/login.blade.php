@@ -1,13 +1,15 @@
 <x-base-layout :title="'Login'">
-    <main>
-        <nav>
-            <x-forms.back/>
-            <h1>Login</h1>
-        </nav>
 
-    <div id="hub">
-        <div id="logo"></div>
-    </div>
+    <nav>
+        <x-forms.back/>
+        <h1>Login</h1>
+    </nav>
+
+    <main class="center-content">
+
+        <div id="hub">
+            <div id="logo"></div>
+        </div>
 
         <form method="POST" action="{{ route('login') }}" >
             @csrf
