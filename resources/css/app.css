@@ -29,6 +29,7 @@ nav {
 	top: 0;
 	background-color: rgba(10, 10, 57, .9);
 	box-shadow: 0 0 10px #e763bc;
+    top: 0;
 }
 
 nav *, .horizontal_bar, #bottom_bar * { height: 30px }
@@ -265,6 +266,22 @@ label { line-height: 20px }
 
 #answer_d span:before { content: 'D: ' }
 
+
+form {
+    padding: 0 10px;
+}
+
+input, select {
+	width: 100%;
+	max-width: 500px;
+	height: 30px;
+	margin: 1px auto;
+	padding: 0 10px;
+    font-size: 16px;
+}
+
+
+
 .question {
 	background-color: white;
 	width: 100%;
@@ -311,6 +328,7 @@ label { line-height: 20px }
 
 #filters form { height: 100% }
 
+
 @keyframes pulsate {
 	from { background-size: auto 100% }
 	to { background-size: auto 95% }
@@ -319,3 +337,5 @@ label { line-height: 20px }
 @media (min-width: 500px) {
 	.button { padding: 0 40px }
 }
+
+

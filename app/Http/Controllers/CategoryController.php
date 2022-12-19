@@ -10,11 +10,13 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        return view('category-edit-overview', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -35,7 +37,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        error_log('Successfully called "Store Controller Method');
+
+        $validator = $request->validate([
+            'category' => 'required|string|max:255|unique:categories,name',
+        ]);
+
+        $category = new Category();
+        $category->name = $request->category;
+        $category->save();
+        return redirect('category-add-success');
+
     }
 
     /**
@@ -53,25 +65,38 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Category $category)
     {
-        //
+        //TODO WE might have to include Authorization RUlES? - see Chirps Guide
+        //$this->authorize('update', $category);
+
+        return view('category-edit', [
+            'category' => $category
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, Category $category)
     {
-        //
-    }
+        //$this->authorize('update', $category);
 
+        $validator = $request->validate([
+            'newName' => 'required|string|max:255|unique:categories,name'
+        ]);
+
+        $category->name = $request->newName;
+        $category->save();
+
+        return view('category-edit-success', ['category' =>$category]);
+
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -82,4 +107,8 @@ class CategoryController extends Controller
     {
         //
     }
+
+
+
+
 }
