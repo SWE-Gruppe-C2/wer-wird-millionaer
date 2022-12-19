@@ -54,7 +54,7 @@
 
     <script>
         window.addEventListener('DOMContentLoaded', () => {
-            initMusic({{ $question->price }})
+            initMusic({{ $question->difficulty }})
         })
     </script>
 </x-base-layout>

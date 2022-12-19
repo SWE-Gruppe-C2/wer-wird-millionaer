@@ -17,10 +17,10 @@
             <a href="{{ route('game') }}" class="button">
                 <span>Erneut Spielen</span>
             </a>
-            <a href="{{ route('highscores') }}" class="button">
+            <a href="{{-- route('highscores') --}}" class="button">
                 <span>Bestenliste</span>
             </a>
-            <a href="{{ route('menu') }}" class="button">
+            <a href="{{ route('main.menu') }}" class="button">
                 <span>Hauptmenü</span>
             </a>
         </div>
