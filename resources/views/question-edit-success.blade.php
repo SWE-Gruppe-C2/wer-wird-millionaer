@@ -1,4 +1,4 @@
-<x-base-layout>
+<x-base-layout :title="'Frage Bearbeiten'">
 
     <nav>
         <x-forms.back/>

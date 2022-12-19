@@ -20,6 +20,8 @@ class QuestionController extends Controller
     {
         $questions = Question::all();
 
+
+
         return view('questions-index', [
             'questions' => $questions
         ]);
@@ -114,18 +116,27 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //Geänderte Frage bereits vorhanden
-        //-->
-        //Es wurden keine Änderungen vorgenommen
 
-        if($question->text == $request->question){
+        //TODO: Fix error displaying on website after update of question
+        //TODO: Fix redirecting to question edit success page
+
+
+        // Frage wurde nicht verändert, überprüfe mögliche änderung von Frage inhalten (Antworten, Korrekte Antwort)
+       /* if($question->text == $request->question){
 
             //Überprüfen ob Änderungen vorgenommen worden sind.
             // Wenn nicht ->
-            if($question->answers == '..' && $question->correct_answer == $request->korrekte_antwort){
+            if( $question->answers[0] == $request->antwort_a
+                && $question->answer[3] == $request->antwort_d
+                && $question->answer[1] == $request->antwort_b
+                && $question->answer[2] == $request->antwort_c
+                && $question->correct_answer == $request->korrekte_antwort){
+
+                // Frage wurde nicht bearbeitet
 
                 //error message setzten
                 $errors = null;
+
                 //return view wie bei validate funktion Frage: muss man dann auch question übergeben
                 return view('question-edit', [
                     'oldQuestion' => $question,
@@ -134,7 +145,6 @@ class QuestionController extends Controller
             }else{
 
                 //Normale Validate Funktion ohne auf FragenText Unique zu checken
-
                 $validator = $request->validate([
                     'question' => 'required|string',
                     'antwort_a' => 'required|string',
@@ -147,12 +157,26 @@ class QuestionController extends Controller
                 ]);
 
                 //Werte abspeichern
+
+                $question->text = $request->question;
+                $answers = [$request->antwort_a, $request->antwort_b, $request->antwort_c, $request->antwort_d];
+                $question->answers = $answers;
+                $question->correct_answer = $request->korrekte_antwort;
+                $question->difficulty = $request->schwierigkeit;
+                $question->category_id = $request->kategorie_id;
+
+                $question->save();
+
+                return view('question-edit-success', ['question' =>$question]);
+
             }
 
-        }else{
+        }else{*/
+
+
 
             $validator = $request->validate([
-                'question' => 'required|unique:questions,text',
+                'question' => 'required|string',
                 'antwort_a' => 'required|string',
                 'antwort_b' => 'required|string',
                 'antwort_c' => 'required|string',
@@ -169,10 +193,12 @@ class QuestionController extends Controller
             $question->difficulty = $request->schwierigkeit;
             $question->category_id = $request->kategorie_id;
 
+            // saving automatically updates the question in the database
+            // no duplicates are created
             $question->save();
 
             return view('question-edit-success', ['question' =>$question]);
-        }
+
 
     }
 
