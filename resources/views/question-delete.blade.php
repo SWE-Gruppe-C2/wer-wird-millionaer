@@ -9,10 +9,10 @@
         <div>
             <h1>Frage löschen</h1>
             <p>{{$question->text}}</p>
-            <p>{{$question->answers[0]}}</p>
-            <p>{{$question->answers[0]}}</p>
-            <p>{{$question->answers[0]}}</p>
-            <p>{{$question->answers[0]}}</p>
+
+            @foreach($question->answers as $answer)
+                <p>{{ $answer }}</p>
+            @endforeach
 
             <form method="POST" action="{{ route('question.destroy', $question) }}">
             @csrf
