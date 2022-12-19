@@ -6,7 +6,7 @@
         <div class="button_wrapper">
             @auth
                 @if(Auth::user()->isAdmin())
-                    <a href="{{ route('system') }}">
+                    <a href="{{ route('system') }}" class="button">
                         <span>Starten</span>
                     </a>
                 @else
