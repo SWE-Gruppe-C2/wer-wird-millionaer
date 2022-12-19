@@ -48,4 +48,16 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     });
 });
 
+Route::get('main-menu', function() {
+    return view('main-menu');
+})->name('main.menu');
+
+Route::get('/game', function() {
+    return view('play');
+})->name('game');
+
+Route::get('/leaderboard', function() {
+    return view('leaderboard');
+})->name('leaderboard');
+
 require __DIR__.'/auth.php';
