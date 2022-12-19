@@ -6,15 +6,14 @@
     </nav>
 
     <main class="center-content">
-        <div>
-            <h1>Kategorie bearbeiten</h1>
-        </div>
 
-        <div>
-            <h3>Kategorie erfolgreich bearbeitet</h3>
-        </div>
+        <article>
+            Kategorie wurde bearbeitet
+        </article>
 
-        <a href="/category" class="button"> Zurück zu Kategorie bearbeiten</a>
+        <div class="button_wrapper">
+            <a href="/category" class="button">Zurück zur Übersicht</a>
+        </div>
 
     </main>
 

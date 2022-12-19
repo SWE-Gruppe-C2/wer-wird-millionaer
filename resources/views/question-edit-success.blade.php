@@ -11,6 +11,9 @@
             Frage wurde bearbeitet
         </article>
 
+        <div class="button_wrapper">
+            <a href="/question" class="button">Zurück zur Übersicht</a>
+        </div>
     </main>
 
 </x-base-layout>
