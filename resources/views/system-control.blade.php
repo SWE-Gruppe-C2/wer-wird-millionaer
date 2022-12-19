@@ -1,18 +1,16 @@
-<x-base-layout :title="'System Controll'">
+<x-base-layout :title="'System Control'">
 
     <nav>
-        <x-forms.back/>
-        <h1>System Controll</h1>
+        <x-forms.logout/>
+        <h1>System Control</h1>
     </nav>
 
     <main class="center-content">
-
-        <!--TODO(Link hinzufügen)-->
-        <a href="{{ route('logout') }}"></a>
-
-        <a href="{{route('question.index')}}">Fragenkatalog</a>
-        <a href="{{route('category-add')}}">Kategorie hinzufügen</a>
-        <a href="{{route('category.index')}}">Kategorie bearbeiten</a>
+        <div class="button_wrapper">
+            <a href="{{route('question.index')}}" class="button">Fragenkatalog</a>
+            <a href="{{route('category-add')}}" class="button">Kategorie hinzufügen</a>
+            <a href="{{route('category.index')}}" class="button">Kategorie bearbeiten</a>
+        </div>
 
     </main>
 
