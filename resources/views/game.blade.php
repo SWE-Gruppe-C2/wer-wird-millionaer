@@ -52,16 +52,10 @@
         </div>
     </main>
 
-
-    <audio controls autoplay loop>
-        <source src="/music/1000q.mp3">
-        <embed src="/music/1000q.mp3" autostart="true" loop="true" hidden="false">
-    </audio>
-
     <script>
-        {{--window.addEventListener('DOMContentLoaded', () => {--}}
-        {{--    initMusic({{ $question->difficulty }})--}}
-        {{--})--}}
+        window.addEventListener('DOMContentLoaded', () => {
+            initMusic({{ $question->price }})
+        })
     </script>
 </x-base-layout>
 

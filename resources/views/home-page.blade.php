@@ -4,15 +4,16 @@
             <div id="logo"></div>
         </div>
         <div class="button_wrapper">
-            @if(Auth::user()->isAdmin())
-                <a href="{{ route('system-control') }}">
-                    <span>Starten</span>
-                </a>
-            @endif
             @auth
-                <a href="{{ route('menu') }}" class="button">
-                    <span>Starten</span>
-                </a>
+                @if(Auth::user()->isAdmin())
+                    <a href="{{ route('system') }}">
+                        <span>Starten</span>
+                    </a>
+                @else
+                    <a href="{{ route('main.menu') }}" class="button">
+                        <span>Starten</span>
+                    </a>
+                @endif
             @else
                 <a href="{{ route('login') }}" class="button">
                     <span>Starten</span>
