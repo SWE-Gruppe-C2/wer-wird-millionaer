@@ -56,6 +56,7 @@ class User extends Authenticatable
      */
     public function current()
     {
+        $first = GameStage::first();
         return $this->games()
             ->firstOrCreate(
                 ['active' => true],
@@ -63,8 +64,8 @@ class User extends Authenticatable
                     'active' => true,
                     'start' => now(),
                     'user_id' => $this->id,
-                    'question_id' => Question::random(1)->id,
-                    'gamestage_id' => GameStage::first()->id
+                    'question_id' => Question::random($first)->id,
+                    'gamestage_id' => $first->id
                 ]
             );
     }

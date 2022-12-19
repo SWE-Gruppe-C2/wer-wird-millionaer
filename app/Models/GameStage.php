@@ -16,11 +16,17 @@ class GameStage extends Model
 
     public function next()
     {
-        return GameStage::first(['id' => $this->id + 1]);
+        return GameStage::where('id', '=', $this->id + 1)->first();
     }
 
     public function games()
     {
-        return $this->hasMany(Game::class);
+        return $this->hasMany(Game::class, 'gamestage_id');
+    }
+
+    public static function hasNext(GameStage $stage)
+    {
+        var_dump($stage);
+        return $stage->id != 15;
     }
 }

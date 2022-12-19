@@ -39,10 +39,10 @@ class Question extends Model
         );
     }
 
-    public static function random(int $difficulty)
+    public static function random(GameStage $stage)
     {
         return self::all()
-            ->where('difficulty', '=', $difficulty)
+            ->where('difficulty', '=', $stage->id + 1)
             ->random(1)
             ->first();
     }

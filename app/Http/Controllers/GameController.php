@@ -21,6 +21,7 @@ class GameController extends Controller
 
         return view('game', [
             'game' => $game,
+            'question' => $question,
             'stages' => GameStage::all()
         ]);
     }
@@ -37,7 +38,9 @@ class GameController extends Controller
 
         return view('game-result', [
             'game' => $game,
-            'stages' => GameStage::all()
+            'question' => $question,
+            'stages' => GameStage::all(),
+            'chosen' => $id
         ]);
     }
 
@@ -47,9 +50,6 @@ class GameController extends Controller
 
         /** @var Game $game */
         $game     = $user->current();
-
-        /** @var Question $question */
-        $question = $game->question;
 
         $game->active = false;
         $game->end = now();
@@ -73,12 +73,12 @@ class GameController extends Controller
             return to_route('game.end');
         }
 
-        if ($game->stage == 15)
+        if (!GameStage::hasNext($game->stage))
         {
             return to_route('game.end');
         }
 
-        $game->stage += 1;
+        $game->gamestage_id = $game->stage->next()->id;
         $game->question_id = Question::random($game->stage)->id;
         $game->save();
 

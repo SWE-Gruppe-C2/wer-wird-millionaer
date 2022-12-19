@@ -26,7 +26,7 @@ trait CanReadCSV
 
         foreach ($rows as $row)
         {
-            $filtered = array_filter($row);
+            $filtered = array_filter($row, 'strlen');
 
             if (sizeof($filtered) != sizeof($row))
                 continue;

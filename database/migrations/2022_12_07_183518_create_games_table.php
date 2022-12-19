@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->integer('stage');
             $table->boolean('active');
             $table->timestamp('start');
             $table->timestamp('end')->nullable();

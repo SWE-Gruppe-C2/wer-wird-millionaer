@@ -10,7 +10,6 @@ class Game extends Model
     use HasFactory;
 
     protected $fillable = [
-        'stage',
         'active',
         'start',
         'end',
@@ -31,6 +30,6 @@ class Game extends Model
 
     public function stage()
     {
-        return $this->belongsTo(GameStage::class);
+        return $this->belongsTo(GameStage::class, 'gamestage_id');
     }
 }

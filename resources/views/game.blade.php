@@ -9,7 +9,7 @@
         <div id="money_tree">
             <table>
                 <tbody>
-                @foreach(array_reverse($stages) as $index => $stage)
+                @foreach($stages->reverse() as $index => $stage)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>€ {{ number_format($stage->price, 0, ',', '.') }}</td>
@@ -51,5 +51,17 @@
             @endforeach
         </div>
     </main>
+
+
+    <audio controls autoplay loop>
+        <source src="/music/1000q.mp3">
+        <embed src="/music/1000q.mp3" autostart="true" loop="true" hidden="false">
+    </audio>
+
+    <script>
+        {{--window.addEventListener('DOMContentLoaded', () => {--}}
+        {{--    initMusic({{ $question->difficulty }})--}}
+        {{--})--}}
+    </script>
 </x-base-layout>
-<script>window.addEventListener("load", (event) => {initMusic({{$question->difficulty}})})</script>
+
