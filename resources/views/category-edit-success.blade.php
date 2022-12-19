@@ -1,46 +1,22 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<main>
-    <div class="horizontal_bar">
-        <form action="{{-- route('category-edit-overview') --}}" method="POST">
-            @method('patch')
-            @csrf
-            <button type="submit">
-                <img src="{{ asset('assets/img/back.png') }}" id="back" alt="Back">
-            </button>
-        </form>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit">
-                <img src="{{ asset('assets/img/logout.png') }}" id="logout" alt="Logout">
-            </button>
-        </form>
-    </div>
-    <div>
-        <h1>Kategorie bearbeiten</h1>
-    </div>
+<x-base-layout :title="'Kategorie bearbeitet'">
+    <nav>
+        <x-forms.back/>
+        <x-forms.logout/>
+        <h1>Frage Bearbeiten</h1>
+    </nav>
 
-    <h3>Kategorie erfolgreich bearbeitet</h3>
+    <main class="center-content">
+        <div>
+            <h1>Kategorie bearbeiten</h1>
+        </div>
 
-    <div>
-        <p>{{ $category->name }}</p>
-    </div>
+        <div>
+            <h3>Kategorie erfolgreich bearbeitet</h3>
+        </div>
 
-    <a href="/category-edit-overview"> Zurück zu Kategorie bearbeiten</a>
+        <a href="/category" class="button"> Zurück zu Kategorie bearbeiten</a>
 
+    </main>
 
+</x-base-layout>
 
-
-
-</main>
-
-</body>
-</html>
