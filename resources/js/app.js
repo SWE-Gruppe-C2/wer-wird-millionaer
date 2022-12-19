@@ -24,7 +24,7 @@ var currentStage = 0;
  */
 function Music(src, loop = false){
     //ist gemuted?
-    var muted = true;
+    var muted = false;
     //neues audio-element (HTML element)
     this.music = document.createElement("audio");
     //audioquelle
@@ -39,7 +39,7 @@ function Music(src, loop = false){
     this.music.style.display = "none";
     //audio element and html anhängen
     document.body.appendChild(this.music);
-    this.music.volume = 0;
+    // this.music.volume = 0;
     //musik starten
     this.play = function(){
         this.music.play();
@@ -63,7 +63,7 @@ function Music(src, loop = false){
 //musik starten
 window.startMusic = function(){
     currentMusic = new Music(stages[currentStage] + "Q.mp3", true);
-    currentMusic.volume = 0;
+    // currentMusic.volume = 0;
     currentMusic.play();
 }
 
@@ -98,7 +98,11 @@ window.lose = function(){
 window.mute = function(){
     currentMusic.mute();
     secondaryMusic.mute();
-    //TODO: Icon ändern
+    let muteIcon = document.getElementById("toggle_sound");
+    if(muteIcon.src.indexOf('volume.png') !== -1)
+         muteIcon.source = './assets/img/mute.png'
+    else
+        muteIcon.source = './assets/img/volume.png'
 }
 
 window.openingMusic = function(){
