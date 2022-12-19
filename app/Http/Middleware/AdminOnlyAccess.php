@@ -19,10 +19,10 @@ class AdminOnlyAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->user_type == 'admin') {
+        if($request->user()->isAdmin()) {
             return $next($request);
         } else {
-            return redirect(RouteServiceProvider::HOME);
+            return back();
         }
     }
 }
