@@ -32,11 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if ($request->user()->isAdmin()) {
-            return redirect(RouteServiceProvider::ADMIN);
-        } else {
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
@@ -55,5 +51,4 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
-
 }
