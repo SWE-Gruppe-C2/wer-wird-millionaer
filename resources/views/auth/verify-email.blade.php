@@ -16,4 +16,16 @@
 			<input type="submit" value="Link erneut senden"/>
         </form>
     </main>
+    <div id="bg">
+        <div id="popup" class="round-box">
+            <span>Möchten Sie sich wirklich abmelden?</span>
+            <div class="horizontal_bar">
+                <div onclick="cancelLogout()">Abbrechen</div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button id="confirm" type="submit">Abmelden</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </x-base-layout>
