@@ -10,14 +10,26 @@ class Game extends Model
     use HasFactory;
 
     protected $fillable = [
-        'stage',
+        'active',
         'start',
         'end',
-        'user_id'
+        'user_id',
+        'question_id',
+        'gamestage_id'
     ];
 
-    protected function user()
+    public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+    }
+
+    public function stage()
+    {
+        return $this->belongsTo(GameStage::class, 'gamestage_id');
     }
 }

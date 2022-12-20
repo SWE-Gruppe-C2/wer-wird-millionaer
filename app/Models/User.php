@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -42,8 +43,45 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected function games()
+    public function games()
     {
         return $this->hasMany(Game::class);
+    }
+
+    /**
+     * Gibt das aktuell gespielte Spiel zurück und fängt ein neues an, wenn kein
+     * aktuelles existiert.
+     *
+     * @return Game
+     */
+    public function current()
+    {
+        $first = GameStage::first();
+        return $this->games()
+            ->firstOrCreate(
+                ['active' => true],
+                [
+                    'active' => true,
+                    'start' => now(),
+                    'user_id' => $this->id,
+                    'question_id' => Question::random($first)->id,
+                    'gamestage_id' => $first->id
+                ]
+            );
+    }
+
+    /**
+     * Gibt das aktuell gespielte Spiel zurück oder das letzte beendete falls
+     * kein aktuelles läuft.
+     *
+     * @return Game
+     */
+    public function last()
+    {
+        return $this->games()
+            ->where('active', '=', true)
+            ->orWhereNotNull('end')
+            ->latest('end')
+            ->first();
     }
 }

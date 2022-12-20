@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('games', function (Blueprint $table) {
+        Schema::create('game_stages', function (Blueprint $table) {
             $table->id();
-            $table->boolean('active');
-            $table->timestamp('start');
-            $table->timestamp('end')->nullable();
-            $table->foreignId('user_id');
-            $table->foreignId('question_id');
-            $table->foreignId('gamestage_id');
+            $table->double('price');
+            $table->boolean('safe');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('games');
+        Schema::dropIfExists('game_stages');
     }
 };

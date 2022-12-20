@@ -31,7 +31,7 @@ class Question extends Model
      *
      * @return Attribute
      */
-    protected function answers(): Attribute
+    public function answers(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => explode(';', $value),
@@ -39,8 +39,21 @@ class Question extends Model
         );
     }
 
-    protected function category()
+    public static function random(GameStage $stage)
+    {
+        return self::all()
+            ->where('difficulty', '=', $stage->id)
+            ->random(1)
+            ->first();
+    }
+
+    public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function games()
+    {
+        return $this->hasMany(Game::class);
     }
 }

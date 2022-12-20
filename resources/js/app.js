@@ -1,5 +1,6 @@
 import './bootstrap';
 import '../css/app.css';
+import './play'
 
 import Alpine from 'alpinejs';
 
@@ -7,29 +8,34 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
+var hostname = "http://" + window.location.hostname;
+hostname += ":8000" //TEMPORÄR
 //musik-objekt
 var currentMusic;
-var secondaryMusic = new Music("");
-//ist gemuted?
-var muted = false;
+var secondaryMusic;
 //array mit den verschiedenen Stages (der Einfachheit halber :D)
-var stages = ["100-1000", "100-1000", "100-1000", "100-1000", 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 500000, 1000000];
+var stages = ["100-1000", "100-1000", "100-1000", "100-1000", 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
 //aktuelle Stage
 var currentStage = 0;
+
 
 /**
  *
  * @param src Dateiname der Musik
+ * @param id Audio ID
  * @param loop soll der sound sich wiederholen
  * @constructor für die Musik
  */
-function Music(src, loop = false){
+function Music(src, id ,loop = false){
+    //ist gemuted?
+    var muted = false;
     //neues audio-element (HTML element)
     this.music = document.createElement("audio");
+    this.music.setAttribute("id", id);
     //audioquelle
-    this.music.src = "./music/" + src;
+    this.music.src = hostname + "/music/" + src;
     //der sound wird im Voraus geladen
-    this.music.setAttribute("preload", "auto");
+    this.music.setAttribute("preload", "metadata");
     //keine Controls
     this.music.setAttribute("controls", "none");
     //wiederholen nach Ende
@@ -38,6 +44,7 @@ function Music(src, loop = false){
     this.music.style.display = "none";
     //audio element and html anhängen
     document.body.appendChild(this.music);
+    // this.music.volume = 0;
     //musik starten
     this.play = function(){
         this.music.play();
@@ -48,7 +55,7 @@ function Music(src, loop = false){
     }
     //neue Audioquelle
     this.set = function(newSrc, loop = false){
-        this.music.src = "./music/" + newSrc;
+        this.music.src = hostname + "/music/" + newSrc;
         this.music.loop = loop;
     }
     //musik stummschalten
@@ -60,8 +67,15 @@ function Music(src, loop = false){
 
 //musik starten
 window.startMusic = function(){
-    currentMusic = new Music(stages[currentStage] + "Q.mp3", true);
+    currentMusic.set(stages[currentStage] + "Q.mp3", true);
     currentMusic.play();
+}
+
+window.initMusic = function(stage){
+    currentStage = stage;
+    currentMusic = new Music("", "currentMusic")
+    secondaryMusic = new Music("", "secondaryMusic");
+    // startMusic();
 }
 
 //nächste Stage
@@ -89,6 +103,14 @@ window.lose = function(){
 //sound muten
 window.mute = function(){
     currentMusic.mute();
+    secondaryMusic.mute();
+    let muteIcon = document.getElementById("toggle_sound");
+    if(muteIcon.src === hostname + "/assets/img/volume.png"){
+        muteIcon.src = './assets/img/mute.png'
+     }
+    else {
+        muteIcon.src ='./assets/img/volume.png'
+    }
 }
 
 window.openingMusic = function(){
@@ -107,12 +129,14 @@ window.joker5050 = function(){
 }
 
 window.audienceJoker = function(){
-    secondaryMusic.set("AskTheAudience.mp3");
+    // secondaryMusic.set("AskTheAudience.mp3");
+    secondaryMusic.set("50-50.mp3");
     secondaryMusic.play()
 }
 
 window.phoneJoker = function(){
-    secondaryMusic.set("Phone-A-Friend.mp3");
+    // secondaryMusic.set("Phone-A-Friend.mp3");
+    secondaryMusic.set("50-50.mp3");
     secondaryMusic.play();
 }
 

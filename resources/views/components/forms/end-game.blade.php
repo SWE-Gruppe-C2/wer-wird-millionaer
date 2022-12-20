@@ -1,3 +1,3 @@
 <div>
-	<a href="{{ route('result') }}" id="end_game">ENDE</a>
+	<a href="{{ route('game.end') }}" id="end_game">ENDE</a>
 </div>
