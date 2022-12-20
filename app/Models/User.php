@@ -95,6 +95,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function isAdmin(): bool
     {
-        return Auth::user()->user_type == 'admin';
+        return $this->is_admin;
     }
 }
