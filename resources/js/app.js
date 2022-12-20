@@ -100,7 +100,7 @@ window.mute = function(){
     currentMusic.mute();
     secondaryMusic.mute();
     let muteIcon = document.getElementById("toggle_sound");
-    if(muteIcon.src === "/assets/img/volume.png") {
+    if(muteIcon.src.includes("volume.png")) {
         console.log("Mute icon to mute, icon was " + muteIcon.src)
         muteIcon.src = '/assets/img/mute.png'
     }
