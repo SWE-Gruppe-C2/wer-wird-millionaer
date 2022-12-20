@@ -78,8 +78,10 @@ class GameController extends Controller
             return to_route('game.end');
         }
 
-        $game->gamestage_id = $game->stage->next()->id;
-        $game->question_id = Question::random($game->stage)->id;
+        $next = $game->stage->next();
+
+        $game->gamestage_id = $next->id;
+        $game->question_id = Question::random($next)->id;
         $game->save();
 
         return to_route('game');

@@ -25,4 +25,10 @@
             </a>
         </div>
     </main>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            initMusic(0);
+            closingMusic();
+        });
+    </script>
 </x-base-layout>

@@ -42,7 +42,7 @@ class Question extends Model
     public static function random(GameStage $stage)
     {
         return self::all()
-            ->where('difficulty', '=', $stage->id + 1)
+            ->where('difficulty', '=', $stage->id)
             ->random(1)
             ->first();
     }
