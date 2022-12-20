@@ -10,8 +10,7 @@
             <div id="logo"></div>
         </div>
         <p>
-            Gewinnsumme:<br>
-            <!-- TODO: Gewinnsumme ausgeben /  --> €
+            Gewinnsumme: € {{ number_format($game->stage?->price, 0, ',', '.') ?? 0 }}
         </p>
         <div class="button_wrapper">
             <a href="{{ route('game') }}" class="button">
