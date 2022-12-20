@@ -1,21 +1,22 @@
-<x-base-layout :title="'Erfolgreich Hinzugefügt'">
-
+<x-base-layout :title="'Kategorie hinzugefügt'">
     <nav>
         <x-forms.back/>
-        <h1>Erfolgreich Hinzugefügt</h1>
+        <h1>Kategorie hinzugefügt</h1>
+		<x-forms.logout/>
     </nav>
-
     <main class="center-content">
-
-        <article>
-            Kategorie erfolgreich hinzugefügt
-        </article>
-
-        <div class="button_wrapper">
-            <a href="/system-control" class="button">Zurück zur Übersicht</a>
-        </div>
-
+        <p>Kategorie erfolgreich hinzugefügt</p>
+		<a href="/system-control" class="button">Zurück zur Übersicht</a>
     </main>
-
+	<div id="bg">
+		<div id="popup" class="round-box">
+			<span>Möchten Sie sich wirklich abmelden?</span>
+			<div class="horizontal_bar">
+				<div onclick="cancelLogout()">Abbrechen</div>
+				<form action="{{ route('login') }}" method="POST">
+					<button id="confirm" type="submit">Abmelden</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </x-base-layout>
-

@@ -1,8 +1,6 @@
 import './bootstrap';
 import '../css/app.css';
 import './play'
-
-import '../css/app.css';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
@@ -141,4 +139,14 @@ window.phoneJoker = function(){
 
 window.endSecondaryMusic = function(){
     secondaryMusic.stop();
+}
+
+window.confirmLogout = function() {
+    document.getElementById('bg').style.display = 'block';
+    document.getElementsByTagName('main')[0].style.filter = 'blur(5px)'
+}
+
+window.cancelLogout = function() {
+    document.getElementById('bg').style.display = 'none';
+    document.getElementsByTagName('main')[0].style.filter = 'none';
 }

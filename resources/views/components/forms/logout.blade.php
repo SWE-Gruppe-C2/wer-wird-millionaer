@@ -1,7 +1,1 @@
-<!-- TODO: Muss als POST geschickt werden, Layout muss angepasst werden -->
-<form method="POST" action="{{ route('logout') }}">
-    <a href="{{ route('logout') }}" id="logout" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-        <img src="{{ asset('assets/img/logout.png') }}" alt="Abmelden">
-    </a>
-</form>
+<img src="{{ asset('assets/img/logout.png') }}" id="logout" alt="Abmelden" onclick="confirmLogout()">

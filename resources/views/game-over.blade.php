@@ -9,10 +9,10 @@
         <div id="hub">
             <div id="logo"></div>
         </div>
-        <div>
-            Gewinnsumme: <br>
+        <p>
+            Gewinnsumme:<br>
             <!-- TODO: Gewinnsumme ausgeben /  --> €
-        </div>
+        </p>
         <div class="button_wrapper">
             <a href="{{ route('game') }}" class="button">
                 <span>Erneut Spielen</span>

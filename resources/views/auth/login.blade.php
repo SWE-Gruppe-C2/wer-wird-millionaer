@@ -1,53 +1,33 @@
 <x-base-layout :title="'Login'">
-
     <nav>
-        <x-forms.back/>
         <h1>Login</h1>
     </nav>
-
-    <main class="center-content">
-
+    <main>
         <div id="hub">
             <div id="logo"></div>
         </div>
-
-        <form method="POST" action="{{ route('login') }}" >
+        <form method="POST" action="{{ route('login') }}">
             @csrf
             <!-- Fehlermeldungen -->
             <x-input-error :messages="$errors->all()"/>
 
             <!-- Benutzername -->
-            <div>
-                <label for="name"></label>
-                <input type="text" name="name" id="name" placeholder="Ihr Benutzername" />
-            </div>
+			<input type="text" name="name" id="name" placeholder="Ihr Benutzername"/>
 
             <!-- Passwort -->
-            <div>
-                <label for="password"></label>
-                <input type="password" name="password" id="password" placeholder="Ihr Passwort" />
-            </div>
+			<input type="password" name="password" id="password" placeholder="Ihr Passwort"/>
 
             <!-- Einloggen -->
-            <div>
-                <input type="submit" id="login" value="{{ __('Einloggen') }}"/>
-            </div>
-
+			<input type="submit" id="login" value="{{ __('Einloggen') }}"/>
         </form>
-
         <!-- Passwort vergessen -->
-        <div>
-            @if(Route::has('password.request'))
-                <a href="{{ route('password.request') }}">{{ __('Passwort vergessen?') }}</a>
-            @endif
-        </div>
-
+		@if(Route::has('password.request'))
+			<a href="{{ route('password.request') }}">{{ __('Passwort vergessen?') }}</a>
+		@endif
         <!-- Registrieren -->
-        <div>
-            @if(Route::has('register'))
-                <label>{{ __('Noch nicht registriert?') }}</label><br>
-                <a href="{{ route('register') }}">{{ __('Registrieren') }}</a><br>
-            @endif
-        </div>
+		@if(Route::has('register'))
+			<p>Noch nicht registriert?</p>
+			<a href="{{ route('register') }}">{{ __('Registrieren') }}</a>
+		@endif
     </main>
 </x-base-layout>
