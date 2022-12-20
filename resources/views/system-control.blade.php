@@ -7,9 +7,9 @@
 
     <main class="center-content">
         <div class="button_wrapper">
-            <a href="{{route('question.index')}}" class="button">Fragenkatalog</a>
-            <a href="{{route('category-add')}}" class="button">Kategorie hinzufügen</a>
-            <a href="{{route('category.index')}}" class="button">Kategorie bearbeiten</a>
+            <a href="{{ route('question.index') }}" class="button">Fragenkatalog</a>
+            <a href="{{ route('category.add') }}" class="button">Kategorie hinzufügen</a>
+            <a href="{{ route('category.index') }}" class="button">Kategorie bearbeiten</a>
         </div>
 
     </main>

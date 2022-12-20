@@ -37,37 +37,36 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('main.menu');
 });
 
-//TODO: Testweise da, alle admin Bereiche müssen hier hinzugefügt werden müssen. Vielleicht auch unter auth.php oder admin.php
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/question-add', [QuestionController::class, 'questionAdd'])->name('question-add');
-
     Route::resource('question', QuestionController::class)
         ->only(['index', 'edit', 'delete', 'update', 'store','destroy']);
 
+    Route::get('/question-add', [QuestionController::class, 'questionAdd'])->name('question.add');
+
     Route::get('/question-filter', [QuestionController::class, 'questionFilter']
-    )->name('question-filter');
+    )->name('question.filter');
 
     Route::post('/question-filter', [QuestionController::class, 'questionFilter']
-    )->name('question-filter');
+    )->name('question.filter');
 
-    Route::get('/question-delete/{id}', [QuestionController::class, 'questionDeletePage'])->name('question-delete');
+    Route::get('/question-delete/{id}', [QuestionController::class, 'questionDeletePage'])->name('question.delete');
 
     Route::resource('category', CategoryController::class)
         ->only(['index', 'edit', 'store', 'update', 'success']);
 
     Route::get('/category-edit-success',function(){
         return view('category-edit-success');
-    })->name('category-edit-success');
+    })->name('category.edit.success');
 
     Route::get('/category-add', function(){
         return view('category-add');
-    })->name('category-add');
+    })->name('category.add');
 
     Route::get('category-add-success', function(){
         return view('category-add-success');
     });
 
-    Route::get('system.control', function () {
+    Route::get('system-control', function () {
         return view('system-control');
     })->name('system');
 });
