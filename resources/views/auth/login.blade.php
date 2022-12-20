@@ -22,7 +22,7 @@
         </form>
         <!-- Passwort vergessen -->
 		@if(Route::has('password.request'))
-			<a href="{{ route('password.request') }}">{{ __('Passwort vergessen?') }}</a>
+			<a href="{{-- route('password.request') --}}">{{ __('Passwort vergessen?') }}</a>
 		@endif
         <!-- Registrieren -->
 		@if(Route::has('register'))

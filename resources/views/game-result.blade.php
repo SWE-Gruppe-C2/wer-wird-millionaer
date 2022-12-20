@@ -42,11 +42,12 @@
 
         <div class="button_wrapper">
             <div id="question" class="button">
-                <span>{{ $question->text }}</span>
+                <span >€ {{ number_format($game->stage->price, 0, ',', '.') }}</span>
             </div>
 
             @foreach(range('A', 'D') as $index => $alph)
                 <a
+                    style="pointer-events: none"
                     id="answer_{{ strtolower($alph) }}"
                     class="answer button
                     {{ ($index + 1) == $question->correct_answer ? 'correct' : '' }}

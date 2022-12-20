@@ -51,6 +51,9 @@ class GameController extends Controller
         /** @var Game $game */
         $game     = $user->current();
 
+        $stage = GameStage::lastSafe($game->stage);
+
+        $game->gamestage_id = $stage?->id;
         $game->active = false;
         $game->end = now();
         $game->save();
@@ -89,6 +92,11 @@ class GameController extends Controller
 
     public function gameover()
     {
-        return view('game-over');
+        $user = Auth::user();
+
+        /** @var Game $game */
+        $game     = $user->last();
+
+        return view('game-over', ['game' => $game]);
     }
 }

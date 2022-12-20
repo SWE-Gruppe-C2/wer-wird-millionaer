@@ -26,7 +26,14 @@ class GameStage extends Model
 
     public static function hasNext(GameStage $stage)
     {
-        var_dump($stage);
         return $stage->id != 15;
+    }
+
+    public static function lastSafe(GameStage $stage)
+    {
+        return GameStage::where('safe', '=', true)
+            ->where('id', '<=', $stage->id)
+            ->orderByDesc('id')
+            ->first();
     }
 }

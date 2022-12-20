@@ -83,8 +83,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function last()
     {
         return $this->games()
-            ->where('active', '=', true)
-            ->orWhereNotNull('end')
             ->latest('end')
             ->first();
     }
