@@ -2,6 +2,7 @@
 	<nav>
 		<x-forms.back/>
 		<h1>E-Mail-Verifikation</h1>
+        <x-forms.logout/>
 	</nav>
     <main class="center-content">
         <div id="hub">

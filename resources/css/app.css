@@ -348,7 +348,7 @@ label { line-height: 20px }
 	transform: translate(-50%, -50%);
 }
 
-.current_level { color: orange }
+.current_level { color: orange !important; }
 
 @keyframes pulsate {
 	from { background-size: auto 100% }
