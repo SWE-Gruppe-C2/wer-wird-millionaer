@@ -12,10 +12,10 @@
             <x-input-error :messages="$errors->all()"/>
 
             <!-- Benutzername -->
-			<input type="text" name="name" id="name" placeholder="Ihr Benutzername"/>
+			<input type="text" name="name" id="name" placeholder="Ihr Benutzername" required/>
 
             <!-- Passwort -->
-			<input type="password" name="password" id="password" placeholder="Ihr Passwort"/>
+			<input type="password" name="password" id="password" placeholder="Ihr Passwort" required/>
 
             <!-- Einloggen -->
 			<input type="submit" id="login" value="{{ __('Einloggen') }}"/>
