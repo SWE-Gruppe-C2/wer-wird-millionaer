@@ -5,14 +5,14 @@ const moneyTree = document.getElementById('money_tree')
 
 window.openMoneyTree = function() {
     moneyTreeButton.setAttribute('onclick', 'closeMoneyTree()')
-    moneyTreeButton.src = 'assets/img/close.png'
+    moneyTreeButton.src = '/assets/img/close.png'
     moneyTreeButton.alt = 'Schließen'
     moneyTree.style.bottom = '0'
 }
 
 window.closeMoneyTree = function() {
     moneyTreeButton.setAttribute('onclick', 'openMoneyTree()')
-    moneyTreeButton.src = 'assets/img/list.png'
+    moneyTreeButton.src = '/assets/img/list.png'
     moneyTreeButton.alt = 'Spielfortschritt'
     moneyTree.style.bottom = "-100%"
 }

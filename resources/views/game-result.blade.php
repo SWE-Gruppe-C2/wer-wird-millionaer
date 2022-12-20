@@ -1,13 +1,37 @@
 <x-base-layout :title="'Ergebnis'">
     <main class="spread-content">
         <div class="horizontal_bar">
-            <x-forms.back/>
-            <div><x-forms.mute/></div>
+            <x-forms.end-game/>
+            <div onclick="mute()"><x-forms.mute/></div>
             <x-forms.money-tree/>
+        </div>
+
+        <div id="money_tree">
+            <table>
+                <tbody>
+                @foreach($stages->reverse() as $index => $stage)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>€ {{ number_format($stage->price, 0, ',', '.') }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
 
         <div id="hub">
             <div id="logo"></div>
+            <div id="audience_opinion">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <span>A</span>
+                <span>B</span>
+                <span>C</span>
+                <span>D</span>
+            </div>
+            <p id="friends_opinion"></p>
         </div>
 
         <div id="joker" class="horizontal_bar">
@@ -36,14 +60,16 @@
             <script>
                 window.addEventListener('DOMContentLoaded', () => {
                     initMusic({{ $question->difficulty - 1 }})
-                    if({{$question->correct_answer}} === {{$chosen}})
-                        win()
+
+                    if({{ $question->correct_answer }} === {{ $chosen }})
+                        win();
                     else
-                        lose()
-                    var audioLength = document.getElementById("secondaryMusic").duration;
-                    document.getElementById("secondaryMusic").onloadedmetadata = function(){
+                        lose();
+
+                    let audioLength = document.getElementById("secondaryMusic").duration;
+                    document.getElementById("secondaryMusic").onloadedmetadata = function () {
                         audioLength = document.getElementById("secondaryMusic").duration * 1000;
-                        setTimeout("location.href = '{{ route('answer', ['id' => $chosen]) }}'", parseInt(audioLength) + 200);
+                        setTimeout("window.location.href = '{{ route('answer', ['id' => $chosen]) }}'", parseInt(audioLength) + 200);
                     }
                 })
             </script>

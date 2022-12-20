@@ -9,8 +9,6 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-var hostname = "http://" + window.location.hostname;
-hostname += ":8000" //TEMPORÄR TODO:aaaaaaaaaaaaaa
 //musik-objekt
 var currentMusic;
 var secondaryMusic;
@@ -55,7 +53,7 @@ function Music(src, id ,loop = false){
     }
     //neue Audioquelle
     this.set = function(newSrc, loop = false){
-        this.music.src = hostname + "/music/" + newSrc;
+        this.music.src = "/music/" + newSrc;
         this.music.loop = loop;
     }
     //musik stummschalten
@@ -81,7 +79,7 @@ window.initMusic = function(stage){
 window.nextStage = function(){
     if(currentStage < 14)
         currentStage++;
-    if(currentStage > 4 )
+    if(currentStage > 4)
         currentMusic.set(stages[currentStage] + "Q.mp3");
         currentMusic.play();
     console.log(currentStage);
@@ -104,10 +102,10 @@ window.mute = function(){
     currentMusic.mute();
     secondaryMusic.mute();
     let muteIcon = document.getElementById("toggle_sound");
-    if(muteIcon.src === hostname + "/assets/img/volume.png")
-        muteIcon.src = './assets/img/mute.png'
+    if(muteIcon.src === "/assets/img/volume.png")
+        muteIcon.src = '/assets/img/mute.png'
     else
-        muteIcon.src ='./assets/img/volume.png'
+        muteIcon.src = '/assets/img/volume.png'
 }
 
 window.openingMusic = function(){

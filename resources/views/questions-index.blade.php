@@ -1,8 +1,4 @@
-
-
-
 <x-base-layout :title="'Fragen Übersicht'">
-
     <nav>
         <x-forms.back/>
         <h1>Fragen Übersicht</h1>
@@ -17,10 +13,5 @@
         @foreach($questions as $question)
             <p>{{$question->text}}   |   <a href="{{ route('question.edit', $question) }}"><u>EDIT</u></a>   |    <a href="{{ route('question.delete', $question) }}"><u>DELETE</u></a></p>
         @endforeach
-
-
-
-
     </main>
-
 </x-base-layout>
