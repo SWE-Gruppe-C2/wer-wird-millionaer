@@ -42,8 +42,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-        // verification.notice funktioniert nicht als route, auch wenn 'verification.notice' == 'verify-email' ist
-        return redirect('verify-email');
+
+        return to_route('verification.notice');
 
     }
 }
