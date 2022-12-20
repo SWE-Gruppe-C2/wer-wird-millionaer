@@ -31,7 +31,7 @@ function Music(src, id ,loop = false){
     this.music = document.createElement("audio");
     this.music.setAttribute("id", id);
     //audioquelle
-    this.music.src = "./music/" + src;
+    this.music.src = "/music/" + src;
     //der sound wird im Voraus geladen
     this.music.setAttribute("preload", "metadata");
     //keine Controls
