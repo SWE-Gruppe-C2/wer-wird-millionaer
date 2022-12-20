@@ -1,8 +1,6 @@
 import './bootstrap';
 import '../css/app.css';
 import './play'
-
-import '../css/app.css';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
@@ -102,10 +100,14 @@ window.mute = function(){
     currentMusic.mute();
     secondaryMusic.mute();
     let muteIcon = document.getElementById("toggle_sound");
-    if(muteIcon.src === "/assets/img/volume.png")
+    if(muteIcon.src.includes("volume.png")) {
+        console.log("Mute icon to mute, icon was " + muteIcon.src)
         muteIcon.src = '/assets/img/mute.png'
-    else
+    }
+    else {
+        console.log("Mute icon to volume, icon was " + muteIcon.src)
         muteIcon.src = '/assets/img/volume.png'
+    }
 }
 
 window.openingMusic = function(){
@@ -137,4 +139,14 @@ window.phoneJoker = function(){
 
 window.endSecondaryMusic = function(){
     secondaryMusic.stop();
+}
+
+window.confirmLogout = function() {
+    document.getElementById('bg').style.display = 'block';
+    document.getElementsByTagName('main')[0].style.filter = 'blur(5px)'
+}
+
+window.cancelLogout = function() {
+    document.getElementById('bg').style.display = 'none';
+    document.getElementsByTagName('main')[0].style.filter = 'none';
 }

@@ -1,38 +1,18 @@
-<x-base-layout :title="'Email Verifikation'">
-
-        <nav>
-            <x-forms.back/>
-            <h1>Email Verifikation</h1>
-        </nav>
-
-
+<x-base-layout :title="'E-Mail-Verifikation'">
+	<nav>
+		<x-forms.back/>
+		<h1>E-Mail-Verifikation</h1>
+	</nav>
     <main class="center-content">
-
         <div id="hub">
             <div id="logo"></div>
         </div>
-
         <!-- Ist eigentlich unnötig, aber sicher ist sicher -->
         <x-input-error :messages="$errors->all()"/>
-
-        <div>
-            {{ __('Danke fürs registrieren, bitte bestätigen sie den Link in der Email, welche wir soeben verschickt haben.') }}
-        </div>
-
-        <form class="center-content" method="POST" action="{{ route('verification.send') }}">
+        <p>Danke fürs registrieren. Bitte bestätigen Sie den Link in der E-Mail, die wir Ihnen geschickt haben.</p>
+        <form method="POST" action="{{ route('verification.send') }}">
             @csrf
-            <div>
-                <input type="submit" value="{{ __('Link neu senden') }}">
-            </div>
+			<input type="submit" value="Link erneut senden"/>
         </form>
-
-        <form class="center-content" method="POST" action="{{ route('logout') }}">
-            @csrf
-            <div>
-                <input type="submit" value="{{__('Logout')}}"/>
-            </div>
-        </form>
-
     </main>
 </x-base-layout>
-

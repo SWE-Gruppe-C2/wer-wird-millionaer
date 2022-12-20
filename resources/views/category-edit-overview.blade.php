@@ -1,16 +1,28 @@
-<x-base-layout :title="'Kategorie Start Page'">
-
+<x-base-layout :title="'Kategorie bearbeiten'">
     <nav>
         <x-forms.back/>
-        <h1>Kategorie Bearbeiten</h1>
+        <h1>Kategorie bearbeiten</h1>
+		<x-forms.logout/>
     </nav>
-
-    <main class="center-content">
-
+    <main class="scrollable-content">
         @foreach($categories as $category)
-            <p>{{$category->name}}   | <a href="{{route('category.edit', $category)}}"><u>EDIT</u></a></p>
+			<div class="round-box">
+				<span>{{ $category->name }}</span>
+				<div class="horizontal_bar">
+					<a href="{{route('category.edit', $category)}}">Bearbeiten</a>
+				</div>
+			</div>
         @endforeach
-
     </main>
-
+	<div id="bg">
+		<div id="popup" class="round-box">
+			<span>Möchten Sie sich wirklich abmelden?</span>
+			<div class="horizontal_bar">
+				<div onclick="cancelLogout()">Abbrechen</div>
+				<form action="{{ route('login') }}" method="POST">
+					<button id="confirm" type="submit">Abmelden</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </x-base-layout>

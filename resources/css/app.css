@@ -8,7 +8,7 @@ html, body {
 	position: relative;
 	z-index: -1;
 	width: 100%;
-	height: 100%; /* vh */
+	height: 100%;
 	-webkit-user-select: none;
 	user-select: none;
 	font: 16px 'Manrope', sans-serif;
@@ -29,7 +29,6 @@ nav {
 	top: 0;
 	background-color: rgba(10, 10, 57, .9);
 	box-shadow: 0 0 10px #e763bc;
-    top: 0;
 }
 
 nav *, .horizontal_bar, #bottom_bar * { height: 30px }
@@ -76,10 +75,12 @@ main {
 .scrollable-content {
 	overflow-y: scroll;
 	scrollbar-width: none;
-	padding: 60px 10px;
+	padding: 60px 10px 10px;
 }
 
 .scrollable-content::-webkit-scrollbar { display: none }
+
+#question_list { height: calc(100% - 50px) }
 
 a {
 	text-decoration: none;
@@ -194,6 +195,8 @@ form, .button_wrapper {
 
 form { padding: 0 10px }
 
+.horizontal_bar form { padding: 0 }
+
 input, select {
 	width: 100%;
 	max-width: 500px;
@@ -211,6 +214,13 @@ input { appearance: none }
 input[type="submit"] {
 	background-color: dodgerblue;
 	color: white;
+}
+
+#confirm {
+	height: 100%;
+	border: none;
+	font-size: inherit;
+	background-color: transparent;
 }
 
 label { line-height: 20px }
@@ -237,13 +247,6 @@ label { line-height: 20px }
 	width: 100%;
 	content: '';
 	border: 1px solid #9898ff;
-}
-
-.button:not(#question, .disabled):hover {
-	cursor: default;
-	color: black;
-	/*noinspection CssUnknownTarget*/
-	background-image: url('/assets/img/orange_button.png');
 }
 
 .chosen {
@@ -280,47 +283,31 @@ label { line-height: 20px }
 
 #answer_d span:before { content: 'D: ' }
 
-
-form {
-    padding: 0 10px;
-}
-
-input, select {
-	width: 100%;
-	max-width: 500px;
-	height: 30px;
-	margin: 1px auto;
-	padding: 0 10px;
-    font-size: 16px;
-}
-
-
-
-.question {
+.round-box {
 	background-color: white;
 	width: 100%;
 	max-width: 500px;
 	border-radius: 8px;
 }
 
-.question span {
+.round-box span {
 	display: block;
 	padding: 10px;
 	color: black;
 }
 
-.question div {
+.round-box .horizontal_bar {
 	height: 35px;
 	border-top: 1px solid gray;
 }
 
-.question a {
+.round-box a, .round-box div {
 	color: black;
 	line-height: 35px;
 	border-right: 1px solid gray;
 }
 
-.question a:last-child {
+.round-box *:last-child {
 	border-right: 0;
 	color: red;
 }
@@ -332,7 +319,7 @@ input, select {
 
 #filters {
 	position: relative;
-	bottom: 50px;
+	bottom: 0;
 	width: 100%;
 	height: 200px;
 	background-color: #181852;
@@ -342,6 +329,22 @@ input, select {
 
 #filters form { height: 100% }
 
+#bg {
+	display: none;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	padding: 0 25px;
+	background: rgba(0, 0, 0, .5);
+}
+
+#popup {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 
 @keyframes pulsate {
 	from { background-size: auto 100% }
@@ -351,5 +354,3 @@ input, select {
 @media (min-width: 500px) {
 	.button { padding: 0 40px }
 }
-
-
