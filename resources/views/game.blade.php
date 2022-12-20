@@ -10,7 +10,7 @@
             <table>
                 <tbody>
                 @foreach($stages->reverse() as $index => $stage)
-                    <tr>
+                    <tr class="{{ $game->stage->id == ($index + 1) ? 'current_level' : '' }}">
                         <td>{{ $index + 1 }}</td>
                         <td>€ {{ number_format($stage->price, 0, ',', '.') }}</td>
                     </tr>
