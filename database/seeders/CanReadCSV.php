@@ -34,6 +34,8 @@ trait CanReadCSV
             if (sizeof($filtered) != sizeof($header))
                 continue;
 
+            if($row[1] > 4)
+                continue;
             // kombiniert ein array mit $header als keys und $row als values
             $entry = array_combine($header, $filtered);
             $accept($entry);
