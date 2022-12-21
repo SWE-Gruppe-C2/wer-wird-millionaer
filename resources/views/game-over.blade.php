@@ -2,7 +2,7 @@
     <main class="spread-content">
         <nav>
             <x-forms.logout/>
-            <x-forms.mute/>
+            <div onclick="mute()"><x-forms.mute/></div>
         </nav>
         <div class="horizontal_bar">
         </div>
