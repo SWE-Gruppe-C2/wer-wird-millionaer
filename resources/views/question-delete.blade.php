@@ -1,29 +1,35 @@
-<x-base-layout :title="'Frage Löschen'">
-
+<x-base-layout :title="'Frage löschen'">
     <nav>
         <x-forms.back/>
-        <h1>Frage Löschen</h1>
+        <h1>Frage löschen</h1>
+		<x-forms.logout/>
     </nav>
-
-    <main class="center-content">
-        <div>
-            <h1>Frage löschen</h1>
-            <p>{{$question->text}}</p>
-
-            @foreach($question->answers as $answer)
-                <p>{{ $answer }}</p>
-            @endforeach
-
-            <form method="POST" action="{{ route('question.destroy', $question) }}">
-            @csrf
-            @method('delete')
-            <input type="submit" value="Frage löschen">
-        </form>
-            <a href="">Abbrechen</a>
-        </div>
+    <main>
+		<div id="hub">
+			<div id="logo"></div>
+		</div>
+		<p>{{ $question->text }}</p>
+		<p>
+			@foreach(range('A', 'D') as $index => $alph)
+				<span>{{ $alph . ': ' . $question->answers[$index] }}</span><br>
+			@endforeach
+		</p>
+		<form method="POST" action="{{ route('question.destroy', $question) }}">
+			@csrf
+			@method('delete')
+			<input type="submit" value="Frage löschen">
+		</form>
     </main>
-
+	<div id="bg">
+		<div id="popup" class="round-box">
+			<span>Möchten Sie sich wirklich abmelden?</span>
+			<div class="horizontal_bar">
+				<div onclick="cancelLogout()">Abbrechen</div>
+				<form action="{{ route('logout') }}" method="POST">
+					@csrf
+					<button id="confirm" type="submit">Abmelden</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </x-base-layout>
-
-
-

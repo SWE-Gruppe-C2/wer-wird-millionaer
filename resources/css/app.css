@@ -225,7 +225,15 @@ input[type="submit"] {
 	background-color: transparent;
 }
 
+textarea {
+	resize: none;
+	font-family: 'Manrope', sans-serif;
+	padding: 10px;
+}
+
 label { line-height: 20px }
+
+option { color: black }
 
 .button {
 	display: flex;
@@ -242,13 +250,15 @@ label { line-height: 20px }
 	background: url('/assets/img/blue_button.png') center / 100% 100% no-repeat;
 }
 
+.button:visited { border-color: inherit }
+
 .button:before {
 	position: absolute;
 	z-index: -1;
 	right: 0;
 	width: 100%;
 	content: '';
-	border: 1px solid #9898ff !important;
+	border: 1px solid #9898ff;
 }
 
 .chosen {
@@ -348,7 +358,7 @@ label { line-height: 20px }
 	transform: translate(-50%, -50%);
 }
 
-.current_level { color: orange !important; }
+.current_level { color: orange !important }
 
 @keyframes pulsate {
 	from { background-size: auto 100% }
