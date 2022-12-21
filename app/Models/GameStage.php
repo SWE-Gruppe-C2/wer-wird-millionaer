@@ -19,6 +19,11 @@ class GameStage extends Model
         return GameStage::where('id', '=', $this->id + 1)->first();
     }
 
+    public function last()
+    {
+        return GameStage::where('id', '=', $this->id - 1)->first();
+    }
+
     public function games()
     {
         return $this->hasMany(Game::class, 'gamestage_id');
@@ -32,7 +37,7 @@ class GameStage extends Model
     public static function lastSafe(GameStage $stage)
     {
         return GameStage::where('safe', '=', true)
-            ->where('id', '<=', $stage->id)
+            ->where('id', '<', $stage->id)
             ->orderByDesc('id')
             ->first();
     }

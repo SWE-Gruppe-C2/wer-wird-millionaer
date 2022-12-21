@@ -24,6 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/game', [GameController::class, 'index'])->name('game');
     Route::get('/game/result/{id}', [GameController::class, 'result'])->name('game.result');
     Route::get('/game/end', [GameController::class, 'end'])->name('game.end');
+    Route::get('/game/end/intended', [GameController::class, 'end_intended'])->name('game.end.intended');
+    Route::get('/game/won', [GameController::class, 'won'])->name('game.won');
     Route::get('/answer/{id}', [GameController::class, 'answer'])->name('answer');
 
     Route::get('/gameover', [GameController::class, 'gameover'])->name('game.over');

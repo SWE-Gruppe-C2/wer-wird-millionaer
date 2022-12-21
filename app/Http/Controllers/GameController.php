@@ -40,7 +40,8 @@ class GameController extends Controller
             'game' => $game,
             'question' => $question,
             'stages' => GameStage::all(),
-            'chosen' => $id
+            'chosen' => $id,
+            'won' => $game->question->correct_answer == $id
         ]);
     }
 
@@ -54,6 +55,35 @@ class GameController extends Controller
         $stage = GameStage::lastSafe($game->stage);
 
         $game->gamestage_id = $stage?->id;
+        $game->active = false;
+        $game->end = now();
+        $game->save();
+
+        return to_route('game.over');
+    }
+
+    public function won()
+    {
+        $user = Auth::user();
+
+        /** @var Game $game */
+        $game     = $user->current();
+
+        $game->active = false;
+        $game->end = now();
+        $game->save();
+
+        return to_route('game.over');
+    }
+
+    public function end_intended()
+    {
+        $user = Auth::user();
+
+        /** @var Game $game */
+        $game     = $user->current();
+
+        $game->gamestage_id = $game->stage->last()?->id;
         $game->active = false;
         $game->end = now();
         $game->save();
@@ -78,7 +108,7 @@ class GameController extends Controller
 
         if (!GameStage::hasNext($game->stage))
         {
-            return to_route('game.end');
+            return to_route('game.won');
         }
 
         $next = $game->stage->next();

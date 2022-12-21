@@ -42,7 +42,11 @@
 
         <div class="button_wrapper">
             <div id="question" class="button">
-                <span >€ {{ number_format($game->stage->price, 0, ',', '.') }}</span>
+                @if ($won)
+                    <span >€ {{ number_format($game->stage->price, 0, ',', '.') }}</span>
+                @else
+                    <span >{{ $question->text }}</span>
+                @endif
             </div>
 
             @foreach(range('A', 'D') as $index => $alph)
