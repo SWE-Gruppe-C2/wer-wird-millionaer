@@ -250,8 +250,6 @@ option { color: black }
 	background: url('/assets/img/blue_button.png') center / 100% 100% no-repeat;
 }
 
-.button:visited { border-color: inherit }
-
 .button:before {
 	position: absolute;
 	z-index: -1;

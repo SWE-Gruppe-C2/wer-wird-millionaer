@@ -52,7 +52,7 @@
 			<span>Möchten Sie sich wirklich abmelden?</span>
 			<div class="horizontal_bar">
 				<div onclick="cancelLogout()">Abbrechen</div>
-				<form action="{{ route('login') }}" method="POST">
+				<form action="{{ route('logout') }}" method="POST">
 					<button id="confirm" type="submit">Abmelden</button>
 				</form>
 			</div>
