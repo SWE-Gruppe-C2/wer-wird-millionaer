@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/gameover', [GameController::class, 'gameover'])->name('game.over');
 
-    Route::get('/leaderboard', function() {
-        return view('highscores');
-    })->name('leaderboard');
+    Route::get('/leaderboard', [LeaderboardController::class, 'show'])->name('leaderboard');
 
     Route::get('main-menu', function() {
         return view('main-menu');

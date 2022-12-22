@@ -11,7 +11,7 @@
 			<a href="{{ route('game') }}" class="button">
 				<span>Spiel starten</span>
 			</a>
-			<a href="{{-- route('leaderboard') --}}" class="button">
+			<a href="{{ route('leaderboard') }}" class="button">
 				<span>Bestenliste</span>
 			</a>
 		</div>
