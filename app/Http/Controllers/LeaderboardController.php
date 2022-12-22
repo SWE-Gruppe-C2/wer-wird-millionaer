@@ -11,7 +11,6 @@ class LeaderboardController extends Controller
     public function show()
     {
         $best_games = Game::orderBy('gamestage_id', 'desc')
-                            ->orderBy(Game::getModel()->timeTaken()) //TODO: Weiß nicht ob der Methoden Aufruf funktioniert
                             ->limit(10)
                             ->get();
 

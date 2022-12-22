@@ -34,15 +34,14 @@ class Game extends Model
         return $this->belongsTo(GameStage::class, 'gamestage_id');
     }
 
-    public function timeTaken(): int
+    public function timeTaken(): string
     {
-        foreach (self::all() as $game) { // Temporärer fix, damit kein Fehler geworfen wird.
-        //TODO: Die benötigte Zeit ist noch nicht richtig formatiert / nicht null sicher
-        $from = Carbon::createFromFormat('Y-m-d H:i:s', $game->start);
-        $to = Carbon::createFromFormat('Y-m-d H:i:s', $game->end);
 
-        return $from->DiffInMinutes($to);
-        }
+        $from = new Carbon($this->start);
+        $to = new Carbon($this->end);
+
+        return $from->diffAsCarbonInterval($to)->format('%i:%s');
+
     }
 
 }
