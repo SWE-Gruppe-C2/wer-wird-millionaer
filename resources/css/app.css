@@ -122,6 +122,26 @@ a {
 	text-align: left;
 }
 
+#leaderboard table {
+    white-space: nowrap;
+    width: 100%;
+}
+
+#leaderboard td {
+    width: 33%;
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+#leaderboard td:nth-child(2) {
+    text-align: right;
+}
+
+#leaderboard td:nth-child(3) {
+    padding-left: 50px;
+    text-align: right;
+}
+
 #hub {
 	flex: 1;
 	width: 100%;

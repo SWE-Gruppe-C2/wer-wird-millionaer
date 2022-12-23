@@ -1,23 +1,17 @@
 <x-base-layout :title="'Leaderboard'">
-    <div class="horizontal_bar">
-        <nav>
-            <x-forms.back/>
-            <x-forms.mute/>
-            <x-forms.logout/>
-        </nav>
-    </div>
 
     <main class="center-content">
 
+        <nav>
+            <x-forms.back/>
+            <x-forms.logout/>
+            <div onclick="mute()"><x-forms.mute/></div>
+        </nav>
+        <div class="horizontal_bar"></div>
+
         <h1>TOP 10</h1>
 
-        <!--TODO: Layout entspricht noch nicht dem im Lastenheft -->
-        <table >
-            <thead>
-                <th></th>
-                <th></th>
-                <th></th>
-            </thead>
+        <table id="leaderboard">
             <tbody>
             @foreach($games as $game)
                 <tr>
@@ -30,5 +24,17 @@
         </table>
 
     </main>
+    <div id="bg">
+        <div id="popup" class="round-box">
+            <span>Möchten Sie sich wirklich abmelden?</span>
+            <div class="horizontal_bar">
+                <div onclick="cancelLogout()">Abbrechen</div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button id="confirm" type="submit">Abmelden</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </x-base-layout>
