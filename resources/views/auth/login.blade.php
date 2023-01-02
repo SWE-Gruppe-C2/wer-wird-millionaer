@@ -1,11 +1,17 @@
 <x-base-layout :title="'Login'">
-    <nav>
-        <h1>Login</h1>
-    </nav>
-    <main>
+
+    <main class="center-content">
+
+        <nav>
+            <h1>Login</h1>
+        </nav>
+
+        <div class="horizontal_bar"></div>
+
         <div id="hub">
             <div id="logo"></div>
         </div>
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <!-- Fehlermeldungen -->
@@ -22,7 +28,7 @@
         </form>
         <!-- Passwort vergessen -->
 		@if(Route::has('password.request'))
-			<a href="{{-- route('password.request') --}}">{{ __('Passwort vergessen?') }}</a>
+			<a href="{{ route('password.request') }}">{{ __('Passwort vergessen?') }}</a>
 		@endif
         <!-- Registrieren -->
 		@if(Route::has('register'))
