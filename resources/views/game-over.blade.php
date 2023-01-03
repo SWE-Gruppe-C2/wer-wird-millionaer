@@ -1,9 +1,9 @@
 <x-base-layout :title="'Game Over'">
-    <main class="spread-content">
-        <nav>
-            <x-forms.logout/>
-            <div onclick="mute()"><x-forms.mute/></div>
-        </nav>
+	<nav>
+		<x-forms.logout/>
+		<x-forms.mute/>
+	</nav>
+    <main>
         <div class="horizontal_bar">
         </div>
         <div id="hub">

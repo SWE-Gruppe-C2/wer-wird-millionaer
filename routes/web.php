@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('question', QuestionController::class)
-        ->only(['index', 'edit', 'delete', 'update', 'store','destroy']);
+        ->only(['index', 'edit', 'delete', 'update', 'store', 'destroy']);
 
     Route::get('/question-add', [QuestionController::class, 'questionAdd'])->name('question.add');
 
@@ -49,6 +49,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::post('/question-filter', [QuestionController::class, 'questionFilter']
     )->name('question.filter');
+
+	Route::get('/question-view/{id}', [QuestionController::class, 'questionView'])->name('question.view');
 
     Route::get('/question-delete/{id}', [QuestionController::class, 'questionDeletePage'])->name('question.delete');
 

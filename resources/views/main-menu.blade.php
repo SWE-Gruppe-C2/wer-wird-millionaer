@@ -1,4 +1,4 @@
-<x-base-layout :title="'Main Menü'">
+<x-base-layout :title="'Hauptmenü'">
     <nav>
         <x-forms.mute/>
         <x-forms.logout/>

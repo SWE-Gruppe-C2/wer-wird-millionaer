@@ -4,12 +4,12 @@
         <h1>Fragenkatalog</h1>
 		<x-forms.logout/>
     </nav>
-    <main id="question_list" class="scrollable-content">
+    <main class="scrollable-content leave-space">
         @foreach($questions as $question)
 			<div class="round-box">
 				<span>{{ $question->text }}</span>
 				<div class="horizontal_bar">
-					<a href="{{ route('question.index', $question) }}">Anzeigen</a>
+					<a href="{{ route('question.view', $question) }}">Anzeigen</a>
 					<a href="{{ route('question.edit', $question) }}">Bearbeiten</a>
 					<a href="{{ route('question.delete', $question) }}">Löschen</a>
 				</div>

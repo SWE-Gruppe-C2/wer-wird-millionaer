@@ -5,9 +5,6 @@
 		<x-forms.logout/>
 	</nav>
 	<main class="center-content">
-		<div id="hub">
-			<div id="logo"></div>
-		</div>
 		@if ($errors->any())
 			<div class="alert alert-danger">
 				<ul>
@@ -19,6 +16,7 @@
 		@endif
 		<form action="{{ route('category.store') }}" method="POST">
 			@csrf
+			<label for="category">Kategorie</label>
 			<input type="text" id="category" name="category" placeholder="Kategorie">
 			<input type="submit" value="Kategorie hinzufügen">
 		</form>

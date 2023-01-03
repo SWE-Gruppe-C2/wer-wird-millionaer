@@ -97,7 +97,7 @@ class QuestionController extends Controller
         $categories = Category::all();
 
         return view('question-edit', [
-           'oldQuestion' => $question,
+            'oldQuestion' => $question,
             'categories' => $categories
         ]);
 
@@ -251,6 +251,16 @@ class QuestionController extends Controller
             'categories' => $categories
         ]);
     }
+
+	public function questionView($id){
+		$question = Question::where('id', $id)->get();
+		$categories = Category::all();
+
+		return view('question-view', [
+			'question' => $question[0],
+			'categories' => $categories
+		]);
+	}
 
     public function questionDeletePage($id){
 

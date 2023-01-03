@@ -7,14 +7,11 @@
     <main class="center-content">
         <!-- TODO: Wo kommt das "new name" in der error message her? -->
         <x-input-error :messages="$errors->all()"/>
-		<div id="hub">
-			<div id="logo"></div>
-		</div>
         <form action="{{ route('category.update', $category) }}" method="POST">
             @csrf
             @method('patch')
-			<legend>{{ $category->name }}</legend>
-            <input type="text" name="newName" placeholder="Neuen Kategorienamen eingeben"/>
+			<label for="category">Kategorie</label>
+            <input type="text" id="category" name="category" value="{{ $category->name }}" placeholder="Neuen Kategorienamen eingeben"/>
             <input type="submit" value="Kategorie speichern"/>
         </form>
     </main>

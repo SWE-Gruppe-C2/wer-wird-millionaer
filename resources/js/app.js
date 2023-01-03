@@ -1,6 +1,7 @@
 import './bootstrap';
 import '../css/app.css';
-import './play'
+import './play';
+import './confetti';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

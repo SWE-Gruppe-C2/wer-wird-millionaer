@@ -2,7 +2,9 @@
     <main class="spread-content">
         <div class="horizontal_bar">
             <x-forms.end-game/>
-            <div onclick="mute()"><x-forms.mute/></div>
+            <div>
+				<x-forms.mute/>
+			</div>
             <x-forms.money-tree/>
         </div>
 

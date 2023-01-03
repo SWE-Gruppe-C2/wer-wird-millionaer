@@ -4,8 +4,7 @@
         <h1>Frage bearbeiten</h1>
 		<x-forms.logout/>
     </nav>
-    <main>
-        <p>Frage: {{ $oldQuestion->text }}</p>
+    <main class="scrollable-content">
         @if ($errors->any())
 			<ul>
 				@foreach ($errors->all() as $error)
@@ -16,8 +15,8 @@
         <form action="{{ route('question.update', $oldQuestion) }}" method="POST">
             @csrf
             @method('patch')
-
-			<textarea name="question" rows="3" placeholder="Frage eingeben" required>{{ $oldQuestion->text }}</textarea>
+			<label for="question">Frage</label>
+			<textarea id="question" name="question" rows="3" placeholder="Frage eingeben" required>{{ $oldQuestion->text }}</textarea>
 
 			@foreach(range('a', 'd') as $index => $alph)
             	<input type="text" id="answer_{{ $alph }}" name="answer_{{ $alph }}" placeholder="{{ strtoupper($alph) }}: Antwort eingeben" value="{{ $oldQuestion->answers[$index] }}" required/>
@@ -41,7 +40,9 @@
 					@endif
                 @endfor
             </select>
-            <select name="kategorie_id" id="kategorie_id" required>
+
+			<label for="category">Kategorie</label>
+            <select name="category" id="category" required>
                 @foreach($categories as $category)
 
                     {{-- SELECTS DEFAULT FOR QUESTION CATEGORY WHEN DISPLAYING --}}
@@ -53,7 +54,7 @@
 
                 @endforeach
             </select>
-            <input type="submit" value="Frage speichern ">
+            <input type="submit" value="Frage speichern">
         </form>
     </main>
 	<div id="bg">

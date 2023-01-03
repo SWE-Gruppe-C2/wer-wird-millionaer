@@ -1,17 +1,12 @@
 <x-base-layout :title="'Leaderboard'">
-
-    <main class="center-content">
-
+    <main>
         <nav>
             <x-forms.back/>
             <x-forms.logout/>
             <div onclick="mute()"><x-forms.mute/></div>
         </nav>
-        <div class="horizontal_bar"></div>
-
         <h1>TOP 10</h1>
-
-        <table id="leaderboard">
+        <table id="highscores">
             <tbody>
             @foreach($games as $game)
                 <tr>

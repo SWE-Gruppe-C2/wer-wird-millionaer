@@ -1,17 +1,11 @@
 <x-base-layout :title="'Login'">
-
-    <main class="center-content">
-
-        <nav>
-            <h1>Login</h1>
-        </nav>
-
-        <div class="horizontal_bar"></div>
-
+    <nav>
+        <h1>Login</h1>
+    </nav>
+    <main>
         <div id="hub">
             <div id="logo"></div>
         </div>
-
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <!-- Fehlermeldungen -->

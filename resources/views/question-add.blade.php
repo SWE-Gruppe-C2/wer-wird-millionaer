@@ -4,7 +4,7 @@
         <h1>Frage hinzufügen</h1>
 		<x-forms.logout/>
     </nav>
-    <main class="center-content">
+    <main class="scrollable-content">
         @if ($errors->any())
 			<ul>
 				@foreach ($errors->all() as $error)
@@ -19,31 +19,35 @@
 
 		<form action="{{ route('question.store') }}" method="POST">
 			@csrf
+			<label for="question">Frage</label>
 			<textarea name="question" rows="3" placeholder="Frage eingeben" required></textarea>
+			<label for="answer_a">Antwort A</label>
 			<input type="text" id="answer_a" name="antwort_a" placeholder="A: Antwort eingeben" required/>
+			<label for="answer_b">Antwort B</label>
 			<input type="text" id="answer_b" name="antwort_b" placeholder="B: Antwort eingeben" required/>
+			<label for="answer_c">Antwort C</label>
 			<input type="text" id="answer_c" name="antwort_c" placeholder="C: Antwort eingeben" required/>
+			<label for="answer_d">Antwort D</label>
 			<input type="text" id="answer_d" name="antwort_d" placeholder="D: Antwort eingeben" required/>
-
+			<label for="right_answer">Korrekte Antwort</label>
 			<select name="right_answer" id="right_answer" required>
 				<option value="a">Antwort A</option>
 				<option value="b">Antwort B</option>
 				<option value="c">Antwort C</option>
 				<option value="d">Antwort D</option>
 			</select>
-
+			<label for="difficulty">Schwierigkeitsgrad</label>
 			<select name="difficulty" id="difficulty" required>
 				@for($i = 1; $i <= 15; $i++)
 					<option value="{{ $i }}">Stufe {{ $i }}</option>
 				@endfor
 			</select>
-
-			<select name="category_id" id="category_id" required>
+			<label for="category">Kategorie</label>
+			<select name="category" id="category" required>
 				@foreach($categories as $category)
 					<option value="{{$category->id}}">{{$category->name}}</option>
 				@endforeach
 			</select>
-
 			<input type="submit" value="Frage hinzufügen">
 		</form>
     </main>

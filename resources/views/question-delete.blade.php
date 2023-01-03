@@ -4,10 +4,7 @@
         <h1>Frage löschen</h1>
 		<x-forms.logout/>
     </nav>
-    <main>
-		<div id="hub">
-			<div id="logo"></div>
-		</div>
+    <main class="center-content">
 		<p>{{ $question->text }}</p>
 		<p>
 			@foreach(range('A', 'D') as $index => $alph)
