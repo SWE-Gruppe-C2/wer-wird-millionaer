@@ -293,7 +293,7 @@ select { color: black }
 .chosen {
 	color: black;
 	/*noinspection CssUnknownTarget*/
-	background-image: url('/assets/img/green_button.png')
+	background-image: url('/assets/img/orange_button.png')
 }
 
 .correct:hover, .correct:active, .correct:focus { color: #9898ff }
