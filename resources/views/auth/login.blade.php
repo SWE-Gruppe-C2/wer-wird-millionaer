@@ -26,8 +26,10 @@
 		@endif
         <!-- Registrieren -->
 		@if(Route::has('register'))
-			<p>Noch nicht registriert?</p>
-			<a href="{{ route('register') }}">{{ __('Registrieren') }}</a>
+            <div id="registerLogin">
+			    <p>Noch nicht registriert?</p>
+			    <a href="{{ route('register') }}">{{ __('Registrieren') }}</a>
+            </div>
 		@endif
     </main>
 </x-base-layout>

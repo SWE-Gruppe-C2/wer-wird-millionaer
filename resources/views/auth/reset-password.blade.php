@@ -7,8 +7,6 @@
             <h1>Passwort ändern</h1>
         </nav>
 
-        <div class="horizontal_bar"/>
-
         <x-input-error :messages="$errors->all()"/>
 
         <form method="POST" action="{{ route('password.update') }}">

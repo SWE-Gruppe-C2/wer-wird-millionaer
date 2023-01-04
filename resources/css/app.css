@@ -412,3 +412,7 @@ select { color: black }
 @media (min-width: 500px) {
 	.button { padding: 0 40px }
 }
+
+#registerLogin {
+    margin-top: 100px;
+}
