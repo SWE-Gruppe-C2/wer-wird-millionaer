@@ -22,15 +22,15 @@
 			<label for="question">Frage</label>
 			<textarea name="question" rows="3" placeholder="Frage eingeben" required></textarea>
 			<label for="answer_a">Antwort A</label>
-			<input type="text" id="answer_a" name="antwort_a" placeholder="A: Antwort eingeben" required/>
+			<input type="text" id="answer_a" name="answer_a" placeholder="A: Antwort eingeben" required/>
 			<label for="answer_b">Antwort B</label>
-			<input type="text" id="answer_b" name="antwort_b" placeholder="B: Antwort eingeben" required/>
+			<input type="text" id="answer_b" name="answer_b" placeholder="B: Antwort eingeben" required/>
 			<label for="answer_c">Antwort C</label>
-			<input type="text" id="answer_c" name="antwort_c" placeholder="C: Antwort eingeben" required/>
+			<input type="text" id="answer_c" name="answer_c" placeholder="C: Antwort eingeben" required/>
 			<label for="answer_d">Antwort D</label>
-			<input type="text" id="answer_d" name="antwort_d" placeholder="D: Antwort eingeben" required/>
-			<label for="right_answer">Korrekte Antwort</label>
-			<select name="right_answer" id="right_answer" required>
+			<input type="text" id="answer_d" name="answer_d" placeholder="D: Antwort eingeben" required/>
+			<label for="correct_answer">Korrekte Antwort</label>
+			<select name="correct_answer" id="correct_answer" required>
 				<option value="a">Antwort A</option>
 				<option value="b">Antwort B</option>
 				<option value="c">Antwort C</option>

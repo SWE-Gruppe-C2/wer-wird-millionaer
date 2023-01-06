@@ -88,10 +88,10 @@ class CategoryController extends Controller
         //$this->authorize('update', $category);
 
         $validator = $request->validate([
-            'newName' => 'required|string|max:255|unique:categories,name'
+            'category' => 'required|string|max:255|unique:categories,name'
         ]);
 
-        $category->name = $request->newName;
+        $category->name = $request->category;
         $category->save();
 
         return view('category-edit-success', ['category' =>$category]);

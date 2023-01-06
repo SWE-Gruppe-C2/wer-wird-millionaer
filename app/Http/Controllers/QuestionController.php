@@ -48,25 +48,25 @@ class QuestionController extends Controller
 
         $validator= $request->validate([
             'question' => 'required|unique:questions,text',
-            'antwort_a' => 'required|string',
-            'antwort_b' => 'required|string',
-            'antwort_c' => 'required|string',
-            'antwort_d' => 'required|string',
-            'korrekte_antwort' => 'required',
-            'schwierigkeit' => 'required|int',
-            'kategorie_id' => 'required|int'
+            'answer_a' => 'required|string',
+            'answer_b' => 'required|string',
+            'answer_c' => 'required|string',
+            'answer_d' => 'required|string',
+            'correct_answer' => 'required',
+            'difficulty' => 'required|int',
+            'category' => 'required|int'
         ]);
 
 
-        $answers = [$request->antwort_a, $request->antwort_b, $request->antwort_c, $request->antwort_d];
+        $answers = [$request->answer_a, $request->answer_b, $request->answer_c, $request->answer_d];
 
         $question = new Question();
         $question->text = $request->question;
 
         $question->answers = $answers;
-        $question->correct_answer = $request->korrekte_antwort;
-        $question->difficulty = $request->schwierigkeit;
-        $question->category_id = $request->kategorie_id;
+        $question->correct_answer = $request->correct_answer;
+        $question->difficulty = $request->difficulty;
+        $question->category_id = $request->category;
 
         $question->save();
 
