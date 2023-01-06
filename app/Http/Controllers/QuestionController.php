@@ -95,11 +95,10 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        $categories = Category::all();
 
         return view('question-edit', [
             'oldQuestion' => $question,
-            'categories' => $categories
+            'categories' => Category::all(),
         ]);
 
     }
@@ -117,17 +116,16 @@ class QuestionController extends Controller
         //TODO: Fix error displaying on website after update of question
         //TODO: Fix redirecting to question edit success page
 
-
         // Frage wurde nicht verändert, überprüfe mögliche änderung von Frage inhalten (Antworten, Korrekte Antwort)
-       /* if($question->text == $request->question){
+        if ($question->text == $request->question) {
 
             //Überprüfen ob Änderungen vorgenommen worden sind.
             // Wenn nicht ->
-            if( $question->answers[0] == $request->antwort_a
-                && $question->answer[3] == $request->antwort_d
-                && $question->answer[1] == $request->antwort_b
-                && $question->answer[2] == $request->antwort_c
-                && $question->correct_answer == $request->korrekte_antwort){
+            if ($question->answers[0] == $request->answer_a
+                && $question->answers[3] == $request->answer_d
+                && $question->answers[1] == $request->answer_b
+                && $question->answers[2] == $request->answer_c
+                && $question->correct_answer == $request->correct_answer) {
 
                 // Frage wurde nicht bearbeitet
 
@@ -137,66 +135,62 @@ class QuestionController extends Controller
                 //return view wie bei validate funktion Frage: muss man dann auch question übergeben
                 return view('question-edit', [
                     'oldQuestion' => $question,
-                    'errors' => $errors
+                    'errors' => $errors,
+                    'categories' => Category::all()
                 ]);
-            }else{
+            } else {
 
-                //Normale Validate Funktion ohne auf FragenText Unique zu checken
                 $validator = $request->validate([
                     'question' => 'required|string',
-                    'antwort_a' => 'required|string',
-                    'antwort_b' => 'required|string',
-                    'antwort_c' => 'required|string',
-                    'antwort_d' => 'required|string',
-                    'korrekte_antwort' => 'required',
-                    'schwierigkeit' => 'required|int',
-                    'kategorie_id' => 'required|int'
+                    'answer_a' => 'required|string',
+                    'answer_b' => 'required|string',
+                    'answer_c' => 'required|string',
+                    'answer_d' => 'required|string',
+                    'correct_answer' => 'required',
+                    'difficulty' => 'required|int',
+                    'category' => 'required|int'
                 ]);
 
-                //Werte abspeichern
-
                 $question->text = $request->question;
-                $answers = [$request->antwort_a, $request->antwort_b, $request->antwort_c, $request->antwort_d];
+                $answers = [$request->answer_a, $request->answer_b, $request->answer_c, $request->answer_d];
                 $question->answers = $answers;
-                $question->correct_answer = $request->korrekte_antwort;
-                $question->difficulty = $request->schwierigkeit;
-                $question->category_id = $request->kategorie_id;
+                $question->correct_answer = $request->correct_answer;
+                $question->difficulty = $request->difficulty;
+                $question->category_id = $request->category;
 
                 $question->save();
 
-                return view('question-edit-success', ['question' =>$question]);
+                return view('question-edit-success', ['question' => $question]);
 
             }
 
-        }else{*/
-
-
+        } else {
 
             $validator = $request->validate([
                 'question' => 'required|string',
-                'antwort_a' => 'required|string',
-                'antwort_b' => 'required|string',
-                'antwort_c' => 'required|string',
-                'antwort_d' => 'required|string',
-                'korrekte_antwort' => 'required',
-                'schwierigkeit' => 'required|int',
-                'kategorie_id' => 'required|int'
+                'answer_a' => 'required|string',
+                'answer_b' => 'required|string',
+                'answer_c' => 'required|string',
+                'answer_d' => 'required|string',
+                'correct_answer' => 'required',
+                'difficulty' => 'required|int',
+                'category' => 'required|int'
             ]);
 
             $question->text = $request->question;
-            $answers = [$request->antwort_a, $request->antwort_b, $request->antwort_c, $request->antwort_d];
+            $answers = [$request->answer_a, $request->answer_b, $request->answer_c, $request->answer_d];
             $question->answers = $answers;
-            $question->correct_answer = $request->korrekte_antwort;
-            $question->difficulty = $request->schwierigkeit;
-            $question->category_id = $request->kategorie_id;
+            $question->correct_answer = $request->correct_answer;
+            $question->difficulty = $request->difficulty;
+            $question->category_id = $request->category;
 
             // saving automatically updates the question in the database
             // no duplicates are created
             $question->save();
 
-            return view('question-edit-success', ['question' =>$question]);
+            return view('question-edit-success', ['question' => $question]);
 
-
+        }
     }
 
     /**

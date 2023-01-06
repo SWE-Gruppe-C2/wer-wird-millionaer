@@ -5,7 +5,7 @@
 		<x-forms.logout/>
     </nav>
     <main class="scrollable-content">
-        @if ($errors->any())
+        @if ($errors)
 			<ul>
 				@foreach ($errors->all() as $error)
 					<li>{{ $error }}</li>
