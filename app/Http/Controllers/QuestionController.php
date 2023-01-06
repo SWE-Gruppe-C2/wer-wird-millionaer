@@ -19,7 +19,8 @@ class QuestionController extends Controller
     public function index()
     {
         return view('questions-index', [
-            'questions' => Question::all()
+            'questions' => Question::all(),
+            'categories' => Category::all()
         ]);
     }
 
@@ -232,23 +233,24 @@ class QuestionController extends Controller
 
     public function questionFilter(Request $request){
 
-        if($request->reset){
-            $request->request->remove('schwierigkeit');
-            $request->request->remove('kategorie_id');
-        }
-
-        if(empty($request->schwierigkeit) && empty($request->kategorie_id)){
+        if($request->difficulty == "all" && $request->category == "all"){
             $questions = Question::all();
+        }elseif($request->difficulty == "all"){
+            $questions = Question::where('category_id', $request->category)->get();
+        }elseif($request->category == "all"){
+            $questions = Question::where('difficulty', $request->difficulty)->get();
         }
         else{
-            $questions = Question::where('difficulty', $request->schwierigkeit)->where('category_id', $request->kategorie_id)->get();
+            $questions = Question::where('difficulty', $request->difficulty)->where('category_id', $request->category)->get();
         }
 
         $categories = Category::all();
 
-        return view('questions-filter', [
+        return view('questions-index', [
             'questions' => $questions,
-            'categories' => $categories
+            'categories' => $categories,
+            'categorySelect' => $request->category,
+            'difficultySelect' => $request->difficulty
         ]);
     }
 

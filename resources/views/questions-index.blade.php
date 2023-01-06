@@ -17,26 +17,27 @@
         @endforeach
     </main>
 	<div id="filters">
-		<form method="POST">
+		<form action="{{ route('question.filter') }}" method="POST">
 			@csrf
 			<label for="difficulty">Schwierigkeitsgrad</label>
 			<select id="difficulty" name="difficulty">
 				<option value="all">Alle</option>
 				@for($i = 1; $i <= 15; $i++)
 					<option value="{{ $i }}">Stufe {{ $i }}</option>
+                    @if (isset($difficultySelect) && $difficultySelect == $i)
+                        <option value="{{ $i }}" selected>Stufe {{ $i }}</option>
+                    @endif
 				@endfor
 			</select>
 			<label for="category">Kategorie</label>
 			<select id="category" name="category">
 				<option value="all">Alle</option>
-				{{--
 				@foreach($categories as $category)
+                    @if (isset($categorySelect) && $categorySelect == $category->id)
+                        <option value="{{ $category->id }}" selected>Stufe {{  $category->name }}</option>
+                    @endif
 					<option value="{{ $category->id }}">{{  $category->name }}</option>
                 @endforeach
-				--}}
-				<option>Musik</option>
-				<option>Sport</option>
-				<option>Informatik</option>
 			</select>
 			<input type="submit" value="Filtern">
 		</form>
