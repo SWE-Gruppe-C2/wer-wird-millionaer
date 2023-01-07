@@ -5,6 +5,11 @@
 		<x-forms.logout/>
     </nav>
     <main class="scrollable-content">
+        @if (isset($customError))
+            <ul>
+                <li>{{$customError}}</li>
+            </ul>
+        @endif
         @if ($errors)
 			<ul>
 				@foreach ($errors->all() as $error)
