@@ -12,7 +12,7 @@ class QuestionSeeder extends Seeder
 
     public function run()
     {
-        self::csv('data/fragenkatalog.csv', function ($entry) {
+        self::csv_semicolon('data/fragenkatalog.csv', function ($entry) {
             Question::create([
                 'text' => $entry['text'],
                 'correct_answer' => $entry['correct_answer'],

@@ -7,7 +7,7 @@ use Closure;
 trait CanReadCSV
 {
     /**
-     * Generiert ein Assoziatives Array aus einer CSV-Datei und nimmt dabei die erste Zeile als Keys für das Array
+     * Generiert ein assoziatives Array aus einer CSV-Datei und nimmt dabei die erste Zeile als Keys für das Array
      * z.B. so:
      * vorname,nachname,PLZ
      * Max,Muster,52062
@@ -16,10 +16,23 @@ trait CanReadCSV
      * @param $path string dateipfad der CSV
      * @return array CSV inhalt als assoziatives Array
      */
-    public static function csv(string $path, Closure $accept): array
+    public static function csv_semicolon(string $path, Closure $accept): array
+    {
+        // teilt csv-datei in einzelne Zeilen
+        $rows = array_map(function($v){return str_getcsv($v, ';');}, file(base_path($path)));
+
+        return self::csv($rows, $accept);
+    }
+
+    public static function csv_comma(string $path, Closure $accept): array
     {
         // teilt csv-datei in einzelne Zeilen
         $rows = array_map('str_getcsv', file(base_path($path)));
+
+        return self::csv($rows, $accept);
+    }
+
+    public static function csv($rows, Closure $accept) : array{
         // nimmt erste Zeile als Map keys
         $header = array_shift($rows);
         $data = array();

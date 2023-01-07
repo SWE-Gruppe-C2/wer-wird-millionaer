@@ -11,7 +11,7 @@ class GameStageSeeder extends Seeder
 
     public function run()
     {
-        self::csv('data/etappen.csv', function ($entry) {
+        self::csv_comma('data/etappen.csv', function ($entry) {
             GameStage::create([
                 'price' => $entry['price'],
                 'safe' => $entry['safe']
