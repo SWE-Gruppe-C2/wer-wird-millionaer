@@ -58,6 +58,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             initMusic({{ $question->difficulty - 1 }});
             startMusic();
+            setCorrectAnswer({{ $question->correct_answer - 1}}, {{ $question->difficulty - 1 }})
         })
     </script>
 </x-base-layout>

@@ -36,12 +36,9 @@ class Game extends Model
 
     public function timeTaken(): string
     {
-
         $from = new Carbon($this->start);
         $to = new Carbon($this->end);
 
         return $from->diffAsCarbonInterval($to)->format('%i:%s');
-
     }
-
 }

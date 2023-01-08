@@ -28,4 +28,10 @@
 			</div>
 		</div>
 	</div>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            initMusic(0);
+            openingMusic();
+        })
+    </script>
 </x-base-layout>

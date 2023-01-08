@@ -20,28 +20,12 @@ window.closeMoneyTree = function() {
 const logo = document.getElementById('logo')
 const question = document.getElementById('question')
 const answers = document.getElementsByClassName('answer')
+let correctAnswer = 0;
 let hubDisplay = logo
 let percentages = new Array(4)
 let keep = -1
 let level = 0
 let processing = false
-let questions = [
-    [ 'Wer kann vielleicht schwimmen, aber nicht fliegen?', 'Stockenten', 'Pfeifenten', 'Krickenten', 'Studenten', 4 ],
-    [ 'Beschäftigt der fünfmalige Tour-de-France-Sieger Hinault entsprechende Hausangestellte, dann arbeiten bei ... ?', 'Focks Tärrier', 'Dallma Tiener', 'Re Pinnscher', 'Bernard Diener', 4 ],
-    [ 'Lässt man sich auf eine Beziehung mit einer Schönheitskönigin ein, hat man sozusagen ...?', 'ein Ungleich-Gewicht', 'ein Über-Maß', 'ein Miss-Verhältnis', 'eine Schief-Lage', 3 ],
-    [ 'Gesundheitsbewusste Strandurlauber sind auch beim ... ?', 'Nünftig vernünftig', 'Sonnen besonnen', 'Sichtig umsichtig', 'Sam achtsam', 2 ],
-    [ 'Wer einen Kellner sucht, findet ihn buchstäblich im ... ?', 'September', 'Oktober', 'November', 'Dezember', 2 ],
-    [ 'In welcher Sendung kamen unter anderem Jeanette Biedermann, Mark Forster und Lena Meyer-Landrut ins Tauschgeschäft?', 'Sing meinen Song', 'Koch mein Leibgericht', 'Verführ meine Frau', 'Bewohn mein Haus', 1 ],
-    [ 'Was so mancher selbst im nüchternen Zustand nicht hinbekommt: Korrekt schreibt sich der beliebte Cocktail ... ?', 'Caipirnja', 'Cajpirinha', 'Caipirinha', 'Cajpiriña', 3 ],
-    [ 'Wobei wird vor einem sogenannten Rebound-Effekt gewarnt, der nicht selten zu einer Abhängigkeit führt?', 'Haarspray', 'Nasenspray', 'Deospray', 'Pfefferspray', 2 ],
-    [ 'Die Darstellung welcher Figur wurde schon zweimal mit einem Schauspiel-Oscar prämiert?', 'Dr. Hannibal Lecter', 'Forrest Gump', 'Joker', 'Truman Capote', 3 ],
-    [ 'Alfred Gislason ist seit Februar 2020 bereits der zweite Isländer im Amt des deutschen Männer-Nationaltrainers im ... ?', 'Basketball', 'Volleyball', 'Handball', 'Tennis', 3 ],
-    [ 'Wo befinden sich einige der höchsten Alpengipfel?', 'Monte-Rosa-Massiv', 'Monte-Purpur-Höhenzug', 'Monte-Lila-Gebirge', 'Monte-Magenta-Kette', 1 ],
-    [ 'Wo wurde der Schriftsteller geboren, der für den Roman “Herkunft” 2019 mit dem Deutschen Buchpreis ausgezeichnet wurde?', 'Rhodesien', 'Jugoslawien', 'Ceylon', 'Tibet', 2 ],
-    [ 'Was war hierzulande bis in die 1950er noch gang und gäbe?', 'Beamtinnenkommunion', 'Krankenschwesternkollekte', 'Lehrerinnenzölibat', 'Sekretärinnenbeichte', 3 ],
-    [ 'Das naturgegebene Schicksal welcher Pflanze sieht vor, dass die Blüte bei den meisten Arten unweigerlich zum Tod führt?', 'Bambus', 'Ginkgo', 'Rhododendron', 'Eukalyptus', 1 ],
-    [ 'Die klassische, genormte Europalette EPAL 1 besteht aus 78 Nägeln, neun Klötzen und insgesamt wie vielen Brettern?', 'neun', 'zehn', 'elf', 'zwölf', 3 ]
-]
 let quotes = [
     'Es könnte alles sein. %?',
     'Vielleicht ist es %. Ich bin mir aber absolut nicht sicher.',
@@ -75,7 +59,7 @@ window.check = function() {
     for (let answer of answers) answer.classList.add('disabled')
 
     setTimeout(() => {
-        if (Array.from(this.parentNode.children).indexOf(this) === questions[level][5]) {
+        if (Array.from(this.parentNode.children).indexOf(this) === correctAnswer) {
             this.style.backgroundImage = "url('assets/img/green_button.png')"
             question.innerHTML = '<span>' + moneyTree.getElementsByTagName('tr')[14 - level].getElementsByTagName('td')[1].innerHTML + '</span>'
 
@@ -99,8 +83,8 @@ window.check = function() {
             }
         }
         else {
-            answers[questions[level][5] - 1].style.backgroundImage  = "url('assets/img/green_button.png')"
-            answers[questions[level][5] - 1].style.color = 'black'
+            answers[correctAnswer - 1].style.backgroundImage  = "url('assets/img/green_button.png')"
+            answers[correctAnswer - 1].style.color = 'black'
         }
     }, 1500)
 }
@@ -109,13 +93,14 @@ window.fiftyFifty = function() {
     joker5050();
     if (processing) return
     const fiftyFiftyButton = document.getElementById('fifty_fifty')
-    keep = (questions[level][5] + Math.floor(Math.random() * 3)) % 4
+    let rand = Math.floor(Math.random() * 3) + 1;
+    keep = (correctAnswer + rand) % 4
 
     fiftyFiftyButton.removeAttribute('onclick')
     fiftyFiftyButton.style.display = 'none'
 
     for (let i = 0; i < 4; i++) {
-        if (i === keep || i === questions[level][5] - 1) continue
+        if (i === keep || i === correctAnswer) continue
         answers[i].innerHTML = ''
         answers[i].classList.add('disabled')
         answers[i].removeEventListener('click', check)
@@ -140,7 +125,7 @@ window.callFriend = function() {
     hint.style.opacity = '1'
 }
 
-window.askAudience = function (){
+window.askAudience = function(){
     audienceJoker();
     if (processing) return
     calcTendencies()
@@ -162,7 +147,8 @@ window.askAudience = function (){
 }
 
 window.calcTendencies = function() {
-    let rightAnswer = questions[level][5] - 1
+    console.log(correctAnswer + " " + level);
+    let rightAnswer = correctAnswer
     let maxTend = Math.ceil(level < 7 ? -1.1726 * level * level + .8393 * level + 99.958 : -2.14891 * level + 63.4181)
     let minTend = maxTend - level - 4
     percentages[rightAnswer] = Math.floor(Math.random() * (maxTend - minTend + 1) + minTend)
@@ -191,4 +177,9 @@ window.submitWithValue = function(value) {
     document.getElementById('answer').value = value;
     form.submit();
     //TODO: check if Jokers were used
+}
+
+window.setCorrectAnswer = function(answer, stage){
+    correctAnswer = answer;
+    level = stage;
 }

@@ -67,6 +67,7 @@
 	<script>
 		window.addEventListener('DOMContentLoaded', () => {
 			initMusic({{ $question->difficulty - 1 }})
+            let timeout;
 
 			if({{ $question->correct_answer }} === {{ $chosen }})
 				win();
@@ -76,8 +77,12 @@
 			let audioLength = document.getElementById("secondaryMusic").duration;
 			document.getElementById("secondaryMusic").onloadedmetadata = function () {
 				audioLength = document.getElementById("secondaryMusic").duration * 1000;
-				setTimeout("window.location.href = '{{ route('answer', ['id' => $chosen]) }}'", parseInt(audioLength) + 200);
+				timeout = setTimeout("window.location.href = '{{ route('answer', ['id' => $chosen]) }}'", parseInt(audioLength) + 200);
 			}
+            document.body.addEventListener('click', function(){
+                clearTimeout(timeout);
+                window.location.href = '{{ route('answer', ['id' => $chosen]) }}'
+            })
 		})
 	</script>
 	@if($won && $game->stage->price == 1000000)

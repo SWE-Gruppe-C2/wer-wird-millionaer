@@ -56,9 +56,11 @@ function Music(src, id ,loop = false){
         this.music.loop = loop;
     }
     //musik stummschalten
-    this.mute = function(){
+    this.mute = function(mute){
+        muted = mute;
         this.music.volume = muted ? 1 : 0;
-        muted = !muted;
+        // this.music.volume = muted ? 1 : 0;
+        // muted = !muted;
     }
 }
 
@@ -98,26 +100,31 @@ window.lose = function(){
 
 //sound muten
 window.mute = function(){
-    currentMusic.mute();
-    secondaryMusic.mute();
     let muteIcon = document.getElementById("toggle_sound");
+    let muted;
     if(muteIcon.src.includes("volume.png")) {
-        console.log("Mute icon to mute, icon was " + muteIcon.src)
-        muteIcon.src = '/assets/img/mute.png'
+        // console.log("Mute icon to mute, icon was " + muteIcon.src)
+        muteIcon.src = '/assets/img/mute.png';
+        currentMusic.mute(false);
+        secondaryMusic.mute(false);
+        muted = true;
     }
     else {
-        console.log("Mute icon to volume, icon was " + muteIcon.src)
+        // console.log("Mute icon to volume, icon was " + muteIcon.src)
         muteIcon.src = '/assets/img/volume.png'
+        currentMusic.mute(true);
+        secondaryMusic.mute(true);
+        muted = false;
     }
 }
 
 window.openingMusic = function(){
-    secondaryMusic.set("MainTheme.mp3");
+    secondaryMusic.set("MainTheme.mp3", true);
     secondaryMusic.play()
 }
 
 window.closingMusic = function(){
-    secondaryMusic.set("ClosingTheme.mp3");
+    secondaryMusic.set("ClosingTheme.mp3", true);
     secondaryMusic.play();
 }
 
