@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->integer('stage');
+            $table->boolean('active');
             $table->timestamp('start');
-            $table->timestamp('end');
+            $table->timestamp('end')->nullable();
             $table->foreignId('user_id');
+            $table->foreignId('question_id');
+            $table->foreignId('gamestage_id')->nullable();
             $table->timestamps();
         });
     }

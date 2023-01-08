@@ -1,51 +1,31 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<x-base-layout :title="'Passwort ändern'">
+
+    <main class="center-content">
+
+        <nav>
+            <x-forms.back/>
+            <h1>Passwort ändern</h1>
+        </nav>
+
+        <x-input-error :messages="$errors->all()"/>
 
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
             <!-- Password Reset Token -->
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
+            <!-- TODO: Email angeben war nicht vorgesehen, scheint nicht anders möglich zu sein -->
+            <!-- Email -->
+            <input type="email" id="email" name="email" placeholder="Email des Accounts" value="{{ old('email') }}" required>
 
-            <!-- Email Address -->
-            <div>
-                <x-input-label for="email" :value="__('Email')" />
+            <!-- Neues Passwort -->
+            <input type="password" id="password" name="password" placeholder="Neues Passwort" required>
 
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+            <!-- Passwort bestätigen -->
+            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Passwort wiederholen" required>
 
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-primary-button>
-                    {{ __('Reset Password') }}
-                </x-primary-button>
-            </div>
+            <input type="submit" value="Passwort ändern" name="bestätigen">
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </main>
+</x-base-layout>
+
