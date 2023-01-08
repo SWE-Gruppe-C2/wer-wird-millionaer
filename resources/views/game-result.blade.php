@@ -55,8 +55,9 @@
                     style="pointer-events: none"
                     id="answer_{{ strtolower($alph) }}"
                     class="answer button
-                    {{ ($index + 1) == $question->correct_answer ? 'correct' : '' }}
-                    {{ ($index + 1) == $chosen ? 'chosen' : '' }}
+                    @if(($index + 1) == $question->correct_answer) correct
+                    @elseif(($index + 1) == $chosen) chosen
+                    @endif
                     "
                     href="{{ route('answer', ['id' => $index + 1]) }}">
                     <span>{{ $question->answers[$index] }}</span>

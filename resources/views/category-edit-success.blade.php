@@ -1,8 +1,8 @@
 <x-base-layout :title="'Kategorie bearbeitet'">
     <nav>
         <x-forms.back/>
+		<h1>Frage bearbeitet</h1>
         <x-forms.logout/>
-        <h1>Frage bearbeitet</h1>
     </nav>
     <main class="center-content">
         <p>Kategorie wurde bearbeitet</p>

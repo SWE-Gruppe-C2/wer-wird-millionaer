@@ -6,7 +6,7 @@
     </nav>
     <main class="center-content">
         <p>Kategorie erfolgreich hinzugefügt</p>
-		<a href="/system-control" class="button">Zurück zur Übersicht</a>
+		<a href="/category" class="button">Zurück zur Übersicht</a>
     </main>
 	<div id="bg">
 		<div id="popup" class="round-box">
