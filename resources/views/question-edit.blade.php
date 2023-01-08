@@ -24,9 +24,11 @@
 			<textarea id="question" name="question" rows="3" placeholder="Frage eingeben" required>{{ $oldQuestion->text }}</textarea>
 
 			@foreach(range('a', 'd') as $index => $alph)
+				<label for="answer_{{ $alph }}">Antwort {{ strtoupper($alph) }}</label>
             	<input type="text" id="answer_{{ $alph }}" name="answer_{{ $alph }}" placeholder="{{ strtoupper($alph) }}: Antwort eingeben" value="{{ $oldQuestion->answers[$index] }}" required/>
 			@endforeach
 
+			<label for="correct_answer">Korrekte Antwort</label>
             <select name="correct_answer" id="correct_answer" required>
 				@foreach(range('a', 'd') as $index => $alph)
 					@if($oldQuestion->correct_answer === $index + 1)
@@ -36,6 +38,8 @@
 					@endif
 				@endforeach
             </select>
+
+			<label for="difficulty">Schwierigkeitsgrad</label>
             <select name="difficulty" id="difficulty" required>
                 @for($i = 1; $i < 16; $i++)
 					@if($oldQuestion->difficulty == $i)
