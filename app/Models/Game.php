@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +13,7 @@ class Game extends Model
         'active',
         'start',
         'end',
+        'time_needed',
         'user_id',
         'question_id',
         'gamestage_id'
@@ -32,13 +32,5 @@ class Game extends Model
     public function stage()
     {
         return $this->belongsTo(GameStage::class, 'gamestage_id');
-    }
-
-    public function timeTaken(): string
-    {
-        $from = new Carbon($this->start);
-        $to = new Carbon($this->end);
-
-        return $from->diffAsCarbonInterval($to)->format('%i:%s');
     }
 }

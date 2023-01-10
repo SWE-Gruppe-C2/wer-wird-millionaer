@@ -11,7 +11,8 @@ class LeaderboardController extends Controller
     public function show()
     {
         $best_games = Game::orderBy('gamestage_id', 'desc')
-                            ->limit(10) //TODO: hier muss noch nach benötigter Zeit geordered werden
+                            ->orderBy('time_needed')
+                            ->limit(10) //TODO: Zeitsortierung funktioniert noch nicht
                             ->get();
 
         return view('leaderboard', [

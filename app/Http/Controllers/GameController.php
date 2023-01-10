@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\GameStage;
 use App\Models\Question;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
@@ -57,6 +58,9 @@ class GameController extends Controller
         $game->gamestage_id = $stage?->id;
         $game->active = false;
         $game->end = now();
+        $from = new Carbon($game->start);
+        $to = new Carbon($game->end);
+        $game->time_needed = $from->diffAsCarbonInterval($to)->format('%H:%i:%s');
         $game->save();
 
         return to_route('game.over');
@@ -71,6 +75,9 @@ class GameController extends Controller
 
         $game->active = false;
         $game->end = now();
+        $from = new Carbon($game->start);
+        $to = new Carbon($game->end);
+        $game->time_needed = $from->diffAsCarbonInterval($to)->format('%H:%i:%s');
         $game->save();
 
         return to_route('game.over');
@@ -86,6 +93,9 @@ class GameController extends Controller
         $game->gamestage_id = $game->stage->last()?->id;
         $game->active = false;
         $game->end = now();
+        $from = new Carbon($game->start);
+        $to = new Carbon($game->end);
+        $game->time_needed = $from->diffAsCarbonInterval($to)->format('%H:%i:%s');
         $game->save();
 
         return to_route('game.over');

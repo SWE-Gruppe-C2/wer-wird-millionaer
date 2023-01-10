@@ -18,6 +18,7 @@ return new class extends Migration
             $table->boolean('active');
             $table->timestamp('start');
             $table->timestamp('end')->nullable();
+            $table->timestamp( 'time_needed')->nullable();
             $table->foreignId('user_id');
             $table->foreignId('question_id');
             $table->foreignId('gamestage_id')->nullable();

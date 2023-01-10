@@ -12,7 +12,7 @@
                 <tr>
                     <td> {{$loop->iteration.'.'. $game->user->name }} </td>
                     <td> {{ number_format($game->stage?->price,0,'.','.').'€' }} </td>
-                    <td> {{ $game->timeTaken() . ' min' }} </td>
+                    <td> {{ $game->time_needed . ' min' }} </td>
                 </tr>
             @endforeach
             </tbody>
