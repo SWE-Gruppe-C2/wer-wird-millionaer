@@ -55,7 +55,7 @@
                     style="pointer-events: none"
                     id="answer_{{ strtolower($alph) }}"
                     class="answer button
-                    @if(($index + 1) == $question->correct_answer) correct
+                    @if(($index + 1) == $question->correct_answer) correct chosen
                     @elseif(($index + 1) == $chosen) chosen
                     @endif
                     "
