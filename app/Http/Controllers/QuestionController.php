@@ -141,7 +141,32 @@ class QuestionController extends Controller
                     'categories' => Category::all(),
                     'customError' => $customError
                 ]);
-            } else {
+            }elseif ($question->text == $request->question){
+
+            $validator = $request->validate([
+                'question' => 'required|string',
+                'answer_a' => 'required|string',
+                'answer_b' => 'required|string',
+                'answer_c' => 'required|string',
+                'answer_d' => 'required|string',
+                'correct_answer' => 'required',
+                'difficulty' => 'required|int',
+                'category' => 'required|int'
+            ]);
+
+            $question->text = $request->question;
+            $answers = [$request->answer_a, $request->answer_b, $request->answer_c, $request->answer_d];
+            $question->answers = $answers;
+            $question->correct_answer = $request->correct_answer;
+            $question->difficulty = $request->difficulty;
+            $question->category_id = $request->category;
+
+            $question->save();
+
+            return view('question-edit-success', ['question' => $question]);
+
+            }
+            else {
 
                 $validator = $request->validate([
                     'question' => 'required|string|unique:questions,text',
