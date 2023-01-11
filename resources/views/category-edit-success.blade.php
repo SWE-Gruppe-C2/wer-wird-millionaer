@@ -1,6 +1,6 @@
 <x-base-layout :title="'Kategorie bearbeitet'">
     <nav>
-        <x-forms.back/>
+        <x-forms.back location="/category"/>
 		<h1>Frage bearbeitet</h1>
         <x-forms.logout/>
     </nav>

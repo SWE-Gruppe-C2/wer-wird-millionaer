@@ -1,6 +1,6 @@
 <x-base-layout :title="'Registrieren'">
     <nav>
-        <x-forms.back/>
+        <x-forms.back location="/login"/>
         <h1>Registrieren</h1>
     </nav>
     <main>

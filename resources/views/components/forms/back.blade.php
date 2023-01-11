@@ -1,3 +1,3 @@
-<a href="{{ url()->previous() }}" id="back">
+<a href="{{ $location }}" id="back">
 	<img src="{{ asset('assets/img/back.png') }}" alt="Zurück">
 </a>

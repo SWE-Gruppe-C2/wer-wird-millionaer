@@ -1,9 +1,9 @@
 <x-base-layout :title="'Leaderboard'">
     <main>
         <nav>
-            <x-forms.back/>
+            <x-forms.back location="{{ url()->previous() }}"/>
             <x-forms.logout/>
-            <div onclick="mute()"><x-forms.mute/></div>
+            <x-forms.mute/>
         </nav>
         <h1>TOP 10</h1>
         <table id="highscores">

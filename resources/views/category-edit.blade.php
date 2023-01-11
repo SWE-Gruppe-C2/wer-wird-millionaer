@@ -1,6 +1,6 @@
 <x-base-layout :title="'Kategorie bearbeiten'">
     <nav>
-        <x-forms.back/>
+        <x-forms.back location="/category"/>
         <h1>Kategorie bearbeiten</h1>
 		<x-forms.logout/>
     </nav>

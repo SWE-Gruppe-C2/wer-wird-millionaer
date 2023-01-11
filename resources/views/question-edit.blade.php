@@ -1,6 +1,7 @@
 <x-base-layout :title="'Frage bearbeiten'">
     <nav>
-        <x-forms.back/>
+        <!-- TODO: In der Session speichern, welcher filter vorher gesetzt wurde? -->
+        <x-forms.back location="{{ url()->previous() }}"/>
         <h1>Frage bearbeiten</h1>
 		<x-forms.logout/>
     </nav>

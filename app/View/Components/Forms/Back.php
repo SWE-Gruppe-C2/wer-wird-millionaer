@@ -7,13 +7,18 @@ use Illuminate\View\Component;
 class Back extends Component
 {
     /**
-     * Create a new component instance.
-     *
-     * @return void
+     * @var String
      */
-    public function __construct()
+    public String $location;
+
+    /**
+     * Create a new component instance.
+     * @param String $location
+     *
+     */
+    public function __construct(String $location)
     {
-        //
+        $this->location = $location;
     }
 
     /**
