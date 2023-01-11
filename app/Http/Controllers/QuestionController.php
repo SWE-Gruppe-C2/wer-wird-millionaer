@@ -141,7 +141,7 @@ class QuestionController extends Controller
                     'categories' => Category::all(),
                     'customError' => $customError
                 ]);
-            }elseif ($question->text == $request->question){
+            }else if ($question->text == $request->question){
 
             $validator = $request->validate([
                 'question' => 'required|string',
