@@ -55,7 +55,7 @@ class GameController extends Controller
 
         $stage = GameStage::lastSafe($game->stage);
 
-        $game->gamestage_id = $stage?->id;
+        $game->gamestage_id = $stage?->id ?? 0;
         $game->active = false;
         $game->end = now();
         $from = new Carbon($game->start);
@@ -90,7 +90,7 @@ class GameController extends Controller
         /** @var Game $game */
         $game     = $user->current();
 
-        $game->gamestage_id = $game->stage->last()?->id;
+        $game->gamestage_id = $game->stage->last()?->id ?? 0;
         $game->active = false;
         $game->end = now();
         $from = new Carbon($game->start);
