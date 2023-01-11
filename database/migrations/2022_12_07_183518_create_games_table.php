@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamp('start');
             $table->timestamp('end')->nullable();
             $table->timestamp( 'time_needed')->nullable();
+            $table->integer('total_time_sec')->nullable();
             $table->boolean('joker5050');
             $table->boolean('jokerAudience');
             $table->boolean('jokerFriend');

@@ -67,6 +67,14 @@ class GameController extends Controller
         $from = new Carbon($game->start);
         $to = new Carbon($game->end);
         $game->time_needed = $from->diffAsCarbonInterval($to)->format('%H:%i:%s');
+
+        $seconds = $from->diffInSeconds($to);
+        $minutes = $from->diffInMinutes($to);
+        $hours = $from->diffInHours($to);
+        $total_time = $seconds + $minutes * 60 + $hours * 3600;
+
+        $game->total_time_sec = $total_time;
+
         $game->save();
 
         return to_route('game.over');
