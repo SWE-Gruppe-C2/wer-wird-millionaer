@@ -47,8 +47,8 @@
                 <span>{{ $question->text }}</span>
             </div>
             @foreach(range('A', 'D') as $index => $alph)
-                <a id="answer_{{ strtolower($alph) }}" class="answer button" href="{{ route('game.result', ['id' => $index + 1]) }}">
-{{--                <a id="answer_{{ strtolower($alph) }}" class="answer button" onclick="toRouteWhileGame('{{ route('game.result', ['id' => $index + 1]) }}')" href="#">--}}
+{{--                <a id="answer_{{ strtolower($alph) }}" class="answer button" href="{{ route('game.result', ['id' => $index + 1]) }}">--}}
+                <a id="answer_{{ strtolower($alph) }}" class="answer button" onclick="toRouteWhileGame('{{ route('game.result', ['id' => $index + 1]) }}', '{{csrf_token()}}')" href="#">
                     <span>{{ $question->answers[$index] }}</span>
                 </a>
             @endforeach
@@ -61,6 +61,7 @@
             startMusic();
             setCorrectAnswer({{ $question->correct_answer - 1}}, {{ $question->difficulty - 1 }});
             muteCheck();
+            jokerCheck({{$game->joker5050}}, {{$game->jokerAudience}}, {{$game->jokerFriend}});
         })
     </script>
 </x-base-layout>

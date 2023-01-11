@@ -20,6 +20,9 @@ window.closeMoneyTree = function() {
 const logo = document.getElementById('logo')
 const question = document.getElementById('question')
 const answers = document.getElementsByClassName('answer')
+let j5050U = true;
+let jAudienceU = true;
+let jFriendU = true;
 let correctAnswer = 0;
 let hubDisplay = logo
 let percentages = new Array(4)
@@ -98,6 +101,7 @@ window.fiftyFifty = function() {
 
     fiftyFiftyButton.removeAttribute('onclick')
     fiftyFiftyButton.style.display = 'none'
+    j5050U = false;
 
     for (let i = 0; i < 4; i++) {
         if (i === keep || i === correctAnswer) continue
@@ -123,6 +127,7 @@ window.callFriend = function() {
     hint.innerHTML = '„' + quotes[Math.floor((tendency - 21) * .1)].replace('%', letter) + '“'
     hubDisplay = hint
     hint.style.opacity = '1'
+    jFriendU = false;
 }
 
 window.askAudience = function(){
@@ -136,6 +141,7 @@ window.askAudience = function(){
     hubDisplay.style.opacity = '0'
     askAudienceButton.removeAttribute('onclick')
     askAudienceButton.style.display = 'none'
+    jAudienceU = false;
 
     for (let i = 0; i < hint.length; i++) {
         hint[i].style.height = percentages[i] + '%'
@@ -147,7 +153,6 @@ window.askAudience = function(){
 }
 
 window.calcTendencies = function() {
-    // console.log(correctAnswer + " " + level);
     let rightAnswer = correctAnswer
     let maxTend = Math.ceil(level < 7 ? -1.1726 * level * level + .8393 * level + 99.958 : -2.14891 * level + 63.4181)
     let minTend = maxTend - level - 4
@@ -171,15 +176,61 @@ window.calcTendencies = function() {
     }
 }
 
-window.submitWithValue = function(value) {
-    const form = document.getElementById('form');
-    // form.append(`<input type="hidden" name="answer" value="${value}" />`);
-    document.getElementById('answer').value = value;
-    form.submit();
-    //TODO: check if Jokers were used
-}
-
 window.setCorrectAnswer = function(answer, stage){
     correctAnswer = answer;
     level = stage;
+}
+
+window.jokerCheck = function(j5050, jAudience, jFriend){
+    const fiftyFiftyButton = document.getElementById('fifty_fifty')
+    const askAudienceButton = document.getElementById('ask_audience')
+    const callFriendButton = document.getElementById('call_friend')
+    if(!j5050){
+        fiftyFiftyButton.removeAttribute('onclick')
+        fiftyFiftyButton.style.display = 'none'
+        j5050U = false;
+    }
+    else
+        fiftyFiftyButton.removeAttribute('style')
+    if(!jAudience){
+        askAudienceButton.removeAttribute('onclick')
+        askAudienceButton.style.display = 'none'
+        jAudienceU = false;
+    }
+    else
+        askAudienceButton.removeAttribute('style')
+    if(!jFriend){
+        callFriendButton.removeAttribute('onclick')
+        callFriendButton.style.display = 'none'
+        jFriendU = false;
+    }
+    else
+        callFriendButton.removeAttribute('style');
+}
+
+window.toRouteWhileGame = function(route, csrf){
+    // window.location.href = route + '/' + "e";
+    const form = document.createElement('form');
+    form.method = 'post';
+    form.action = route;
+    let values = new Map([
+        ['j5050', j5050U],
+        ['jAudience', jAudienceU],
+        ['jFriend', jFriendU],
+        ['_token', csrf]
+    ]);
+    values.forEach((value, key)=>{
+        console.log(key + " - " + value);
+        const hiddenField = document.createElement('input');
+        hiddenField.type = 'hidden';
+        hiddenField.name = key;
+        if(key !== '_token')
+            hiddenField.value = value ? '1' : '0';
+        else
+            hiddenField.value = value.toString();
+        form.appendChild(hiddenField);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
 }

@@ -69,6 +69,7 @@
 		window.addEventListener('DOMContentLoaded', () => {
 			initMusic({{ $question->difficulty - 1 }});
             muteCheck();
+            jokerCheck({{$game->joker5050}}, {{$game->jokerAudience}}, {{$game->jokerFriend}});
             let timeout;
 
 			if({{ $question->correct_answer }} === {{ $chosen }})

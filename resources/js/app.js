@@ -167,7 +167,3 @@ window.muteCheck = function(){
         mute();
     }
 }
-
-window.toRouteWhileGame = function(route){
-    window.location.href = route + '/' + muteG;
-}

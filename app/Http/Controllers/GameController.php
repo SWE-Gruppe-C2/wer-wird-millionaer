@@ -6,6 +6,7 @@ use App\Models\Game;
 use App\Models\GameStage;
 use App\Models\Question;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
@@ -15,7 +16,7 @@ class GameController extends Controller
         $user = Auth::user();
 
         /** @var Game $game */
-        $game     = $user->current();
+        $game = $user->current();
 
         /** @var Question $question */
         $question = $game->question;
@@ -23,11 +24,11 @@ class GameController extends Controller
         return view('game', [
             'game' => $game,
             'question' => $question,
-            'stages' => GameStage::all()
+            'stages' => GameStage::all(),
         ]);
     }
 
-    public function result(int $id)
+    public function result(Request $request, int $id)
     {
         $user = Auth::user();
 
@@ -36,6 +37,11 @@ class GameController extends Controller
 
         /** @var Question $question */
         $question = $game->question;
+
+        $game->joker5050 = $request->j5050;
+        $game->jokerAudience = $request->jAudience;
+        $game->jokerFriend = $request->jFriend;
+        $game->save();
 
         return view('game-result', [
             'game' => $game,

@@ -67,6 +67,9 @@ class User extends Authenticatable implements MustVerifyEmail
                 [
                     'active' => true,
                     'start' => now(),
+                    'joker5050' => true,
+                    'jokerAudience' => true,
+                    'jokerFriend' => true,
                     'user_id' => $this->id,
                     'question_id' => Question::random($first)->id,
                     'gamestage_id' => $first->id

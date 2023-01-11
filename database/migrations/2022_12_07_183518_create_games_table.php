@@ -19,6 +19,9 @@ return new class extends Migration
             $table->timestamp('start');
             $table->timestamp('end')->nullable();
             $table->timestamp( 'time_needed')->nullable();
+            $table->boolean('joker5050');
+            $table->boolean('jokerAudience');
+            $table->boolean('jokerFriend');
             $table->foreignId('user_id');
             $table->foreignId('question_id');
             $table->foreignId('gamestage_id')->nullable();
