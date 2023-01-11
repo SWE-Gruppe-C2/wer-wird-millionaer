@@ -172,7 +172,9 @@ return [
     'attributes' => [
         'password' => 'Passwort',
         'email' => 'E-Mail',
-        'name' => 'Benutzername'
+        'name' => 'Benutzername',
+        'category' => 'Kategorie',
+        'question' => 'Frage'
     ],
 
 ];
