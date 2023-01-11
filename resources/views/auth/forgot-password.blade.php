@@ -1,7 +1,7 @@
 <x-base-layout :title="'Passwort vergessen'">
 
     <nav>
-        <x-forms.back/>
+        <x-forms.back location="/login"/>
         <h1>Passwort vergessen</h1>
     </nav>
 

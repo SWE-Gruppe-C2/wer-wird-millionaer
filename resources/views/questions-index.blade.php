@@ -1,6 +1,6 @@
 <x-base-layout :title="'Fragenkatalog'">
     <nav>
-        <x-forms.back/>
+        <x-forms.back location="/system-control"/>
         <h1>Fragenkatalog</h1>
 		<x-forms.logout/>
     </nav>

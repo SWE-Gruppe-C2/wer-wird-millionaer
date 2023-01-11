@@ -1,6 +1,6 @@
 <x-base-layout :title="'Frage hinzufügen'">
     <nav>
-        <x-forms.back/>
+        <x-forms.back location="/question"/>
         <h1>Frage hinzufügen</h1>
 		<x-forms.logout/>
     </nav>

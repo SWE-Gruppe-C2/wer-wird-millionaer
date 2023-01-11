@@ -2,7 +2,7 @@
 
 <x-base-layout :title="'Fragen Filtern'">
     <nav>
-        <x-forms.back/>
+        <x-forms.back location="/system-control"/>
         <h1>Fragenkatalog Filter</h1>
     </nav>
 

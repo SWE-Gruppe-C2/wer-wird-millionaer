@@ -1,6 +1,6 @@
 <x-base-layout :title="'Frage Bearbeiten'">
     <nav>
-        <x-forms.back/>
+        <x-forms.back location="/question"/>
         <h1>Frage Bearbeiten</h1>
 		<x-forms.logout/>
     </nav>

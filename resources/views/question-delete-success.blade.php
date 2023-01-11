@@ -1,6 +1,6 @@
 <x-base-layout :title="'Frage Löschen'">
     <nav>
-        <x-forms.back/>
+        <x-forms.back location="/question"/>
         <h1>Frage Löschen</h1>
 		<x-forms.logout/>
     </nav>

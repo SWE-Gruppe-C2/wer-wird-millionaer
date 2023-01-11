@@ -1,6 +1,6 @@
 <x-base-layout :title="'E-Mail-Verifikation'">
 	<nav>
-		<x-forms.back/>
+		<x-forms.back location="/"/>
 		<h1>E-Mail-Verifikation</h1>
         <x-forms.logout/>
 	</nav>

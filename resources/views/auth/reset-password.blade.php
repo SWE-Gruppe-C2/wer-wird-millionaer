@@ -3,7 +3,7 @@
     <main class="center-content">
 
         <nav>
-            <x-forms.back/>
+            <x-forms.back location="/login"/>
             <h1>Passwort ändern</h1>
         </nav>
 

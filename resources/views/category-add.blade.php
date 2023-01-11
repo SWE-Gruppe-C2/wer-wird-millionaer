@@ -1,6 +1,6 @@
 <x-base-layout :title="'Kategorie hinzufügen'">
 	<nav>
-		<x-forms.back/>
+		<x-forms.back location="/system-control"/>
 		<h1>Kategorie hinzufügen</h1>
 		<x-forms.logout/>
 	</nav>
