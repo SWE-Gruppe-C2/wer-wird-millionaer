@@ -11,26 +11,29 @@
                 <li>{{$customError}}</li>
             </ul>
         @endif
-        @if ($errors)
-			<ul>
-				@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-        @endif
+            @if ($errors)
+
+                @if($errors->first() == "Fragefeld muss ausgefüllt werden."||$errors->first() == "answer afeld muss ausgefüllt werden."||$errors->first() == "answer bfeld muss ausgefüllt werden."||$errors->first() == "answer cfeld muss ausgefüllt werden."||$errors->first() == "answer dfeld muss ausgefüllt werden.")
+                    <p>Es müssen alle Eingabefelder ausgefüllt werden</p>
+                @else
+                    {{ $errors->first() }}
+                @endif
+
+
+            @endif
         <form action="{{ route('question.update', $oldQuestion) }}" method="POST">
             @csrf
             @method('patch')
 			<label for="question">Frage</label>
-			<textarea id="question" name="question" rows="3" placeholder="Frage eingeben" required>{{ $oldQuestion->text }}</textarea>
+			<textarea id="question" name="question" rows="3" placeholder="Frage eingeben" >{{ $oldQuestion->text }}</textarea>
 
 			@foreach(range('a', 'd') as $index => $alph)
 				<label for="answer_{{ $alph }}">Antwort {{ strtoupper($alph) }}</label>
-            	<input type="text" id="answer_{{ $alph }}" name="answer_{{ $alph }}" placeholder="{{ strtoupper($alph) }}: Antwort eingeben" value="{{ $oldQuestion->answers[$index] }}" required/>
+            	<input type="text" id="answer_{{ $alph }}" name="answer_{{ $alph }}" placeholder="{{ strtoupper($alph) }}: Antwort eingeben" value="{{ $oldQuestion->answers[$index] }}" />
 			@endforeach
 
 			<label for="correct_answer">Korrekte Antwort</label>
-            <select name="correct_answer" id="correct_answer" required>
+            <select name="correct_answer" id="correct_answer" >
 				@foreach(range('a', 'd') as $index => $alph)
 					@if($oldQuestion->correct_answer === $index + 1)
 						<option value="{{ $alph }}" selected>Antwort {{ strtoupper($alph) }}</option>
@@ -41,7 +44,7 @@
             </select>
 
 			<label for="difficulty">Schwierigkeitsgrad</label>
-            <select name="difficulty" id="difficulty" required>
+            <select name="difficulty" id="difficulty" >
                 @for($i = 1; $i < 16; $i++)
 					@if($oldQuestion->difficulty == $i)
 						<option value="{{ $i }}" selected>Stufe {{ $i }}</option>
@@ -52,7 +55,7 @@
             </select>
 
 			<label for="category">Kategorie</label>
-            <select name="category" id="category" required>
+            <select name="category" id="category" >
                 @foreach($categories as $category)
 
                     {{-- SELECTS DEFAULT FOR QUESTION CATEGORY WHEN DISPLAYING --}}
