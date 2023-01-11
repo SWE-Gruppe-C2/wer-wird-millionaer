@@ -147,7 +147,7 @@ window.askAudience = function(){
 }
 
 window.calcTendencies = function() {
-    console.log(correctAnswer + " " + level);
+    // console.log(correctAnswer + " " + level);
     let rightAnswer = correctAnswer
     let maxTend = Math.ceil(level < 7 ? -1.1726 * level * level + .8393 * level + 99.958 : -2.14891 * level + 63.4181)
     let minTend = maxTend - level - 4

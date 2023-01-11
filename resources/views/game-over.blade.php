@@ -40,6 +40,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             initMusic(0);
             closingMusic();
+            muteCheck();
         });
     </script>
 </x-base-layout>

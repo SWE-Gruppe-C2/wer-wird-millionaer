@@ -67,7 +67,8 @@
 	</main>
 	<script>
 		window.addEventListener('DOMContentLoaded', () => {
-			initMusic({{ $question->difficulty - 1 }})
+			initMusic({{ $question->difficulty - 1 }});
+            muteCheck();
             let timeout;
 
 			if({{ $question->correct_answer }} === {{ $chosen }})

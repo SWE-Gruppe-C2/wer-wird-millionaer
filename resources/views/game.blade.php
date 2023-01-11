@@ -48,6 +48,7 @@
             </div>
             @foreach(range('A', 'D') as $index => $alph)
                 <a id="answer_{{ strtolower($alph) }}" class="answer button" href="{{ route('game.result', ['id' => $index + 1]) }}">
+{{--                <a id="answer_{{ strtolower($alph) }}" class="answer button" onclick="toRouteWhileGame('{{ route('game.result', ['id' => $index + 1]) }}')" href="#">--}}
                     <span>{{ $question->answers[$index] }}</span>
                 </a>
             @endforeach
@@ -58,8 +59,8 @@
         window.addEventListener('DOMContentLoaded', () => {
             initMusic({{ $question->difficulty - 1 }});
             startMusic();
-            setCorrectAnswer({{ $question->correct_answer - 1}}, {{ $question->difficulty - 1 }})
+            setCorrectAnswer({{ $question->correct_answer - 1}}, {{ $question->difficulty - 1 }});
+            muteCheck();
         })
     </script>
 </x-base-layout>
-

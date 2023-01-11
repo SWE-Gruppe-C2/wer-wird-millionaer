@@ -9,12 +9,13 @@ window.Alpine = Alpine;
 Alpine.start();
 
 //musik-objekt
-var currentMusic;
-var secondaryMusic;
+let currentMusic;
+let secondaryMusic;
 //array mit den verschiedenen Stages (der Einfachheit halber :D)
-var stages = ["100-1000", "100-1000", "100-1000", "100-1000", 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
+const stages = ["100-1000", "100-1000", "100-1000", "100-1000", 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
 //aktuelle Stage
-var currentStage = 0;
+let currentStage = 0;
+let muteG = false;
 
 /**
  *
@@ -25,7 +26,7 @@ var currentStage = 0;
  */
 function Music(src, id ,loop = false){
     //ist gemuted?
-    var muted = false;
+    let muted = false;
     //neues audio-element (HTML element)
     this.music = document.createElement("audio");
     this.music.setAttribute("id", id);
@@ -101,20 +102,21 @@ window.lose = function(){
 //sound muten
 window.mute = function(){
     let muteIcon = document.getElementById("toggle_sound");
-    let muted;
     if(muteIcon.src.includes("volume.png")) {
         // console.log("Mute icon to mute, icon was " + muteIcon.src)
         muteIcon.src = '/assets/img/mute.png';
         currentMusic.mute(false);
         secondaryMusic.mute(false);
-        muted = true;
+        muteG = true;
+        sessionStorage.setItem("muted", "true")
     }
     else {
         // console.log("Mute icon to volume, icon was " + muteIcon.src)
         muteIcon.src = '/assets/img/volume.png'
         currentMusic.mute(true);
         secondaryMusic.mute(true);
-        muted = false;
+        muteG = false;
+        sessionStorage.setItem("muted", "false");
     }
 }
 
@@ -157,4 +159,15 @@ window.confirmLogout = function() {
 window.cancelLogout = function() {
     document.getElementById('bg').style.display = 'none';
     document.getElementsByTagName('main')[0].style.filter = 'none';
+}
+
+window.muteCheck = function(){
+    if(sessionStorage.getItem("muted") === "true"){
+        muteG = true;
+        mute();
+    }
+}
+
+window.toRouteWhileGame = function(route){
+    window.location.href = route + '/' + muteG;
 }
