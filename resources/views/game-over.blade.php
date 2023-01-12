@@ -10,6 +10,14 @@
             <div id="logo"></div>
         </div>
         <p>
+			@if($game->stage?->price == 1000000)
+				Herzlichen Glückwunsch - Sie sind virtueller Millionär!
+			@elseif($game->stage?->price >= 16000)
+				Schade, bis zur Million war es nicht mehr weit.
+			@else
+				Beim nächsten Mal klappt es besser!
+			@endif
+			<br>
             Gewinnsumme: € {{ number_format($game->stage?->price, 0, ',', '.') ?? 0 }}
         </p>
         <div class="button_wrapper">
