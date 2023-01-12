@@ -19,7 +19,6 @@
                     {{ $errors->first() }}
                 @endif
 
-
             @endif
         <form action="{{ route('question.update', $oldQuestion) }}" method="POST">
             @csrf

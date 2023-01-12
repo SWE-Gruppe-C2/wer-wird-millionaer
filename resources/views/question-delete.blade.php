@@ -1,6 +1,6 @@
 <x-base-layout :title="'Frage löschen'">
     <nav>
-        <x-forms.back location="/question"/>
+        <x-forms.back location="{{ url()->previous() }}"/>
         <h1>Frage löschen</h1>
 		<x-forms.logout/>
     </nav>
