@@ -6,7 +6,7 @@
     </nav>
     <main class="center-content">
 
-        <x-input-error :messages="$errors->all()"/>
+        {{$errors->first()}}
         <form action="{{ route('category.update', $category) }}" method="POST">
             @csrf
             @method('patch')
