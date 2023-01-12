@@ -14,7 +14,7 @@
 
             <!-- Password Reset Token -->
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
-            <!-- TODO: Email angeben war nicht vorgesehen, scheint nicht anders möglich zu sein -->
+
             <!-- Email -->
             <input type="email" id="email" name="email" placeholder="Email des Accounts" value="{{ old('email') }}" required>
 
