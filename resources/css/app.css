@@ -286,8 +286,7 @@ select { color: black }
 
 .correct {
 	color: black;
-	/*noinspection CssUnknownTarget*/
-	background-image: url('/assets/img/green_button.png')
+	animation: blink 400ms 1s ease-in-out 4 forwards;
 }
 
 .chosen {
@@ -410,6 +409,17 @@ select { color: black }
 @keyframes pulsate {
 	from { background-size: auto 100% }
 	to { background-size: auto 95% }
+}
+
+@keyframes blink {
+	from {
+		/*noinspection CssUnknownTarget*/
+		background-image: url('/assets/img/orange_button.png')
+	}
+	to {
+		/*noinspection CssUnknownTarget*/
+		background-image: url('/assets/img/green_button.png')
+	}
 }
 
 @media (min-width: 500px) {

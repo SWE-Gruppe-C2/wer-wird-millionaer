@@ -227,6 +227,23 @@ class QuestionController extends Controller
 
     public function questionFilter(Request $request){
 
+        //Test Routing Bug
+        if(!isset($request->difficulty)){
+            if($request->session()->has('difficulty')){
+                $request->difficulty = $request->session()->get('difficulty');
+            }else{
+                $request->difficulty = 'all';
+            }
+        }
+        if(!isset($request->category)){
+            if($request->session()->has('category')){
+                $request->category = $request->session()->get('category');
+            }else{
+                $request->category = 'all';
+            }
+        }
+        //
+
         if($request->difficulty == "all" && $request->category == "all"){
             $questions = Question::all();
         }elseif($request->difficulty == "all"){
@@ -237,6 +254,9 @@ class QuestionController extends Controller
         else{
             $questions = Question::where('difficulty', $request->difficulty)->where('category_id', $request->category)->get();
         }
+
+        $request->session()->put('difficulty', $request->difficulty);
+        $request->session()->put('category', $request->category);
 
         $categories = Category::all();
 

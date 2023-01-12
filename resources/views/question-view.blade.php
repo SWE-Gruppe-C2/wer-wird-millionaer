@@ -1,6 +1,6 @@
 <x-base-layout :title="'Frage anzeigen'">
 	<nav>
-		<x-forms.back location="/question"/>
+        <x-forms.back location="{{ url()->previous() }}"/>
 		<h1>Frage anzeigen</h1>
 		<x-forms.logout/>
 	</nav>
