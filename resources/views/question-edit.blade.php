@@ -1,6 +1,5 @@
 <x-base-layout :title="'Frage bearbeiten'">
     <nav>
-        <!-- TODO: In der Session speichern, welcher filter vorher gesetzt wurde? -->
         <x-forms.back location="/question-filter"/>
         <h1>Frage bearbeiten</h1>
 		<x-forms.logout/>
@@ -35,9 +34,9 @@
             <select name="correct_answer" id="correct_answer" >
 				@foreach(range('a', 'd') as $index => $alph)
 					@if($oldQuestion->correct_answer === $index + 1)
-						<option value="{{ $alph }}" selected>Antwort {{ strtoupper($alph) }}</option>
+						<option value="{{ $index + 1 }}" selected>Antwort {{ strtoupper($alph) }}</option>
 					@else
-						<option value="{{ $alph }}">Antwort {{ strtoupper($alph) }}</option>
+						<option value="{{ $index + 1 }}">Antwort {{ strtoupper($alph) }}</option>
 					@endif
 				@endforeach
             </select>
