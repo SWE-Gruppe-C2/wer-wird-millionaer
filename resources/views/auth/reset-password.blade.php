@@ -1,11 +1,12 @@
 <x-base-layout :title="'Passwort ändern'">
-
-    <main class="center-content">
-
-        <nav>
-            <x-forms.back location="/login"/>
-            <h1>Passwort ändern</h1>
-        </nav>
+	<nav>
+		<x-forms.back location="/login"/>
+		<h1>Passwort ändern</h1>
+	</nav>
+    <main>
+		<div id="hub">
+			<div id="logo"></div>
+		</div>
 
         <x-input-error :messages="$errors->all()"/>
 
