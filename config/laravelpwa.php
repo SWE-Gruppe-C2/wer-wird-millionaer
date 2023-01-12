@@ -4,6 +4,9 @@ return [
     'name' => env('APP_NAME'),
     'manifest' => [
         'name' => env('APP_NAME'),
+        'short_name' => 'WWM',
+        'start_url' => '/index.php',
+        'display' => 'fullscreen',
         'orientation'=> 'any',
         'status_bar'=> 'black',
         'icons' => [

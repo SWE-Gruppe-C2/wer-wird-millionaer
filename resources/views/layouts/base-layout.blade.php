@@ -13,8 +13,8 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/wwm_logo.png') }}">
 
     <title>{{ $title ?? config('app.name') }}</title>
-    @laravelPWA
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @laravelPWA
 </head>
 <body>
     {{ $slot }}
