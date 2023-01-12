@@ -9,6 +9,11 @@
 		</div>
 
         <x-input-error :messages="$errors->all()"/>
+        @if($errors->first()=="Passwortfeld muss ausgefüllt werden.")
+            <p>Bitte füllen Sie beide Eingabefelder aus.</p>
+        @else
+            {{$errors->first()}}
+        @endif
 
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
@@ -17,13 +22,13 @@
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
             <!-- Email -->
-            <input type="email" id="email" name="email" placeholder="Email des Accounts" value="{{ old('email') }}" required>
+            <input type="email" id="email" name="email" placeholder="Email des Accounts" value="{{ old('email') }}" >
 
             <!-- Neues Passwort -->
-            <input type="password" id="password" name="password" placeholder="Neues Passwort" required>
+            <input type="password" id="password" name="password" placeholder="Neues Passwort" >
 
             <!-- Passwort bestätigen -->
-            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Passwort wiederholen" required>
+            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Passwort wiederholen">
 
             <input type="submit" value="Passwort ändern" name="bestätigen">
         </form>

@@ -10,12 +10,16 @@
 			<div id="logo"></div>
 		</div>
 
-        <x-input-error :messages="$errors->all()"/>
+        @if($errors->first()=="E-Mailfeld muss ausgefüllt werden.")
+            <p>Bitte füllen Sie das E-Mailfeld aus</p>
+        @else
+            {{$errors->first()}}
+        @endif
 
         <form method="POST" action="{{ route('password.email') }}">
 			@csrf
 			<!-- Email -->
-			<input type="email" id="email" name="email" placeholder="E-Mail" value="{{ old('email') }}" required>
+			<input type="email" id="email" name="email" placeholder="E-Mail" value="{{ old('email') }}">
 
 			<input type="submit" value="E-Mail bestätigen" name="bestätigen">
 		</form>
