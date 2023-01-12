@@ -5,7 +5,7 @@
 		<x-forms.logout/>
     </nav>
     <main class="center-content">
-        <!-- TODO: Wo kommt das "new name" in der error message her? -->
+
         <x-input-error :messages="$errors->all()"/>
         <form action="{{ route('category.update', $category) }}" method="POST">
             @csrf
