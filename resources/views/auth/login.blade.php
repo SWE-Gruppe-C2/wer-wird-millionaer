@@ -9,13 +9,17 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <!-- Fehlermeldungen -->
-            <x-input-error :messages="$errors->all()"/>
+            @if($errors->first()=="Benutzernamefeld muss ausgefüllt werden."||$errors->first()=="Passwortfeld muss ausgefüllt werden.")
+                <p>Bitte füllen Sie beide Felder aus</p>
+            @else
+                {{$errors->first()}}
+            @endif
 
             <!-- Benutzername -->
-			<input type="text" name="name" id="name" placeholder="Ihr Benutzername" required/>
+			<input type="text" name="name" id="name" placeholder="Ihr Benutzername" />
 
             <!-- Passwort -->
-			<input type="password" name="password" id="password" placeholder="Ihr Passwort" required/>
+			<input type="password" name="password" id="password" placeholder="Ihr Passwort" />
 
             <!-- Einloggen -->
 			<input type="submit" id="login" value="{{ __('Einloggen') }}"/>

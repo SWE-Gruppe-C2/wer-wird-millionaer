@@ -135,6 +135,7 @@ textarea::-webkit-scrollbar { display: none }
 select { color: black }
 
 #confirm {
+	width: 100%;
 	height: 100%;
 	font-size: inherit;
 	font-weight: normal;
