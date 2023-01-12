@@ -5,7 +5,10 @@
         <h1>Passwort vergessen</h1>
     </nav>
 
-    <main class="center-content">
+    <main>
+		<div id="hub">
+			<div id="logo"></div>
+		</div>
 
         <x-input-error :messages="$errors->all()"/>
 
