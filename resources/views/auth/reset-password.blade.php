@@ -8,7 +8,7 @@
 			<div id="logo"></div>
 		</div>
 
-        <x-input-error :messages="$errors->all()"/>
+
         @if($errors->first()=="Passwortfeld muss ausgefüllt werden.")
             <p>Bitte füllen Sie beide Eingabefelder aus.</p>
         @else
