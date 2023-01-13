@@ -8,7 +8,7 @@
 		@if ($errors->any())
 			<div class="alert alert-danger">
 
-						<p>{{ $error }}</p>
+						<p>{{ $errors->first() }}</p>
 
 
 			</div>
