@@ -74,4 +74,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     })->name('system');
 });
 
+Route::get('/offline', function () {
+    return view('vendor.laravelpwa.offline');
+});
+
 require __DIR__.'/auth.php';
