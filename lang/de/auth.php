@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Benutzername oder Passwort nicht korrekt. Bitte überprüfen sie ihre Eingaben',
+    'failed' => 'Benutzername oder Passwort nicht korrekt. Bitte überprüfen Sie ihre Eingaben',
     'password' => 'Das angegebene Passwort ist nicht korrekt.',
     'throttle' => 'Zu viele Anmelde Versuche. Bitte versuchen sie es in :seconds Sekunden erneut.',
 

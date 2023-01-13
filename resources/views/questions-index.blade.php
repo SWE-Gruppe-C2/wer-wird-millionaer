@@ -23,9 +23,10 @@
 			<select id="difficulty" name="difficulty">
 				<option value="all">Alle</option>
 				@for($i = 1; $i <= 15; $i++)
-					<option value="{{ $i }}">Stufe {{ $i }}</option>
                     @if (isset($difficultySelect) && $difficultySelect == $i)
                         <option value="{{ $i }}" selected>Stufe {{ $i }}</option>
+                    @else
+                        <option value="{{ $i }}">Stufe {{ $i }}</option>
                     @endif
 				@endfor
 			</select>
@@ -34,9 +35,10 @@
 				<option value="all">Alle</option>
 				@foreach($categories as $category)
                     @if (isset($categorySelect) && $categorySelect == $category->id)
-                        <option value="{{ $category->id }}" selected>Stufe {{  $category->name }}</option>
+                        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                    @else
+					    <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endif
-					<option value="{{ $category->id }}">{{  $category->name }}</option>
                 @endforeach
 			</select>
 			<input type="submit" value="Filtern">
