@@ -20,8 +20,8 @@ class QuestionController extends Controller
     public function index()
     {
         return view('questions-index', [
-            'questions' => Question::all(),
-            'categories' => Category::all()
+            'questions'  => Question::all(),
+            'categories' => Category::all(),
         ]);
     }
 
@@ -38,7 +38,8 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return string
      */
     public function store(Request $request)
@@ -47,27 +48,32 @@ class QuestionController extends Controller
         //$validator = null;
         //$validator->setException( (new ValidationException($validator))->redirectTo('questions-add'));
 
-        $validator= $request->validate([
-            'question' => 'required|unique:questions,text',
-            'answer_a' => 'required|string',
-            'answer_b' => 'required|string',
-            'answer_c' => 'required|string',
-            'answer_d' => 'required|string',
+        $validator = $request->validate([
+            'question'       => 'required|unique:questions,text',
+            'answer_a'       => 'required|string',
+            'answer_b'       => 'required|string',
+            'answer_c'       => 'required|string',
+            'answer_d'       => 'required|string',
             'correct_answer' => 'required',
-            'difficulty' => 'required|int',
-            'category' => 'required|int'
+            'difficulty'     => 'required|int',
+            'category'       => 'required|int',
         ]);
 
 
-        $answers = [$request->answer_a, $request->answer_b, $request->answer_c, $request->answer_d];
+        $answers = [
+            $request->answer_a,
+            $request->answer_b,
+            $request->answer_c,
+            $request->answer_d,
+        ];
 
-        $question = new Question();
+        $question       = new Question();
         $question->text = $request->question;
 
-        $question->answers = $answers;
+        $question->answers        = $answers;
         $question->correct_answer = $request->correct_answer;
-        $question->difficulty = $request->difficulty;
-        $question->category_id = $request->category;
+        $question->difficulty     = $request->difficulty;
+        $question->category_id    = $request->category;
 
         $question->save();
 
@@ -80,7 +86,8 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param \App\Models\Question $question
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Question $question)
@@ -91,7 +98,8 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param \App\Models\Question $question
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Question $question)
@@ -99,7 +107,7 @@ class QuestionController extends Controller
 
         return view('question-edit', [
             'oldQuestion' => $question,
-            'categories' => Category::all(),
+            'categories'  => Category::all(),
         ]);
 
     }
@@ -107,8 +115,9 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Question  $question
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Question     $question
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function update(Request $request, Question $question)
@@ -125,78 +134,89 @@ class QuestionController extends Controller
             && $question->answers[2] == $request->answer_c
             && $question->correct_answer == $request->correct_answer
             && $question->difficulty == $request->difficulty
-            && $question->category_id == $request->category) {
+            && $question->category_id == $request->category
+        ) {
 
             //Überprüfen ob Änderungen vorgenommen worden sind.
             // Wenn nicht ->
 
-                // Frage wurde nicht bearbeitet
+            // Frage wurde nicht bearbeitet
 
-                //customError
-                $customError = "Es wurden keine Änderungen vorgenommen";
+            //customError
+            $customError = "Es wurden keine Änderungen vorgenommen";
 
-                //return view wie bei validate funktion Frage: muss man dann auch question übergeben
-                return view('question-edit', [
-                    'oldQuestion' => $question,
-                    'categories' => Category::all(),
-                    'customError' => $customError
-                ]);
-            }else if ($question->text == $request->question){
+            //return view wie bei validate funktion Frage: muss man dann auch question übergeben
+            return view('question-edit', [
+                'oldQuestion' => $question,
+                'categories'  => Category::all(),
+                'customError' => $customError,
+            ]);
+        } else if ($question->text == $request->question) {
 
             $validator = $request->validate([
-                'question' => 'required|string',
-                'answer_a' => 'required|string',
-                'answer_b' => 'required|string',
-                'answer_c' => 'required|string',
-                'answer_d' => 'required|string',
+                'question'       => 'required|string',
+                'answer_a'       => 'required|string',
+                'answer_b'       => 'required|string',
+                'answer_c'       => 'required|string',
+                'answer_d'       => 'required|string',
                 'correct_answer' => 'required',
-                'difficulty' => 'required|int',
-                'category' => 'required|int'
+                'difficulty'     => 'required|int',
+                'category'       => 'required|int',
             ]);
 
-            $question->text = $request->question;
-            $answers = [$request->answer_a, $request->answer_b, $request->answer_c, $request->answer_d];
-            $question->answers = $answers;
+            $question->text           = $request->question;
+            $answers                  = [
+                $request->answer_a,
+                $request->answer_b,
+                $request->answer_c,
+                $request->answer_d,
+            ];
+            $question->answers        = $answers;
             $question->correct_answer = $request->correct_answer;
-            $question->difficulty = $request->difficulty;
-            $question->category_id = $request->category;
+            $question->difficulty     = $request->difficulty;
+            $question->category_id    = $request->category;
 
             $question->save();
 
             return view('question-edit-success', ['question' => $question]);
 
-            }
-            else {
+        } else {
 
-                $validator = $request->validate([
-                    'question' => 'required|string|unique:questions,text',
-                    'answer_a' => 'required|string',
-                    'answer_b' => 'required|string',
-                    'answer_c' => 'required|string',
-                    'answer_d' => 'required|string',
-                    'correct_answer' => 'required',
-                    'difficulty' => 'required|int',
-                    'category' => 'required|int'
-                ]);
+            $validator = $request->validate([
+                'question'       => 'required|string|unique:questions,text',
+                'answer_a'       => 'required|string',
+                'answer_b'       => 'required|string',
+                'answer_c'       => 'required|string',
+                'answer_d'       => 'required|string',
+                'correct_answer' => 'required',
+                'difficulty'     => 'required|int',
+                'category'       => 'required|int',
+            ]);
 
-                $question->text = $request->question;
-                $answers = [$request->answer_a, $request->answer_b, $request->answer_c, $request->answer_d];
-                $question->answers = $answers;
-                $question->correct_answer = $request->correct_answer;
-                $question->difficulty = $request->difficulty;
-                $question->category_id = $request->category;
+            $question->text           = $request->question;
+            $answers                  = [
+                $request->answer_a,
+                $request->answer_b,
+                $request->answer_c,
+                $request->answer_d,
+            ];
+            $question->answers        = $answers;
+            $question->correct_answer = $request->correct_answer;
+            $question->difficulty     = $request->difficulty;
+            $question->category_id    = $request->category;
 
-                $question->save();
+            $question->save();
 
-                return view('question-edit-success', ['question' => $question]);
-            }
+            return view('question-edit-success', ['question' => $question]);
         }
+    }
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Question  $question
+     * @param \App\Models\Question $question
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function destroy(Question $question)
@@ -206,53 +226,56 @@ class QuestionController extends Controller
         return view('question-delete-success');
     }
 
-    public function questionAdd(Request $request){
+    public function questionAdd(Request $request)
+    {
 
         $categories = Category::all();
 
-        if($request->session()->has('questionAdded')){
+        if ($request->session()->has('questionAdded')) {
             $questionAdded = true;
-        }
-        else{
+        } else {
             $questionAdded = false;
         }
 
         $request->session()->forget('questionAdded');
 
-        return(view('question-add', [
-            'categories' => $categories,
-            'questionAdded' => $questionAdded
+        return (view('question-add', [
+            'categories'    => $categories,
+            'questionAdded' => $questionAdded,
         ]));
     }
 
-    public function questionFilter(Request $request){
+    public function questionFilter(Request $request)
+    {
 
         //Test Routing Bug
-        if(!isset($request->difficulty)){
-            if($request->session()->has('difficulty')){
+        if ( ! isset($request->difficulty)) {
+            if ($request->session()->has('difficulty')) {
                 $request->difficulty = $request->session()->get('difficulty');
-            }else{
+            } else {
                 $request->difficulty = 'all';
             }
         }
-        if(!isset($request->category)){
-            if($request->session()->has('category')){
+        if ( ! isset($request->category)) {
+            if ($request->session()->has('category')) {
                 $request->category = $request->session()->get('category');
-            }else{
+            } else {
                 $request->category = 'all';
             }
         }
         //
 
-        if($request->difficulty == "all" && $request->category == "all"){
+        if ($request->difficulty == "all" && $request->category == "all") {
             $questions = Question::all();
-        }elseif($request->difficulty == "all"){
-            $questions = Question::where('category_id', $request->category)->get();
-        }elseif($request->category == "all"){
-            $questions = Question::where('difficulty', $request->difficulty)->get();
-        }
-        else{
-            $questions = Question::where('difficulty', $request->difficulty)->where('category_id', $request->category)->get();
+        } elseif ($request->difficulty == "all") {
+            $questions = Question::where('category_id', $request->category)
+                ->get();
+        } elseif ($request->category == "all") {
+            $questions = Question::where('difficulty', $request->difficulty)
+                ->get();
+        } else {
+            $questions = Question::where('difficulty', $request->difficulty)
+                ->where('category_id', $request->category)->get();
         }
 
         $request->session()->put('difficulty', $request->difficulty);
@@ -261,29 +284,31 @@ class QuestionController extends Controller
         $categories = Category::all();
 
         return view('questions-index', [
-            'questions' => $questions,
-            'categories' => $categories,
-            'categorySelect' => $request->category,
-            'difficultySelect' => $request->difficulty
+            'questions'        => $questions,
+            'categories'       => $categories,
+            'categorySelect'   => $request->category,
+            'difficultySelect' => $request->difficulty,
         ]);
     }
 
-	public function questionView($id){
-		$question = Question::where('id', $id)->get();
-		$categories = Category::all();
+    public function questionView($id)
+    {
+        $question   = Question::where('id', $id)->get();
+        $categories = Category::all();
 
-		return view('question-view', [
-			'question' => $question[0],
-			'categories' => $categories
-		]);
-	}
+        return view('question-view', [
+            'question'   => $question[0],
+            'categories' => $categories,
+        ]);
+    }
 
-    public function questionDeletePage($id){
+    public function questionDeletePage($id)
+    {
 
         $question = Question::where('id', $id)->get();
 
         return view('question-delete', [
-           'question' => $question[0]
+            'question' => $question[0],
         ]);
     }
 

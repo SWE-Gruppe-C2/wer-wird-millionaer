@@ -31,10 +31,10 @@
 			<input type="text" id="answer_d" name="answer_d" placeholder="D: Antwort eingeben"/>
 			<label for="correct_answer">Korrekte Antwort</label>
 			<select name="correct_answer" id="correct_answer">
-				<option value="a">Antwort A</option>
-				<option value="b">Antwort B</option>
-				<option value="c">Antwort C</option>
-				<option value="d">Antwort D</option>
+				<option value="1">Antwort A</option>
+				<option value="2">Antwort B</option>
+				<option value="3">Antwort C</option>
+				<option value="4">Antwort D</option>
 			</select>
 			<label for="difficulty">Schwierigkeitsgrad</label>
 			<select name="difficulty" id="difficulty" >
@@ -45,7 +45,7 @@
 			<label for="category">Kategorie</label>
 			<select name="category" id="category" >
 				@foreach($categories as $category)
-					<option value="{{$category->id}}">{{$category->name}}</option>
+					<option value="{{  $category->id }}">{{$category->name}}</option>
 				@endforeach
 			</select>
 			<input type="submit" value="Frage hinzufügen">

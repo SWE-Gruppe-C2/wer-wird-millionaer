@@ -59,7 +59,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             initMusic({{ $question->difficulty - 1 }});
             startMusic();
-            setCorrectAnswer({{ $question->correct_answer - 1}}, {{ $question->difficulty - 1 }});
+            setCorrectAnswer({{ $question->correct_answer - 1 }}, {{ $question->difficulty - 1 }});
             muteCheck();
             jokerCheck({{$game->joker5050}}, {{$game->jokerAudience}}, {{$game->jokerFriend}});
         })
