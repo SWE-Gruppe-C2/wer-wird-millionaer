@@ -6,6 +6,7 @@ namespace App\Providers;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 
 class AuthServiceProvider extends ServiceProvider
@@ -31,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new MailMessage)
                 ->subject(Lang::get('Verfikation ihrer E-Mail Adresse'))
-                ->line(Lang::get('Bitte drücken sie die unten zusehende Schaltfläche, um ihre E-Mail zu verifizieren.'))
+                ->line(Lang::get('Bitte drücken Sie die unten zusehende Schaltfläche, um ihre E-Mail zu verifizieren.'))
                 ->action(Lang::get('E-Mail verifizieren'), $url)
                 ->line(Lang::get('Ignorieren sie diese E-Mail, wenn sie keinen Account bei uns Registriert haben'));
         });
