@@ -10,7 +10,7 @@ class LeaderboardController extends Controller
 {
     public function show()
     {
-        $best_games = Game::orderBy('gamestage_id', 'desc')
+        $best_games = Game::where('active', '=',0)->orderBy('gamestage_id', 'desc')
                             ->orderBy('total_time_sec')
                             ->limit(10)
                             ->get();
